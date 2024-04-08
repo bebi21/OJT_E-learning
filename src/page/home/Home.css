@@ -1,0 +1,12 @@
+.home-bg_img {
+  background-image: url("../../img/home_img/bg_1.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height: 584.91px;
+  font-family: "Cabin", sans-serif;
+}
+.add-font {
+  font-family: "Cabin", sans-serif;
+}

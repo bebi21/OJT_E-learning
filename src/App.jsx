@@ -1,5 +1,6 @@
 
-import { useState } from 'react'
+
+
 import './App.css'
 
 
@@ -9,16 +10,14 @@ import CourseDetail from './page/course detail/CourseDetail'
 
 
 function App() {
-
-
+export default function App() {
   return (
     <>
         <Header/>
         <CourseDetail/>
         <Footer/
-
     </>
   );
 }
-
 export default App;
+

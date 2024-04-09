@@ -1,4 +1,3 @@
-import React from "react";
 import "./Home.css";
 import icon from "../../img/home_img/icon1.png";
 import main_img from "../../img/home_img/bg_2.jpg";
@@ -15,8 +14,15 @@ import mentor_1 from "../../img/home_img/mentor1.png";
 import mentor_2 from "../../img/home_img/mentor2.png";
 import mentor_3 from "../../img/home_img/mentor3.png";
 import mentor_4 from "../../img/home_img/mentor4.png";
+import React from "react";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { SwiperNavButtons } from "./ButtonTest";
 
 function Home() {
+  // fake data
   const data = [
     {
       icon: icon_1,
@@ -141,13 +147,16 @@ function Home() {
       title4: "",
     },
   ];
+  // sử dụng  thư  viện swiper
+  const swiperCss = useSwiper();
+
   return (
     <>
-      <div className='add-font'>
+      <div className='add-font '>
         {/*   banner */}
-        <div className='home-bg_img text-white flex items-center pl-[130px]'>
-          <div className='w-[470px]'>
-            <h1 className='text-[32px] font-bold pb-[8px]'>
+        <div className='home-bg_img text-white flex items-center lg:px-[130px] px-[30px]'>
+          <div className='sm:w-[470px] w-[393px] '>
+            <h1 className=' sm:text-[32px] text-[24px]  sm:h-auto  max-w-[393px]:text-center sm:pt-auto  font-bold pb-[8px]'>
               Khóa Học Lập Trình Từ Con Số 0 Tự Tin Đi Làm Sau 6 Tháng
             </h1>
             <div className='text-[16px] pt-[8px] pb-[8px] '>
@@ -180,19 +189,23 @@ function Home() {
           </div>
         </div>
         {/* sesstion1 */}
-        <div className='w-[100%] h-[558px] bg-[#F2F2F2] flex justify-center items-center'>
-          <div className='h-[323px] flex justify-center items-center'>
+        <div className='sm:w-[100%]  h-[624px] sm:h-[558px] bg-[#F2F2F2] flex justify-center sm:items-center sm:py-auto py-[40px]'>
+          <div className='h-[323px] sm:w-auto w-[345px] sm:flex justify-center sm:items-center'>
             {" "}
-            <div className='home-bg_img1'>
-              <img src={main_img} alt='img' className=' w-[540px]' />
+            <div className='home-bg_img1 sm:block flex justify-center  '>
+              <img
+                src={main_img}
+                alt='img'
+                className='lg:w-[540px] sm:w-[320px] sm:h-[323px] w-[345px] '
+              />
             </div>
-            <div className='w-[556px]'>
-              <div className='pl-[40px]'>
+            <div className='sm:w-[556px] w-[345px] sm:py-auto py-[24px]'>
+              <div className='sm:pl-[40px]'>
                 <div>
-                  <h3 className='text-[24px] font-bold text-[#BC2228] mb-[10px]'>
+                  <h3 className='text-[24px] font-bold text-[#BC2228] sm:mb-[10px]'>
                     Rikkei Education - Where the dreams come true
                   </h3>
-                  <p className='text-[16px] text-[#231651]'>
+                  <p className='sm:text-[16px] text-[14px] text-[#231651]'>
                     Rikkei Education cam kết cung cấp nền tảng giáo dục và đào
                     tạo hiện đại, đưa công nghệ thông tin đến thế hệ trẻ Việt
                     Nam. Chúng tôi mong muốn trang bị cho các bạn đầy đủ kiến
@@ -214,210 +227,221 @@ function Home() {
           </div>
         </div>
         {/* sesstion2 */}
-        <div className='text-center'>
-          <h2 className='text-[35px] font-bold text-[#BC2228] py-[20px]'>
+        <div className='sm:text-center  '>
+          <h2 className='sm:text-[35px] text-[24px] font-bold text-[#BC2228] sm:py-[20px]  text-center'>
             Video bài giảng chất lượng cao
           </h2>
-          <p className='text-[14px] text-[#5D5A6F] px-[120px] py-[10px]'>
+          <p className=' text-[14px] sm:w-auto  sm:px-auto px-[20px]  pt-[10px]  sm:text-[#5D5A6F] sm:px-[120px] sm:py-[10px] text-[#231651]'>
             High-definition video is video of higher resolution and quality than
             standard-definition. While there is no standardized meaning for
             high-definition, generally any video image with considerably more
             than 480 vertical scan lines or 576 vertical lines is considered
             high-definition.
           </p>
-          <div className='flex justify-center items-center my-[50px]'>
-            <img src={content_img} alt='' />
+          <div className='flex justify-center items-center my-[50px] '>
+            <img
+              src={content_img}
+              alt=''
+              className='lg:w-auto sm:w-[825px] w-[345px] sm:h-auto h-[150px]'
+            />
           </div>
         </div>
         {/* sesstion3 */}
-        <div className='w-[100%] h-[558px] bg-[#F2F2F2] '>
-          <h2 className='text-[35px] text-center font-bold text-[#BC2228] py-[20px]'>
+        <div className='w-[100%] sm:h-[558px] bg-[#F2F2F2] '>
+          <h2 className='sm:text-[35px] text-[23px] sm:px-auto  text-center font-bold text-[#BC2228] py-[20px]'>
             Phương pháp đào tạo lập trình ưu việt
           </h2>
-          <div className=' flex justify-center gap-4 items-center '>
-            <div className='w-[368px] h-[350px] bg-white text-[#221651]'>
-              <div className='px-[20px] py-[25px]'>
-                <h4 className='font-semibold text-[20px]'>Coding Bootcamp</h4>
-                <ul className='pt-[20px] py-[8px]'>
-                  <li className='flex'>
-                    <div className='w-[24px] mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>
-                      CAM KẾT CÓ VIỆC LÀM bằng HỢP ĐỒNG, học xong là có việc
-                      ngay (mức lương lên tới 10 - 12 triệu)
-                    </span>
-                  </li>
-                  <li className='flex  py-[8px]'>
-                    <div className='mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>Giảm thiểu tối đa chi phí</span>
-                  </li>
-                  <li className='flex  py-[8px]'>
-                    <div className='mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>
-                      Nhanh chóng đi làm tại doanh nghiệp
-                    </span>
-                  </li>
-                  <li className='flex  py-[8px]'>
-                    <div className='mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>
-                      Phát triển tư duy nền tảng bền vững
-                    </span>
-                  </li>
-                </ul>
+          <div className='sm:block flex justify-center'>
+            {" "}
+            <div className=' sm:flex justify-center gap-4 items-center '>
+              <div className='sm:pb-auto pb-[20px] sm:mb-auto mb-[20px] lg:w-[368px] sm:w-[314px] w-[345px]  sm:h-[370px] bg-white text-[#221651]'>
+                <div className='px-[20px] py-[25px]'>
+                  <h4 className='font-semibold text-[20px]'>Coding Bootcamp</h4>
+                  <ul className='pt-[20px] py-[8px]'>
+                    <li className='flex'>
+                      <div className='w-[24px] mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>
+                        CAM KẾT CÓ VIỆC LÀM bằng HỢP ĐỒNG, học xong là có việc
+                        ngay (mức lương lên tới 10 - 12 triệu)
+                      </span>
+                    </li>
+                    <li className='flex  py-[8px]'>
+                      <div className='mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>
+                        Giảm thiểu tối đa chi phí
+                      </span>
+                    </li>
+                    <li className='flex  py-[8px]'>
+                      <div className='mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>
+                        Nhanh chóng đi làm tại doanh nghiệp
+                      </span>
+                    </li>
+                    <li className='flex  py-[8px]'>
+                      <div className='mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>
+                        Phát triển tư duy nền tảng bền vững
+                      </span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div className='w-[368px] h-[350px] bg-white text-[#221651]'>
-              <div className='px-[20px] py-[25px]'>
-                <h4 className='font-semibold text-[20px]'>
-                  Phương pháp “Học Đảo Ngược”
-                </h4>
-                <ul className='pt-[20px] py-[8px]'>
-                  <li className='flex'>
-                    <div className='w-[24px] mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>
-                      Lấy học viên làm trung tâm - lộ trình CÁ NHÂN HOÁ cho mỗi
-                      người
-                    </span>
-                  </li>
-                  <li className='flex  py-[8px]'>
-                    <div className='mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>
-                      Hiểu sâu, nhớ lâu, vững lí thuyết, giỏi thực hành
-                    </span>
-                  </li>
-                  <li className='flex  py-[8px]'>
-                    <div className='mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>
-                      Duy trì liên tục kèm cặp trực tiếp 1-1 với giảng viên,
-                      mentor
-                    </span>
-                  </li>
-                </ul>
+              <div className='sm:pb-auto pb-[20px] sm:mb-auto mb-[20px] lg:w-[368px] sm:w-[314px] w-[345px]  sm:h-[370px]  bg-white text-[#221651]'>
+                <div className='px-[20px] py-[25px]'>
+                  <h4 className='font-semibold text-[20px]'>
+                    Phương pháp “Học Đảo Ngược”
+                  </h4>
+                  <ul className='pt-[20px] py-[8px]'>
+                    <li className='flex'>
+                      <div className='w-[24px] mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>
+                        Lấy học viên làm trung tâm - lộ trình CÁ NHÂN HOÁ cho
+                        mỗi người
+                      </span>
+                    </li>
+                    <li className='flex  py-[8px]'>
+                      <div className='mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>
+                        Hiểu sâu, nhớ lâu, vững lí thuyết, giỏi thực hành
+                      </span>
+                    </li>
+                    <li className='flex  py-[8px]'>
+                      <div className='mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>
+                        Duy trì liên tục kèm cặp trực tiếp 1-1 với giảng viên,
+                        mentor
+                      </span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div className='w-[368px] h-[350px] bg-white text-[#221651]'>
-              <div className='px-[20px] py-[25px]'>
-                <h4 className='font-semibold text-[20px]'>Training on Job</h4>
-                <ul className='pt-[20px] py-[8px]'>
-                  <li className='flex'>
-                    <div className='w-[24px] mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>
-                      Trải nghiệm trực tiếp các hoạt động và dự án cùng
-                      RikkeiSoft và các Doanh nghiệp đối tác
-                    </span>
-                  </li>
-                  <li className='flex  py-[8px]'>
-                    <div className='mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>Tạo CV & Online Profile</span>
-                  </li>
-                  <li className='flex  py-[8px]'>
-                    <div className='mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>
-                      Tư vấn về lộ trình nghề nghiệp và xu hướng công nghệ (phù
-                      hợp vị trí nào)
-                    </span>
-                  </li>
-                  <li className='flex  py-[8px]'>
-                    <div className='mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>
-                      Hướng dẫn kĩ năng phỏng vấn
-                    </span>
-                  </li>
-                  <li className='flex  py-[8px]'>
-                    <div className='mr-[10px]'>
-                      <img
-                        src={icon_check}
-                        alt=''
-                        className='w-[24px] h-[24px]'
-                      />
-                    </div>
-                    <span className='w-[290px]'>Ngày hội tuyển dụng</span>
-                  </li>
-                </ul>
+              <div className='sm:pb-auto pb-[20px] sm:mb-auto mb-[20px] lg:w-[368px] sm:w-[314px] w-[345px] sm:h-[370px] bg-white text-[#221651]'>
+                <div className='px-[20px] py-[25px]'>
+                  <h4 className='font-semibold text-[20px]'>Training on Job</h4>
+                  <ul className='pt-[20px] py-[8px]'>
+                    <li className='flex'>
+                      <div className='w-[24px] mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>
+                        Trải nghiệm trực tiếp các hoạt động và dự án cùng
+                        RikkeiSoft và các Doanh nghiệp đối tác
+                      </span>
+                    </li>
+                    <li className='flex  py-[8px]'>
+                      <div className='mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>Tạo CV & Online Profile</span>
+                    </li>
+                    <li className='flex  py-[8px]'>
+                      <div className='mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>
+                        Tư vấn về lộ trình nghề nghiệp và xu hướng công nghệ
+                        (phù hợp vị trí nào)
+                      </span>
+                    </li>
+                    <li className='flex  py-[8px]'>
+                      <div className='mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>
+                        Hướng dẫn kĩ năng phỏng vấn
+                      </span>
+                    </li>
+                    <li className='flex  py-[8px]'>
+                      <div className='mr-[10px]'>
+                        <img
+                          src={icon_check}
+                          alt=''
+                          className='w-[24px] h-[24px]'
+                        />
+                      </div>
+                      <span className='w-[290px]'>Ngày hội tuyển dụng</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
         {/* sesstion4 */}
-        <div className='h-[585px] pt-[50px] '>
-          <h2 className='text-[35px] text-center font-bold text-[#BC2228] py-[20px] mb-[40px]'>
+        <div className='sm:h-[585px] pt-[50px] mb-[50px] '>
+          <h2 className='sm:text-[35px] text-[24px] text-center font-bold text-[#BC2228] py-[20px] mb-[40px]'>
             Ưu điểm vượt trội khi học lập trình tại Rikkei Academy
           </h2>
           <div className='flex justify-center'>
             <div>
-              <div className='grid grid-cols-3 gap-[50px]'>
+              <div className='grid sm:grid-cols-3 grid-cols-2 sm:gap-[50px] gap-[30px] sm:px-[40px] lg:px-[auto]'>
                 {data.map((item, index) => (
-                  <div key={index} className='w-[352px]'>
+                  <div
+                    key={index}
+                    className='sm:w-[298px] pl:w-[352px] w-[156px] sm:h-auto h-[192px]'>
                     <img src={item.icon} alt='icon' />
-                    <h4 className='text-[20px]  font-semibold text-[#BC2228] pt-[16px] pb-[] '>
+                    <h4 className='sm:text-[20px] text-[16px] font-semibold text-[#BC2228] pt-[16px]'>
                       {item.content}
                     </h4>
-                    <span className='text-[#221651] text-[16px]'>
+                    <span className='text-[#221651] sm:text-[16px] text-[14px]'>
                       {item.title}
                     </span>
                   </div>
@@ -427,27 +451,29 @@ function Home() {
           </div>
         </div>
         {/* session5 */}
-        <div className='w-[100%]  bg-[#F2F2F2] pt-[40px] '>
+        <div className='w-[100%]  bg-[#F2F2F2] pt-[40px] sm:px-auto px-[20px]'>
           <div>
             {" "}
-            <h2 className='text-[45px] text-center font-bold text-[#BC2228] py-[20px]'>
+            <h2 className='sm:text-[45px] text-[24px] text-center font-bold text-[#BC2228] py-[20px]'>
               Khóa học và bài giảng chất lượng cao
             </h2>
-            <p className='text-[#5D5A6F] text-[16px] text-center'>
+            <p className='text-[#5D5A6F] text-[16px] text-center sm:block hidden'>
               A lesson or class is a structured period of time where learning is
               intended to occur. It involves one or more students being taught
               by a teacher or instructor.
             </p>
           </div>
           <div className='flex justify-center mt-[40px]'>
-            <div className='grid grid-cols-2 gap-[40px]'>
+            <div className='grid sm:grid-cols-2   grid-cols-1 gap-[40px] '>
               {listCourse.map((item, index) => (
-                <div key={index} className='w-[654px] h-[393px] '>
+                <div
+                  key={index}
+                  className='lg:w-[654px] sm:w-[462px] w-[345px]  lg:h-[393px] sm:h-[417px]  '>
                   <div>
                     <img
                       src={item.img}
                       alt='img'
-                      className='w-full h-[315px] mb-[10px]'
+                      className='w-full  sm:h-[315px] mb-[10px]'
                     />
                     <div className='text-[#221651]'>
                       <h5 className='font-semibold text-[20px]'>
@@ -467,35 +493,37 @@ function Home() {
           </div>
         </div>
         {/* session6 */}
-        <div className='w-[100%]  bg-[#F2F2F2] pt-[40px] pb-[80px]'>
+        <div className='w-[100%] bg-[#F2F2F2] pt-[40px] pb-[80px] sm:px-auto px-[30px]'>
           <div>
             {" "}
-            <h2 className='text-[45px] text-center font-bold text-[#BC2228] py-[20px]'>
+            <h2 className='sm:text-[45px] text-[24px]  text-center font-bold text-[#BC2228] py-[20px]'>
               Khóa học và bài giảng chất lượng cao
             </h2>
-            <p className='text-[#5D5A6F] text-[16px] text-center'>
+            <p className='text-[#5D5A6F] text-[16px] text-center sm:block hidden'>
               A lesson or class is a structured period of time where learning is
               intended to occur. It involves one or more students being taught
               by a teacher or instructor.
             </p>
           </div>
           <div className='flex justify-center mt-[40px]'>
-            <div className='grid grid-cols-2 gap-[40px]'>
+            <div className='grid sm:grid-cols-2  grid-cols-1 gap-[40px]'>
               {listCourse2.map((item, index) => (
-                <div key={index} className='w-[654px] h-[393px] '>
+                <div
+                  key={index}
+                  className='lg:w-[654px] sm:w-[462px] w-[345px] lg:h-[393px] sm:h-[417px] '>
                   <div>
                     <img
                       src={item.img}
                       alt='img'
-                      className='w-full h-[315px] mb-[10px]'
+                      className='w-full sm:h-[315px] mb-[10px]'
                     />
                     <div className='text-[#221651] '>
                       <div className='py-[10px] flex'>
                         {" "}
-                        <h5 className='font-semibold text-[20px] '>
+                        <h5 className='font-semibold text-[20px] sm:max-w-[350px] max-w-[200px] '>
                           {item.title}
                         </h5>
-                        <button className='ml-[10px] border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px]'>
+                        <button className='text-center min-w-[80px] pl:h-auto h-[30px] ml-[10px] border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px]'>
                           Truy cập ngay
                         </button>
                       </div>
@@ -508,17 +536,18 @@ function Home() {
           </div>
         </div>
         {/* sesstion7 */}
-        <div className=' pt-[50px] pb-[50px] '>
-          <h2 className='text-[35px] text-center font-bold text-[#BC2228] py-[20px] mb-[40px]'>
+        <div className=' pt-[50px] sm:pb-[50px] '>
+          <h2 className='sm:text-[35px] text-[24px] text-center font-bold text-[#BC2228] py-[20px] mb-[40px]'>
             Đội ngũ giảng viên, cố vấn chuyên môn cao
           </h2>
-          <div>
+
+          <div className='h-full'>
             <div className='flex justify-center'>
-              <div className='grid grid-cols-4 gap-[16px]'>
+              <div className='sm:grid sm:grid-cols-4 hidden gap-[16px]'>
                 {listMentor.map((item, index) => (
                   <div
                     key={index}
-                    className='w-[341px] h-[630px] text-center text-[#221651] p-[16px]  shadow-[0px_0px_3px_0px_rgba(0,0,0,0.3)]'>
+                    className='lg:w-[341px] w-[235px] lg:h-[630px] h-[auto] text-center text-[#221651] p-[16px]  shadow-[0px_0px_3px_0px_rgba(0,0,0,0.3)]'>
                     <img src={item.img} alt='mentor' />
                     <div className='py-[8px]'>
                       <h5 className='text-[20px] font-semibold py-[8px]'>
@@ -537,6 +566,43 @@ function Home() {
                   </div>
                 ))}
               </div>
+            </div>
+            <div className='sm:hidden  '>
+              <Swiper
+                slidesPerView={1}
+                loop={true}
+                modules={[Navigation]}
+                spaceBetween={30}
+                className='mySwiper '>
+                {listMentor.map((item, index) => (
+                  <SwiperSlide
+                    key={index}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}>
+                    <div className=' w-[235px] h-[auto] text-center text-[#221651] p-[16px]  shadow-[0px_0px_3px_0px_rgba(0,0,0,0.3)]'>
+                      <img src={item.img} alt='mentor' />
+                      <div className='py-[8px]'>
+                        <h5 className='text-[20px] font-semibold py-[8px]'>
+                          {item.name}
+                        </h5>
+                        <span className=' bg-[#f8f7fa] text-[16px] px-[8px] py-[4px] rounded-[4px] border-[#c1bcd1] border-[1px] border-solid'>
+                          {item.position}
+                        </span>
+                      </div>
+                      <div className='py-[8px]'>
+                        <p className='pt-[4px]'>{item.title1}</p>
+                        <p className='pt-[4px]'>{item.title2}</p>
+                        <p className='pt-[4px]'>{item.title3}</p>
+                        <p className='pt-[4px]'>{item.title4}</p>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+                <SwiperNavButtons />
+              </Swiper>
             </div>
           </div>
         </div>

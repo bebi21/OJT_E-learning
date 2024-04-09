@@ -11,11 +11,7 @@ export default function Course() {
     <>
       <div className="trans-font">
         <div className=" w-[100%] lg:h-[520px] sm:h-[400px] h-[600px] banner ">
-          {/* <img
-            src="/img/courses/Class Banner.png" 
-            alt=""
-            className=" w-[100%] sm:h-[100%] h-[100%] "
-          /> */}
+          
         </div>
 
         <div className=" lg:h-[90px] lg:pt-8 pt-[20px] pl-11   ">
@@ -36,8 +32,8 @@ export default function Course() {
                 alt=""
               />
               <div className="flex mt-3 w-[200px] justify-between items-center">
-                <p className="lg:pt-3 pt-1  lg:text-xl text-sm sm:text-sm   font-bold  ">HTML,CSS</p>
-                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-rose-500 ">Truy cập ngay</button>
+                <p className="lg:pt-3 pt-1  lg:text-xl text-sm sm:text-sm font-bold  ">HTML,CSS</p>
+                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">Truy cập ngay</button>
               </div>    
               <p className="sm:text-[16px] text-sm pt-1"> 
                 Lorem ispum aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -58,7 +54,7 @@ export default function Course() {
               />
               <div className="flex mt-3 w-[200px] justify-between items-center">
                 <p className="lg:pt-3 pt-1  lg:text-xl text-sm sm:text-sm   font-bold  ">HTML,CSS</p>
-                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-rose-500 ">Truy cập ngay</button>
+                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">Truy cập ngay</button>
               </div>    
               <p className="sm:text-[16px] text-sm pt-1"> 
                 Lorem ispum aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -79,7 +75,7 @@ export default function Course() {
               />
               <div className="flex mt-3 w-[200px] justify-between items-center">
                 <p className="lg:pt-3 pt-1  lg:text-xl text-sm sm:text-sm   font-bold  ">HTML,CSS</p>
-                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-rose-500 ">Truy cập ngay</button>
+                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">Truy cập ngay</button>
               </div>    
               <p className="sm:text-[16px] text-sm pt-1"> 
                 Lorem ispum aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -100,7 +96,7 @@ export default function Course() {
               />
               <div className="flex mt-3 w-[200px] justify-between items-center">
                 <p className="lg:pt-3 pt-1  lg:text-xl text-sm sm:text-sm   font-bold  ">HTML,CSS</p>
-                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-rose-500 ">Truy cập ngay</button>
+                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">Truy cập ngay</button>
               </div>    
               <p className="sm:text-[16px] text-sm pt-1"> 
                 Lorem ispum aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -121,7 +117,7 @@ export default function Course() {
               />
               <div className="flex mt-3 w-[200px] justify-between items-center">
                 <p className="lg:pt-3 pt-1  lg:text-xl text-sm sm:text-sm   font-bold  ">HTML,CSS</p>
-                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-rose-500 ">Truy cập ngay</button>
+                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">Truy cập ngay</button>
               </div>    
               <p className="sm:text-[16px] text-sm pt-1"> 
                 Lorem ispum aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -142,7 +138,7 @@ export default function Course() {
               />
               <div className="flex mt-3 w-[200px] justify-between items-center">
                 <p className="lg:pt-3 pt-1  lg:text-xl text-sm sm:text-sm   font-bold  ">HTML,CSS</p>
-                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-rose-500 ">Truy cập ngay</button>
+                <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">Truy cập ngay</button>
               </div>    
               <p className="sm:text-[16px] text-sm pt-1"> 
                 Lorem ispum aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

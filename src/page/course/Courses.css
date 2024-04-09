@@ -2,7 +2,11 @@
     font-family: 'Cabin', sans-serif;
     color: #231651;
 }
-@media screen  and (max-width: 768px) {
-    
+.banner{
+    background-image: url("../../img/courses/Class Banner.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:  right ;
 }
+
 

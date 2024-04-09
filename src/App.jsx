@@ -1,23 +1,10 @@
-
-
-
-import './App.css'
-
-
-import Header from './components/Header'
-import Footer from './components/Footer'
-import CourseDetail from './page/course detail/CourseDetail'
-
-
-function App() {
+import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import router from "./router/Index";
 export default function App() {
   return (
     <>
-        <Header/>
-        <CourseDetail/>
-        <Footer/
+      <RouterProvider router={router} />
     </>
   );
 }
-export default App;
-

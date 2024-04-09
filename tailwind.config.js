@@ -6,6 +6,7 @@ export default {
       colors: {
         customRed: "#BC2228",
       },
+     
     },
   },
   plugins: [],

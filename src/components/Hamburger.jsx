@@ -4,7 +4,7 @@ import { MdNavigateNext } from "react-icons/md";
 function Hamburger() {
   /* ???? */
   return (
-    <div className='max-w-[600px] mx-auto block w-full px-4 py-2 border border-gray-300 bg-white rounded-md shadow-md w-4/5 mt-5'>
+    <div className='max-w-[600px] mx-auto block  px-4 py-2 border border-gray-300 bg-white rounded-md shadow-md w-4/5 mt-5'>
       {/* Container div */}
       <select className='block w-full px-4 py-2 border border-gray-300 bg-white rounded-md shadow-md focus:outline-none focus:border-blue-500'>
         {/* Select element */}

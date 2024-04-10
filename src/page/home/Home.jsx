@@ -154,8 +154,8 @@ function Home() {
     <>
       <div className='add-font '>
         {/*   banner */}
-        <div className='home-bg_img text-white flex items-center lg:px-[130px] px-[30px]'>
-          <div className='sm:w-[470px] w-[393px] '>
+        <div className='home-bg_img text-white flex items-center xl:px-[100px] lg:px-[130px] min-[1100px]:px-[80px] px-[30px] '>
+          <div className=' sm:w-[470px] w-[393px] '>
             <h1 className=' sm:text-[32px] text-[24px]  sm:h-auto  max-w-[393px]:text-center sm:pt-auto  font-bold pb-[8px]'>
               Khóa Học Lập Trình Từ Con Số 0 Tự Tin Đi Làm Sau 6 Tháng
             </h1>
@@ -196,7 +196,7 @@ function Home() {
               <img
                 src={main_img}
                 alt='img'
-                className='lg:w-[540px] sm:w-[320px] sm:h-[323px] w-[345px] '
+                className=' lg:w-[640px] min-[1100px]:w-[500px]  sm:w-[320px] sm:h-[323px] w-[345px] '
               />
             </div>
             <div className='sm:w-[556px] w-[345px] sm:py-auto py-[24px]'>
@@ -464,16 +464,16 @@ function Home() {
             </p>
           </div>
           <div className='flex justify-center mt-[40px]'>
-            <div className='grid sm:grid-cols-2   grid-cols-1 gap-[40px] '>
+            <div className='grid sm:grid-cols-2   grid-cols-1 gap-[40px] sm '>
               {listCourse.map((item, index) => (
                 <div
                   key={index}
-                  className='lg:w-[654px] sm:w-[462px] w-[345px]  lg:h-[393px] sm:h-[417px]  '>
+                  className='lg:w-[654px] sm:w-[462px] w-[345px]  min-[1024px]:w-[500px]  lg:h-[393px] sm:h-[417px]  '>
                   <div>
                     <img
                       src={item.img}
                       alt='img'
-                      className='w-full  sm:h-[315px] mb-[10px]'
+                      className='w-full  sm:h-[315px]  min-[1024px]:h-auto mb-[10px] '
                     />
                     <div className='text-[#221651]'>
                       <h5 className='font-semibold text-[20px]'>
@@ -510,12 +510,12 @@ function Home() {
               {listCourse2.map((item, index) => (
                 <div
                   key={index}
-                  className='lg:w-[654px] sm:w-[462px] w-[345px] lg:h-[393px] sm:h-[417px] '>
+                  className='lg:w-[654px]  min-[1024px]:w-[500px] sm:w-[462px] w-[345px] lg:h-[393px] sm:h-[417px] '>
                   <div>
                     <img
                       src={item.img}
                       alt='img'
-                      className='w-full sm:h-[315px] mb-[10px]'
+                      className='w-full sm:h-[315px] min-[1024px]:h-auto mb-[10px]'
                     />
                     <div className='text-[#221651] '>
                       <div className='py-[10px] flex'>
@@ -547,7 +547,7 @@ function Home() {
                 {listMentor.map((item, index) => (
                   <div
                     key={index}
-                    className='lg:w-[341px] w-[235px] lg:h-[630px] h-[auto] text-center text-[#221651] p-[16px]  shadow-[0px_0px_3px_0px_rgba(0,0,0,0.3)]'>
+                    className='lg:w-[341px] min-[1024px]:w-[240px] w-[235px] min-[1024px]:h-[490px] lg:h-[630px] h-[auto] text-center text-[#221651] p-[16px]  shadow-[0px_0px_3px_0px_rgba(0,0,0,0.3)]'>
                     <img src={item.img} alt='mentor' />
                     <div className='py-[8px]'>
                       <h5 className='text-[20px] font-semibold py-[8px]'>
@@ -582,7 +582,7 @@ function Home() {
                       justifyContent: "center",
                       alignItems: "center",
                     }}>
-                    <div className=' w-[235px] h-[auto] text-center text-[#221651] p-[16px]  shadow-[0px_0px_3px_0px_rgba(0,0,0,0.3)]'>
+                    <div className=' w-[235px]  h-[auto] text-center text-[#221651] p-[16px]  shadow-[0px_0px_3px_0px_rgba(0,0,0,0.3)]'>
                       <img src={item.img} alt='mentor' />
                       <div className='py-[8px]'>
                         <h5 className='text-[20px] font-semibold py-[8px]'>

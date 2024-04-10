@@ -16,7 +16,7 @@ function Register() {
             src='../../../public/img/logo-login.png'
             alt='lỗi hiển thị'
           />
-          <h1 className='text-4xl	text-[#0A033C] w-[60%] font-medium mb-[10%] max-[600px]:text-center max-[600px]:mt-[5%]	'>
+          <h1 className='text-4xl	text-[#0A033C] w-[60%] font-medium mb-[10%] max-[600px]:text-center max-[600px]:mt-[20%] max-[600px]:text-2xl	max-[1154px]:text-3xl max-[964px]:text-2xl'>
             Welcome to RikeiEdu Online Learning Platfrom
           </h1>
 

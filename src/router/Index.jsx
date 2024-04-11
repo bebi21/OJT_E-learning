@@ -5,6 +5,7 @@ import Register from "../page/register/Register";
 import Course from "../page/course/Course";
 import Login from "../page/login register/Login";
 import CourseDetail from "../page/course - detail/CourseDetail";
+import Learn from "../page/learn/Learn";
 // chia router
 const router = createBrowserRouter([
   {
@@ -21,9 +22,18 @@ const router = createBrowserRouter([
         element: <Course />,
       },
       {
+
         path: "/courseDetail",
         element: <CourseDetail />,
+
       },
+      {
+
+        path: "/learn",
+        element: <Learn />,
+
+      },
+      
     ],
   },
   {

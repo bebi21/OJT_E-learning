@@ -6,7 +6,7 @@ import Icon from "../../img/icon.png";
 import elip from "../../img/Ellipse 173.png";
 import img from "../../img/Image1.png";
 import { FaStar } from "react-icons/fa";
-import "./CourseDetail.css";
+
 import { Collapse } from "antd";
 
 function Learn() {

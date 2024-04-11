@@ -44,7 +44,7 @@ export default function CourseDetail() {
       </div>
 
       <div className="flex  justify-between mt-6">
-        <div className="ml-[130px]  w-[60vw] pl-4 h-[100%]  leading-[35px]">
+        <div className="ml-[130px]  lg:w-[60vw] sm:w-[50vw] pl-4  h-[100%]  leading-[35px]">
           <p className="text-2xl  font-bold">Tổng quan</p>
           <p className="text-lg pt-6 font-bold">Mô tả khóa học</p>
           <p className="mt-2">
@@ -78,7 +78,7 @@ export default function CourseDetail() {
           <br />
 
           <h2 className="text-lg font-bold">Bạn sẽ học được gì ?</h2>
-          <div className="flex mt-3 justify-between  ">
+          <div className="flex mt-3 justify-between sm:flex-wrap  ">
             <ul className="list-disc pl-4">
               <li>Biết cách xây dựng giao diện web với HTML, CSS</li>
               <li>Biết cách đặt tên class CSS theo chuẩn BEM</li>
@@ -86,7 +86,7 @@ export default function CourseDetail() {
               <li>Biết cách tự tạo động lực cho bản thân</li>
               <li>Học được cách làm UI chỉn chu, kỹ tính</li>
             </ul>
-            <ul className="list-disc ">
+            <ul className="list-disc pl-4 ">
               <li>Biết cách phân tích giao diện website</li>
               <li>Biết cách làm giao diện web responsive</li>
               <li>Sở hữu 2 giao diện web khi học xong khóa học</li>
@@ -185,7 +185,7 @@ export default function CourseDetail() {
           </ul>
         </div>
 
-        <div className="box shadow-lg border-2 border-solid border-gray-100 w-[360px] mr-[70px] h-[500px] sticky top-20 z-[-10] bg-white ">
+        <div className="box shadow-lg border-2 border-solid border-gray-100 w-[360px] lg:mr-[70px]   h-[500px] sticky top-20 z-[-10] bg-white ">
           <div className="flex justify-center">
             <img
               src="/img/courses/html,css.png"
@@ -206,31 +206,33 @@ export default function CourseDetail() {
               <span className="pl-4 pt-[2px]">
                 <AiFillDribbbleCircle className="text-xl  " />{" "}
               </span>
-              <span className=" pl-5 "> Trình độ cơ bản</span>
+              <span className=" pl-5 lg:text-[17px]  text-sm"> Trình độ cơ bản</span>
             </div>
 
             <div className="flex  px-[19%] mt-6    ">
               <span className="pl-4 pt-[2px]">
                 <FaClock className="text-xl  " />{" "}
               </span>
-              <span className=" pl-5 "> Thời lượng : 20 tiếng</span>
+              <span className=" pl-5 lg:text-[17px]  text-sm"> Thời lượng : 20 tiếng</span>
             </div>
 
             <div className="flex  px-[19%] mt-6    ">
               <span className="pl-4 pt-[2px]">
                 <FaFilm className="text-xl  " />{" "}
               </span>
-              <span className=" pl-5 "> Chương học: 4</span>
+              <span className=" pl-5 lg:text-[17px]  text-sm"> Chương học: 4</span>
             </div>
 
             <div className="flex  px-[19%] mt-6    ">
               <span className="pl-4 pt-[2px]">
                 <PiCertificateFill className="text-xl  " />{" "}
               </span>
-              <span className=" pl-5 "> Học mọi lúc, mọi nơi</span>
+              <span className=" pl-5 lg:text-[17px]  text-sm "> Học mọi lúc, mọi nơi</span>
             </div>
           </div>
         </div>
+
+
       </div>
 
       <div className=" ml-[140px] mt-6 bg-slate-100 h-[200px] w-[60%] pl-5  rounded-[5px]"> 

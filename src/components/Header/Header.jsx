@@ -5,7 +5,7 @@ import { FaBars } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 function Header() {
   return (
-    <div className='flex sm:justify-around justify-between items-center h-[72px] sm:px-[72px] px-[24px]'>
+    <div className='sticky top-0 z-[999] bg-white shadow-lg flex sm:justify-around justify-between items-center h-[72px] sm:px-[72px] px-[24px]'>
       <a href='#'>
         <img src={logo} alt='logo' className='cursor-pointer' />
       </a>

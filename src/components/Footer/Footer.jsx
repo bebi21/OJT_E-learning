@@ -16,7 +16,7 @@ function Footer() {
             />
             <div className='sm:text-[14px] text-[12px] w-[296px]'>
               <p className='py-[5px]'>
-                Tường 7 tháp A toà Sông Đà, Đường Phạm Hùng, quân Nam Từ divêm,
+                Tường 7 tháp A toà Sông Đà, Đường Phạm Hùng, quân Nam Từ Liêm,
                 Hà Nội
               </p>
               <a href='tel:0862069233'>0862 069 233</a>

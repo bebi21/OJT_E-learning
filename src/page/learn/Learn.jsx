@@ -3,15 +3,13 @@ import { IoChevronForwardOutline } from "react-icons/io5";
 
 import Call from "../../img/logo/Call Button.png";
 import Icon from "../../img/icon.png";
-import { AiOutlinePlus } from "react-icons/ai";
-import { FiMinus } from "react-icons/fi";
 import elip from "../../img/Ellipse 173.png";
 import img from "../../img/Image1.png";
 import { FaStar } from "react-icons/fa";
 import "./CourseDetail.css";
 import { Collapse } from "antd";
 
-function CourseDetail() {
+function Learn() {
   const [flag, setFlag] = useState(false);
   const items = [
     {
@@ -254,4 +252,4 @@ function CourseDetail() {
   );
 }
 
-export default CourseDetail;
+export default Learn;

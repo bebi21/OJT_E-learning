@@ -6,6 +6,11 @@ export default {
       colors: {
         customRed: "#BC2228",
       },
+      listStyleType: {
+       
+        square: 'square',
+        roman: 'upper-roman',
+      }
      
     },
   },

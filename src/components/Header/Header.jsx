@@ -4,7 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { FaBars } from "react-icons/fa6";
 function Header() {
   return (
-    <div className='flex sm:justify-around justify-between items-center h-[72px] sm:px-[72px] px-[24px]'>
+    <div className='flex sm:justify-around justify-between items-center h-[72px] sm:px-[72px] px-[24px] sticky top-0 z-[999] bg-white shadow-lg'>
       <a href='#'>
         <img src={logo} alt='logo' className='cursor-pointer' />
       </a>

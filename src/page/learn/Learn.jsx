@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoChevronForwardOutline } from "react-icons/io5";
 
-import Call from "../../img/Call Button.png";
+import Call from "../../img/logo/Call Button.png";
 import Icon from "../../img/icon.png";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiMinus } from "react-icons/fi";
@@ -9,8 +9,43 @@ import elip from "../../img/Ellipse 173.png";
 import img from "../../img/Image1.png";
 import { FaStar } from "react-icons/fa";
 import "./CourseDetail.css";
+import { Collapse } from "antd";
 
 function CourseDetail() {
+  const [flag, setFlag] = useState(false);
+  const items = [
+    {
+      key: "1",
+      label: "This is panel header 1",
+      children: (
+        <div>
+          <p className="flex justify-between">
+            Bài 1<img className="w-[30px] h-[30px]" src={Call} />
+          </p>
+          <p className="flex justify-between mt-[10px]">
+            Bài 2<img className="w-[30px] h-[30px]" src={Call} />
+          </p>
+        </div>
+      ),
+    },
+    {
+      key: "2",
+      label: "This is panel header 2",
+      children: <p>ưewqewq</p>,
+    },
+    {
+      key: "3",
+      label: "This is panel header 3",
+      children: <p>sfdfsdf</p>,
+    },
+  ];
+  const onChange = (key) => {
+    console.log(key);
+  };
+
+  const handleClick=()=>{
+    setFlag(!flag)
+  }
   return (
     <div>
       <div className="bg-[rgb(239,235,245)] py-[10px] px-[40px] ">
@@ -20,41 +55,37 @@ function CourseDetail() {
             Course A <IoChevronForwardOutline />
           </h2>
         </div>
-        <div className="sm:flex block justify-between shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
-          <div className="flex items-center justify-center sm:w-[700px] w-[420px] h-[400px] course-detail-img">
-            <img src={Call} alt="" />
+        <div className="sm:flex block shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]  h-[400px]">
+        
+          <div className="w-[65%]">
+            <iframe
+              className="w-[100%] h-[100%]"
+              src="https://www.youtube.com/embed/AH2K450-B6A?si=9BaAKafkYFP8VnIq"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
           </div>
-          <div className="sm:mt-0 mt-[10px]">
-            <div className="flex justify-between bg-white py-[10px] px-[7px] rounded-[5px]">
-              <p>How to launch a Webflow website</p>
-              <AiOutlinePlus className="text-[#BC2228]" />
-            </div>
-            <div className="bg-white mt-[15px] py-[10px] px-[7px] rounded-[5px]">
-              <div className="text-[#BC2228] pb-[15px]">
-                <p className="flex justify-between">
-                  What is Webflow and why is it the <FiMinus />
-                </p>
-                <p>best website builder?</p>
+          {flag ? 
+            <div className="w-[35%] bg-white p-[30px] overflow-auto">
+              <h2>421 bình luận</h2>
+              <div>
+                <textarea className="pl-[10px] pt-[10px] border-solid border-slate-400 border" placeholder="Nội dung bình luận"  cols="40" rows="5"></textarea><br/>
+                <button className="bg-[#BC2228] text-white px-[10px] py-[5px] rounded-[5px] ml-[260px] hover:bg-[green] text-[14px]">BÌNH LUẬN</button>
               </div>
-              <hr />
-              <div className="flex pt-[10px] justify-between">
-                <div className="w-[80%]">
-                  What is your favorite template from BRIX Templates?
-                </div>
-                <div>
-                  <img src={Call} alt="" className="w-[30px] h-[30px]"></img>
-                </div>
-              </div>
-              <div className="flex pt-[10px] justify-between">
-                <div className="w-[80%]">
-                  What is your favorite template from BRIX Templates?
-                </div>
-                <div>
-                  <img src={Call} alt="" className="w-[30px] h-[30px]"></img>
-                </div>
-              </div>
-            </div>
-          </div>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus harum voluptate facilis repudiandae saepe recusandae cum quaerat earum minima, dolorum amet, architecto dicta modi inventore illo cumque quos. Labore, aspernatur.
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam magnam adipisci error est expedita, accusamus eligendi! Facilis id magni aperiam, eius quibusdam error molestias assumenda earum provident quas dignissimos non!
+            </div> 
+              : 
+            <div className="w-[35%] bg-white">
+              <Collapse
+              items={items}
+              defaultActiveKey={["1"]}
+              onChange={onChange}
+              />
+            </div>}
         </div>
       </div>
       <div>
@@ -109,7 +140,9 @@ function CourseDetail() {
         </div>
       </div>
 
-      <h3 className="text-2xl justify-between	 font-bold ml-10 mt-[200px]">Similar Courses</h3>
+      <h3 className="text-2xl justify-between	 font-bold ml-10 mt-[200px]">
+        Similar Courses
+      </h3>
 
       <div className="mt-16 ml-5 flex flex-wrap mb-28  max-lg:ml-5">
         <div className="flex   justify-evenly	 sm:w-[45%] w-[95%] mt-8 ml-5 flex-wrap ">
@@ -208,9 +241,15 @@ function CourseDetail() {
             </div>
           </div>
         </div>
-       
-      
       </div>
+
+      <div className="flex justify-center sticky bottom-0 w-full bg-white p-5 z-[1000]">
+        <button className="text-black border border-black rounded-[5px] px-[20px] py-[10px] ">Bài trước</button>
+        <button className="text-black border border-black rounded-[5px] px-[20px] py-[10px] ">Bài tiếp theo</button>
+        <button onClick={handleClick} className="text-black border border-black rounded-[5px] px-[20px] py-[10px] ">{flag ? "Bài học" : "Hỏi đáp"}</button>
+      </div>
+
+
     </div>
   );
 }

@@ -28,7 +28,7 @@ function BlockDeails() {
   return (
     <div className="bg-[#f5f5f5]">
       <Header className="rounded-md shadow shadow-blue-500/40 md:shadow-indigo-500/40" />
-      <div className="flex flex-wrap w-[70%] ml-[15%] mt-[1%] max-lg:w-[90%] max-lg:ml-[5%] max-[1280px]:w-[80%] max-[1280px]: ml-[5%] max-[800px]:w-[95%] max-[800px]:ml-[2%] max-[630px]:ml-[3%]">
+      <div className="flex flex-wrap w-[70%] ml-[16%] mt-[1%] max-lg:w-[90%] max-lg:ml-[5%] max-[1280px]:w-[80%] max-[1280px]: ml-[5%] max-[800px]:w-[95%] max-[800px]:ml-[2%] max-[630px]:ml-[3%]">
         <div className="w-[60%] max-[630px]:w-[100%]">
           <div>
             <img
@@ -129,7 +129,7 @@ function BlockDeails() {
                 trigger={["click"]}
               >
                 <a onClick={(e) => e.preventDefault()}>
-                  <Space className="flex justify-between w-[35%] max-[1024px]:w-[80%]">
+                  <Space className="flex w-[50%] justify-between w-[35%] max-[1024px]:w-[80%]">
                     <RightOutlined className="text-[#BC2228]" />
                     Java{" "}
                   </Space>
@@ -145,7 +145,7 @@ function BlockDeails() {
                 trigger={["click"]}
               >
                 <a onClick={(e) => e.preventDefault()}>
-                  <Space className="flex justify-between w-[35%] max-[1024px]:w-[80%]">
+                  <Space className="flex w-[50%] justify-between w-[35%] max-[1024px]:w-[80%]">
                     <RightOutlined className="text-[#BC2228]" />
                     Bussi ness{" "}
                   </Space>
@@ -161,7 +161,7 @@ function BlockDeails() {
                 trigger={["click"]}
               >
                 <a onClick={(e) => e.preventDefault()}>
-                  <Space className="flex justify-between w-[35%] max-[1024px]:w-[80%]">
+                  <Space className="flex w-[50%] justify-between w-[35%] max-[1024px]:w-[80%]">
                     <RightOutlined className="text-[#BC2228]" />
                     Ne stJs{" "}
                   </Space>
@@ -177,7 +177,7 @@ function BlockDeails() {
                 trigger={["click"]}
               >
                 <a onClick={(e) => e.preventDefault()}>
-                  <Space className="flex justify-between w-[35%] max-[1024px]:w-[80%]">
+                  <Space className="flex w-[50%] justify-between w-[35%] max-[1024px]:w-[80%]">
                     <RightOutlined className="text-[#BC2228] " />
                     No deJs{" "}
                   </Space>
@@ -193,7 +193,7 @@ function BlockDeails() {
                 trigger={["click"]}
               >
                 <a onClick={(e) => e.preventDefault()}>
-                  <Space className="flex justify-between w-[35%] max-[1024px]:w-[80%] pb-5">
+                  <Space className="flex w-[50%] justify-between w-[35%] max-[1024px]:w-[80%] pb-5">
                     <RightOutlined className="text-[#BC2228]" />
                     Clic k me{" "}
                   </Space>

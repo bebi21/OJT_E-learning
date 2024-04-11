@@ -6,8 +6,7 @@ import BlockDeails from "./page/blockDetails/BlockDeails";
 export default function App() {
   return (
     <>
-    <BlockDeails/>
-      {/* <RouterProvider router={router} /> */}
+      <RouterProvider router={router} />
 
     </>
   );

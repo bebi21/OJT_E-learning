@@ -5,11 +5,34 @@
   background-size: cover;
   width: 100%;
   height: 584.91px;
-  font-family: "Cabin", sans-serif;
 }
 .add-font {
   font-family: "Cabin", sans-serif;
 }
+.mySwiperBanner {
+  width: 100%;
+}
+.item-swiper {
+  width: 100%;
+  height: 100%;
+}
+/* video */
+.bg_video {
+  background-image: url("../../img/home_img/bg_video1.jpeg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+.bg_video:hover {
+  opacity: 0.7;
+}
+
+/* reposition */
 @media (max-width: 393px) {
   .home-bg_img {
     background-image: none;

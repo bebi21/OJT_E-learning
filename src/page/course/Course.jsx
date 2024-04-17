@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import { PiBookOpenTextLight } from "react-icons/pi";
 import { RxBackpack } from "react-icons/rx";
 import { TbMessages } from "react-icons/tb";
 import { GoMortarBoard } from "react-icons/go";
 import { Input } from "antd";
+import publicAxios from "../../configs/public";
 import {
-  AppstoreOutlined,
-  MailOutlined,
   SettingOutlined,
+  BookOutlined,
+  FieldTimeOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import "./Courses.css";
+import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 function getItem(label, key, icon, children, type) {
   return {
@@ -21,46 +24,79 @@ function getItem(label, key, icon, children, type) {
     label,
     type,
   };
-};
+}
 const items = [
-  getItem("Navigation One", "sub1", <MailOutlined />, [
+  getItem("Lộ trình học", "sub1", <BookOutlined />, [
     getItem(
-      "Item 1",
-      "g1",
-      null,
-      [getItem("Option 1", "1"), getItem("Option 2", "2")],
-      "group"
+      <div className="flex">
+        {" "}
+        <input type="checkbox" />{" "}
+        <span className="pl-2">Khóa học ngắn hạn</span>{" "}
+      </div>
     ),
     getItem(
-      "Item 2",
-      "g2",
-      null,
-      [getItem("Option 3", "3"), getItem("Option 4", "4")],
-      "group"
+      <div className="flex">
+        {" "}
+        <input type="checkbox" /> <span className="pl-2">Khóa học dài hạn</span>{" "}
+      </div>
     ),
-  ]),
-  getItem("Navigation Two", "sub2", <AppstoreOutlined />, [
-    getItem("Option 5", "5"),
-    getItem("Option 6", "6"),
-    getItem("Submenu", "sub3", null, [
-      getItem("Option 7", "7"),
-      getItem("Option 8", "8"),
-    ]),
   ]),
   {
     type: "divider",
   },
-  getItem("Navigation Three", "sub4", <SettingOutlined />, [
-    getItem("Option 9", "9"),
-    getItem("Option 10", "10"),
-    getItem("Option 11", "11"),
-    getItem("Option 12", "12"),
+  getItem("Thời gian học", "sub2", <FieldTimeOutlined />, [
+    getItem(
+      <div className="flex">
+        {" "}
+        <input type="checkbox" /> <span className="pl-2">Khóa học dài hạn</span>{" "}
+      </div>
+    ),
+    getItem(
+      <div className="flex">
+        {" "}
+        <input type="checkbox" /> <span className="pl-2">Khóa học dài hạn</span>{" "}
+      </div>
+    ),
   ]),
- 
+  {
+    type: "divider",
+  },
+  getItem("Đối tượng học", "sub4", <SettingOutlined />, [
+    getItem(
+      <div className="flex">
+        {" "}
+        <input type="checkbox" />{" "}
+        <span className="pl-2">Người mới bắt đầu</span>{" "}
+      </div>
+    ),
+    getItem(
+      <div className="flex">
+        {" "}
+        <input type="checkbox" /> <span className="pl-2">Đã có nền tảng</span>{" "}
+      </div>
+    ),
+  ]),
 ];
 
 export default function Course() {
-  
+  const [getCourse, setGetCourse] = useState([]);
+  const handleGetCourse = async () => {
+    try {
+      const response = await publicAxios.get("/courses/list");
+      setGetCourse(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    handleGetCourse();
+  }, []);
+
+  const handleGotoCourseDetail = async (id) => {
+    localStorage.setItem("courseId", JSON.stringify(id));
+    window.location.href = "/courseDetail";
+  };
+
   const onClick = (e) => {
     console.log("click ", e);
   };
@@ -68,30 +104,27 @@ export default function Course() {
     <>
       <div className="trans-font">
         <div className=" w-[100%] lg:h-[520px] sm:h-[400px] h-[600px] banner "></div>
-
         <div className=" lg:h-[90px] lg:pt-8 pt-[20px] pl-11 ">
           <div className=" flex w-[170px] justify-between text-customRed font-extrabold text-lg ">
             <p>Trang chủ</p>
             <RiArrowDropRightLine className="mt-1" />
-            <p>Khóa học</p>
+            <p className="">Khóa học</p>
           </div>
         </div>
 
         <h1 className="text-center text-5xl font-bold">
           Tổng hợp các khóa học
         </h1>
-        <div className="flex mt-9">
-          <div className="bg-gray-200 h-[600px] w-[370px] ml-5 mt-2 rounded-sm">
+        <div className="  flex-wrap sm:flex lg:flex  mt-9">
+          <div className=" bg-gray-100 lg:h-[100%] lg:pb-8   lg:w-[370px] w-[370px] lg:ml-1158z sm:mt-4 lg:ml-4 lg:mt-2 rounded-sm">
             <p className="ml-5 text-xl font-bold mt-2">Bạn cần tìm gì ?</p>
             <Input
               placeholder="Nhập khóa học..."
               className="mt-2 h-[40px] mx-auto max-w-[320px] ml-5"
             />
-            <span className="underline ">aaaaaaaaaaaaaaaaaaaaa</span>
             <Menu
               className="mt-5 ml-5 w-[320px] rounded-sm"
               onClick={onClick}
-              
               defaultSelectedKeys={["1"]}
               defaultOpenKeys={["sub1"]}
               mode="inline"
@@ -99,114 +132,42 @@ export default function Course() {
             />
           </div>
 
-          <div className="h-[100%] grid grid-cols-1  lg:grid-cols-3 sm:grid-cols-2  sm:gap-x-[2px] sm:gap-y-[40px] lg:gap-5 gap-[50px] lg:mt-2 mt-4 ">
-            <div className="  lg:w-[300px] w-[340px] sm:h-[300px] sm:w-[430px] lg:h-[320px] h-[272px] ml-11 shadow-lg rounded-[7px] transform hover:scale-95 transition-all duration-300 cursor-pointer border-2 border-gray-100 border-solid ">
-              <div className="lg:h-[200px] sm:h-[200px]   ">
-                <img
-                  src="/img/courses/html,css.png"
-                  className="lg:w-[100%] sm:w-[100%] sm:h-[100%] h-[100%]  rounded-t-[3px] "
-                  alt=""
-                />
-                <div className="flex mt-3 w-[200px] justify-between items-center">
-                  <p className="lg:pt-1 pt-1 lg:text-xl text-sm sm:text-sm font-bold">
-                    HTML,CSS
-                  </p>
-                  <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">
-                    Truy cập ngay
-                  </button>
+          <div className="  h-[100%] grid grid-cols-1 lg:ml-6 lg:grid-cols-3 sm:grid-cols-2  sm:gap-x-[2px] sm:gap-y-[40px] lg:gap-5 gap-[50px] lg:mt-2 mt-4 ">
+            {getCourse.map((item, index) => {
+              return (
+                <NavLink to='/courseDetail' onClick={()=>handleGotoCourseDetail(item.id)}>
+                <div key={index} className="  lg:w-[300px] w-[340px] sm:h-[250px] sm:w-[280px]  lg:h-[310px] h-[272px] sm:ml-5  ml-11 shadow-lg rounded-[7px] transform hover:scale-95 transition-all duration-300 cursor-pointer border-2 border-gray-100 border-solid ">
+                 
+                  <div to='/courseDetail' className="lg:h-[200px] sm:h-[140px] ">
+                    <img
+                      src={item.image}
+                      className="lg:w-[100%] sm:w-[100%] sm:h-[100%] h-[100%]  rounded-t-[3px] "
+                      alt=""
+                    />
+                    <div className="flex mt-1 w-[200px] justify-between items-center">
+                      <p className=" lg:pl-2 lg:pt-2 sm:pt-1 lg:text-xl text-sm sm:text-sm font-bold">
+                        {item.title}
+                      </p>
+                      <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">
+                        Truy cập ngay
+                      </button>
+                    </div>
+                    <p className="sm:text-[16px] text-sm sm:pt-1 lg:pt-2 lg:pl-2">
+                      {item.sub_description}
+                    </p>
+                    <div className="sm:block hidden lg:mt-2">
+                      <span className="text-red-500 sm:text-[16px]  lg:pl-2 ">
+                        Giảng viên:{" "}
+                      </span>
+                      <span className="font-bold "></span>
+                    </div>
+                  </div>
                 </div>
-                <p className="sm:text-[16px] text-sm pt-2 lg:mt-2">
-                  HTML, CSS từ Zero đến Hero
-                </p>
-                <div className="sm:block hidden lg:mt-1">
-                  <span className="text-red-500 sm:text-[16px] ">
-                    Giảng viên:{" "}
-                  </span>
-                  <span className="font-bold ">Hoàng Thiên Phú</span>
-                </div>
-              </div>
-            </div>
+                </NavLink>
+              );
+            })}
 
-            <div className="  lg:w-[300px] w-[340px] sm:h-[300px] sm:w-[430px] lg:h-[320px] h-[272px] ml-11 shadow-lg rounded-[7px] transform hover:scale-95 transition-all duration-300 cursor-pointer border-2 border-gray-100 border-solid ">
-              <div className="lg:h-[200px] sm:h-[200px] ">
-                <img
-                  src="/img/courses/reactjs.png"
-                  className="lg:w-[100%] sm:w-[100%]  sm:h-[100%] rounded-t-[3px] h-[100%]  "
-                  alt=""
-                />
-                <div className="flex mt-3 w-[200px] justify-between items-center">
-                  <p className="lg:pt-1 pt-1  lg:text-xl text-sm sm:text-sm  font-bold  ">
-                    HTML,CSS
-                  </p>
-                  <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">
-                    Truy cập ngay
-                  </button>
-                </div>
-                <p className="sm:text-[16px] text-sm pt-2 lg:mt-2">
-                  Khóa học ReactJS cơ bản
-                </p>
-                <div className="sm:block hidden lg:mt-1">
-                  <span className="text-red-500 sm:text-[16px] ">
-                    Giảng viên:{" "}
-                  </span>
-                  <span className="font-bold ">Hoàng Thiên Phú</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="  lg:w-[300px] w-[340px] sm:h-[300px] sm:w-[430px] lg:h-[320px] h-[272px] ml-11 shadow-lg rounded-[7px] transform hover:scale-95 transition-all duration-300 cursor-pointer border-2 border-gray-100 border-solid">
-              <div className="lg:h-[200px] sm:h-[200px] ">
-                <img
-                  src="/img/courses/nodejs.jpg"
-                  className="lg:w-[100%] sm:w-[100%]  sm:h-[100%] rounded-t-[3px]  h-[100%]  "
-                  alt=""
-                />
-                <div className="flex mt-2 w-[200px] justify-between items-center">
-                  <p className="lg:pt-1 pt-1  lg:text-xl text-sm sm:text-sm   font-bold  ">
-                    NodeJS
-                  </p>
-                  <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">
-                    Truy cập ngay
-                  </button>
-                </div>
-                <p className="sm:text-[16px] text-sm pt-1 lg:mt-2">
-                  Khóa học NodeJS cơ bản
-                </p>
-                <div className="sm:block hidden lg:mt-1">
-                  <span className="text-red-500 sm:text-[16px] ">
-                    Giảng viên:{" "}
-                  </span>
-                  <span className="font-bold ">Hoàng Thiên Phú</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="  lg:w-[300px] w-[340px] sm:h-[300px] sm:w-[430px] lg:h-[320px] h-[272px] ml-11  shadow-lg rounded-[7px] transform hover:scale-95 transition-all duration-300 cursor-pointer border-2 border-gray-100 border-solid">
-              <div className="lg:h-[200px] sm:h-[200px] ">
-                <img
-                  src="/img/courses/java.png"
-                  className="lg:w-[100%] sm:w-[100%] sm:h-[100%]  rounded-t-[3px] h-[100%]  "
-                  alt=""
-                />
-                <div className="flex mt-2 w-[200px] justify-between items-center">
-                  <p className="lg:pt-1 pt-1  lg:text-xl text-sm sm:text-sm   font-bold  ">
-                    HTML,CSS
-                  </p>
-                  <button className="pt-1 w-[110px] rounded-[5px] sm:hidden lg:hidden  text-red-500 border-2 border-solid border-rose-500 ">
-                    Truy cập ngay
-                  </button>
-                </div>
-                <p className="sm:text-[16px] text-sm pt-1 lg:mt-2">
-                  Lorem ispum aaaaaaaaaaaaaaaaaa
-                </p>
-                <div className="sm:block hidden lg:mt-1">
-                  <span className="text-red-500 sm:text-[16px] ">
-                    Giảng viên:{" "}
-                  </span>
-                  <span className="font-bold ">Hoàng Thiên Phú</span>
-                </div>
-              </div>
-            </div>
+          
           </div>
         </div>
 

@@ -1,11 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { LuUser2 } from "react-icons/lu";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { IoEyeSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { singIn } from "../../redux/register/register.redux";
+import { message } from "antd";
 
 function Login() {
+  const dispatch = useDispatch();
+  const [data, setData] = useState({
+    phone: "",
+    password: ""
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(singIn(data)).then((result) => {
+      localStorage.setItem("token", result.payload.data.token);
+      console.log(result);
+      message.success(result.payload.message);
+      navigate("/course");
+    }).catch((err) => {
+      message.error("Số điện thoại hoặc mật khẩu không đúng");
+    });
+  };
+
   const navigate = useNavigate();
+
   return (
     <>
       <div className='w-4/5 ml-[10%] flex flex-wrap text-[#0A033C] max-[600px]:w-full max-[600px]:ml-0 max-[600px]:flex max-[600px]:justify-center max-[600px]:items-center max-[600px]:h-full'>
@@ -32,7 +59,7 @@ function Login() {
         />
         <div className='flex justify-center align-center items-center w-[55%] h-screen max-[600px]:w-full  max-[600px]:h-full'>
           <div>
-            <form action='' className='h-1/3'>
+            <form onSubmit={handleSubmit} className='h-1/3'>
               <label
                 className='block text-gray-700 text-sm font-bold mb-2'
                 htmlFor='username'>
@@ -42,24 +69,30 @@ function Login() {
                 <LuUser2 />
                 <input
                   id='username'
+                  name='phone'
                   type='text'
                   placeholder='Phone Number'
                   className='py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                  value={data.phone}
+                  onChange={handleInputChange}
                 />
               </div>
 
               <label
                 className='block text-gray-700 text-sm font-bold mb-2'
-                htmlFor='username'>
+                htmlFor='password'>
                 Password
               </label>
               <div className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5 flex items-center'>
                 <RiLockPasswordLine />
                 <input
                   id='password'
-                  type='text'
+                  name='password'
+                  type='password'
                   placeholder='Password'
                   className='py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                  value={data.password}
+                  onChange={handleInputChange}
                 />
                 <IoEyeSharp className='cursor-pointer' />
               </div>

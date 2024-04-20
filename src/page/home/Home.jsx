@@ -269,8 +269,8 @@ function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const onPlayVideo = () => {
-    videoRef.current.internalPlayer.playVideo();
-    setIsPlaying(true);
+    // videoRef.current.internalPlayer.playVideo();
+    // setIsPlaying(true);
   };
 
   return (
@@ -415,7 +415,7 @@ function Home() {
             </div>
             <div className=''>
               <div className='relative  rounded-[10px] border-[10px] border-solid border-[#333333]'>
-                <YouTube videoId='n2iMF46ednQ' opts={opts} ref={videoRef} />
+                {/* <YouTube videoId='n2iMF46ednQ' opts={opts} ref={videoRef} /> */}
                 <div
                   className={`bg_video  flex justify-center items-center ${
                     isPlaying ? "hidden" : ""

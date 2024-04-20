@@ -8,11 +8,9 @@ import { FaClock } from "react-icons/fa6";
 import { FaFilm } from "react-icons/fa6";
 import { PiCertificateFill } from "react-icons/pi";
 import { IoBookSharp } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 
-import {
-  PlusOutlined
-} from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import publicAxios from "../../configs/public";
 function getItem(label, key, icon, children, type) {
@@ -26,50 +24,55 @@ function getItem(label, key, icon, children, type) {
 }
 const items = [
   getItem(
-  <div className="">
-    <p className="font-bold ">Chương 1</p>
-   </div>, "sub1", <PlusOutlined />, [
-    getItem(
-      <div>
-        <p>Bài 1:</p>
-      </div>
-    ),
-    getItem(
-      <div>
-        <p>Bài 2:</p>
-      </div>
-    ),
-   
-  ]),
-  
+    <div className="">
+      <p className="font-bold ">Chương 1</p>
+    </div>,
+    "sub1",
+    <PlusOutlined />,
+    [
+      getItem(
+        <div>
+          <p>Bài 1:</p>
+        </div>
+      ),
+      getItem(
+        <div>
+          <p>Bài 2:</p>
+        </div>
+      ),
+    ]
+  ),
+
   {
     type: "divider",
   },
- 
-  
 ];
 export default function CourseDetail() {
   const [getData, setData] = useState([]);
-  const courseId = JSON.parse(localStorage.getItem("courseId"));
-  const handleGetData = async()=>{
+  const {id} = useParams()
+  const handleGetData = async () => {
     try {
-      const response = await publicAxios.get(`/courses/findCourseById/${courseId}`);
+      const response = await publicAxios.get(
+        `/courses/findCourseById/${id}`
+      );
+      console.log(response)
       setData(response.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-  useEffect(()=>{
-    handleGetData()
-  },[])
+  };
+  useEffect(() => {
+    handleGetData();
+  }, []);
   const onClick = (e) => {
     console.log("click ", e);
   };
 
+
   return (
     <>
-      <div className=" lg:h-[90px] lg:pt-8 pt-[20px] ml-[140px] ">
-        <div className=" flex w-[320px] justify-between text-customRed font-extrabold text-lg ">
+      <div className=" lg:h-[90px] lg:pt-8 pt-[20px] ml-[140px]  ">
+        <div className=" flex w-[400px] justify-between text-customRed font-extrabold text-lg ">
           <p>Trang chủ</p>
           <RiArrowDropRightLine className="mt-1" />
           <NavLink to="/course">Khóa học</NavLink>
@@ -147,8 +150,6 @@ export default function CourseDetail() {
             items={items}
           />
 
-        
-
           <h2 className="pt-6 text-lg font-bold">Yêu cầu</h2>
 
           <ul className="mt-3 list-disc pl-4">
@@ -167,7 +168,7 @@ export default function CourseDetail() {
           </ul>
         </div>
 
-        <div className="box shadow-lg border-2 border-solid border-gray-100 w-[360px] lg:mr-[70px]   h-[500px] sticky top-20 z-[-10] bg-white ">
+        <div className="box shadow-lg border-2 border-solid border-gray-100 lg:w-[380px] lg:mr-[50px]  h-[520px] sticky top-20 z-[10] bg-white ">
           <div className="flex justify-center">
             <img
               src={getData.image}
@@ -177,25 +178,31 @@ export default function CourseDetail() {
           </div>
 
           <div className=" mt-4 text-center  ">
-            <button className="bg-orange-300 w-[40%] h-[40px] rounded-sm text-xl">
-              Đăng ký học
-            </button>
-            <button className="bg-orange-300 w-[40%] h-[40px] rounded-sm text-xl ml-3">
-              Chia sẻ
-            </button>
+            <div className="flex justify-evenly">
+              <NavLink className=" mt-3 bg-orange-300 w-[40%] h-[40px] rounded-sm text-xl ml-3 items-center">
+                Add WishList
+              </NavLink>
+              {/* <button className="bg-orange-300 w-[40%] h-[40px] rounded-sm text-xl ml-3 ">
+                Chia sẻ
+              </button><br /> */}
+                <NavLink to='/learn' className=" mt-3   bg-orange-300 w-[40%] h-[40px] rounded-sm text-xl  " >
+                  Học ngay
+                </NavLink>
+              
+            </div>
 
             <div className="flex  px-[19%] mt-6    ">
-              <span className="pl-4 pt-[2px]">
+              <span className="pl-3 pt-[2px]">
                 <AiFillDribbbleCircle className="text-xl  " />{" "}
               </span>
               <span className=" pl-5 lg:text-[17px]  text-sm">
                 {" "}
-                Chương trình học: {getData.title}
+               {getData.title}
               </span>
             </div>
 
             <div className="flex  px-[19%] mt-6    ">
-              <span className="pl-4 pt-[2px]">
+              <span className=" pl-3 pt-[2px]">
                 <FaClock className="text-xl  " />{" "}
               </span>
               <span className=" pl-5 lg:text-[17px]  text-sm">
@@ -205,17 +212,14 @@ export default function CourseDetail() {
             </div>
 
             <div className="flex  px-[19%] mt-6    ">
-              <span className="pl-4 pt-[2px]">
+              <span className=" pl-3 pt-[2px]">
                 <FaFilm className="text-xl  " />{" "}
               </span>
-              <span className=" pl-5 lg:text-[17px]  text-sm">
-                {" "}
-                 Chương
-              </span>
+              <span className=" pl-5 lg:text-[17px]  text-sm"> Chương{getData.chapters}</span>
             </div>
 
             <div className="flex  px-[19%] mt-6    ">
-              <span className="pl-4 pt-[2px]">
+              <span className="pl-3 pt-[2px]">
                 <PiCertificateFill className="text-xl  " />{" "}
               </span>
               <span className=" pl-5 lg:text-[17px]  text-sm ">
@@ -227,18 +231,18 @@ export default function CourseDetail() {
         </div>
       </div>
 
-      <div className=" ml-[140px] mt-6 bg-slate-100 h-[200px] w-[60%] pl-5  rounded-[5px]">
+      <div className=" ml-[140px] mt-6 bg-slate-100 h-[200px] w-[60%] pl-5 rounded-[5px]">
         <h1 className="text-xl font-bold pt-5">Giảng viên</h1>
-        <div className="flex mt-5 w-[200px] justify-between  ">
-          <div className="bg-blue-200 h-[60px] w-[60px] rounded-full"> </div>
+        <div className="flex mt-5 w-[200px] justify-around  ">
+          <div className="bg-red-200 h-[60px] w-[60px] rounded-full"></div>
           <div className="">
-            <span className="pt-"></span>
+            <span className="">{getData.teacher_id.name}</span>
             <span className="flex">
               <span className=" pt-2 ">
                 {" "}
                 <IoBookSharp className="" />{" "}
               </span>
-              <span className="mt-[3px] ml-2"></span>
+              <span className="mt-[3px] ml-2">ádas</span>
             </span>
           </div>
         </div>

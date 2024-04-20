@@ -55,7 +55,6 @@ export default function CourseDetail() {
       const response = await publicAxios.get(
         `/courses/findCourseById/${id}`
       );
-      console.log(response)
       setData(response.data);
     } catch (error) {
       console.log(error);
@@ -68,6 +67,7 @@ export default function CourseDetail() {
     console.log("click ", e);
   };
 
+  console.log(getData)
 
   return (
     <>
@@ -137,8 +137,8 @@ export default function CourseDetail() {
             </ul>
           </div>
 
-          <h2 className="mt-4 text-xl font-bold flex justify-between">
-            Nội dung khóa học <span className="text-lg mr-2">4 chương</span>
+          <h2 className="mt-7 text-xl font-bold flex justify-between">
+            Nội dung khóa học <span className="text-lg mr-2">{getData.chapters?.length} chương</span>
           </h2>
 
           <Menu
@@ -169,23 +169,20 @@ export default function CourseDetail() {
         </div>
 
         <div className="box shadow-lg border-2 border-solid border-gray-100 lg:w-[380px] lg:mr-[50px]  h-[520px] sticky top-20 z-[10] bg-white ">
-          <div className="flex justify-center">
+          <div className="flex justify-center bg-gray-100 h-[220px]">
             <img
               src={getData.image}
               alt=""
-              className="rounded-[5px] w-[90%] h-[40%] mt-4"
+              className="rounded-[5px] w-[90%] h-[90%] mt-3"
             />
           </div>
 
           <div className=" mt-4 text-center  ">
             <div className="flex justify-evenly">
-              <NavLink className=" mt-3 bg-orange-300 w-[40%] h-[40px] rounded-sm text-xl ml-3 items-center">
+              <NavLink className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl ml-3 items-center">
                 Add WishList
               </NavLink>
-              {/* <button className="bg-orange-300 w-[40%] h-[40px] rounded-sm text-xl ml-3 ">
-                Chia sẻ
-              </button><br /> */}
-                <NavLink to='/learn' className=" mt-3   bg-orange-300 w-[40%] h-[40px] rounded-sm text-xl  " >
+                <NavLink to={`/learn/${getData.id}`} className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl  " >
                   Học ngay
                 </NavLink>
               
@@ -207,7 +204,7 @@ export default function CourseDetail() {
               </span>
               <span className=" pl-5 lg:text-[17px]  text-sm">
                 {" "}
-                Thời lượng : 20 tiếng
+                
               </span>
             </div>
 
@@ -215,7 +212,7 @@ export default function CourseDetail() {
               <span className=" pl-3 pt-[2px]">
                 <FaFilm className="text-xl  " />{" "}
               </span>
-              <span className=" pl-5 lg:text-[17px]  text-sm"> Chương{getData.chapters}</span>
+              <span className=" pl-5 lg:text-[17px]  text-sm"> Số Chương: {getData.chapters?.length}</span>
             </div>
 
             <div className="flex  px-[19%] mt-6    ">
@@ -233,21 +230,23 @@ export default function CourseDetail() {
 
       <div className=" ml-[140px] mt-6 bg-slate-100 h-[200px] w-[60%] pl-5 rounded-[5px]">
         <h1 className="text-xl font-bold pt-5">Giảng viên</h1>
-        <div className="flex mt-5 w-[200px] justify-around  ">
-          <div className="bg-red-200 h-[60px] w-[60px] rounded-full"></div>
+        <div className="flex mt-5 w-[250px] justify-around  ">
           <div className="">
-            <span className="">{getData.teacher_id.name}</span>
+            <img className="bg-red-200 h-[60px] w-[60px] rounded-full" src={getData.teacher_id?.image} />
+          </div>
+          <div className="">
+            <span className="">{getData.teacher_id?.name}</span>
             <span className="flex">
               <span className=" pt-2 ">
                 {" "}
                 <IoBookSharp className="" />{" "}
               </span>
-              <span className="mt-[3px] ml-2">ádas</span>
+              <span className="mt-[3px] ml-2">{getData.teacher_id?.specialize}</span>
             </span>
           </div>
         </div>
         <p className="pt-5">
-          Giảng Viên tại Học viện Đào tạo công nghệ Rikkei Academy
+          {getData.teacher_id?.description}
         </p>
       </div>
 

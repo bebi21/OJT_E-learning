@@ -9,9 +9,12 @@ import { FaStar } from "react-icons/fa";
 import CKEditorComponent from "../../components/ckEditer/CkEditor";
 import { Collapse } from "antd";
 import { Header } from "antd/es/layout/layout";
+import { useParams } from "react-router-dom";
 
 function Learn() {
   const [flag, setFlag] = useState(false);
+  const {id} = useParams()
+  console.log(id)
   const items = [
     {
       key: "1",

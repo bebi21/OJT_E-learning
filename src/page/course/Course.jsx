@@ -64,9 +64,7 @@ import { Pagination } from 'antd';
 //     type: "divider",
 //   },
 // ];
-const onChange = (pageNumber) => {
-  console.log('Page: ', pageNumber);
-};
+
 
 export default function Course() {
   const [getCourse, setGetCourse] = useState([]);
@@ -103,7 +101,16 @@ export default function Course() {
     }
   }
 
- 
+  const handlePagination = async (page) => {
+      const limit = 3
+    try {
+      const response = await publicAxios.get(`/courses/PaginationCourse?page=${page}&limit=${limit}`);
+      console.log(response.data)
+      setGetCourse(response.data.data); 
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   // const onClick = (e) => {
   //   console.log("click ", e);
@@ -193,7 +200,7 @@ export default function Course() {
           </div>
         </div>
         <div className="mt-[60px] text-center">
-          <Pagination showQuickJumper showSizeChanger={false} defaultCurrent={2} total={500} onChange={onChange} />
+          <Pagination showQuickJumper showSizeChanger={false} defaultCurrent={1} total={500} onChange={handlePagination}  />
         </div>
 
         <div className=" lg:h-[450px] sm:h-[400px] h-[690px] lg:w-[100%] sm:w-[970px] w-[430px] sm:pt-[100px] pt-11  flex justify-center sm:items-center sm:mt-[70px] mt-[200px] sm:bg-white  sm:mb-[100px]  ">

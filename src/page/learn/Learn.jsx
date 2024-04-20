@@ -6,8 +6,9 @@ import Icon from "../../img/icon.png";
 import elip from "../../img/Ellipse 173.png";
 import img from "../../img/Image1.png";
 import { FaStar } from "react-icons/fa";
-
+import CKEditorComponent from "../../components/ckEditer/CkEditor";
 import { Collapse } from "antd";
+import { Header } from "antd/es/layout/layout";
 
 function Learn() {
   const [flag, setFlag] = useState(false);
@@ -44,7 +45,8 @@ function Learn() {
   const handleClick=()=>{
     setFlag(!flag)
   }
-  return (
+  return (<>
+    <Header />
     <div>
       <div className="bg-[rgb(239,235,245)] py-[10px] px-[40px] ">
         <div className="py-[15px]">
@@ -95,6 +97,7 @@ function Learn() {
             Accusantium, voluptatum minima fuga, praesentium suscipit maxime
             temporibus, dolores quisquam
           </p>
+        
         </div>
         <div className="pl-[40px]">
           <h3 className="text-xl font-bold">Who this course is for</h3>
@@ -142,106 +145,8 @@ function Learn() {
         Similar Courses
       </h3>
 
-      <div className="mt-16 ml-5 flex flex-wrap mb-28  max-lg:ml-5">
-        <div className="flex   justify-evenly	 sm:w-[45%] w-[95%] mt-8 ml-5 flex-wrap ">
-          <div className="w-2/5 max-lg:w-[70%]">
-            <img src={img} className=" w-[100%] max-lg:w-[100%]" alt="" />
-          </div>
-          <div className=" justify-evenly	w-2/5 	 max-lg:flex  max-lg:w-3/5 ">
-            <div className="w-[100%] ">
-              <div className=" text-xl font-bold">The three musketeert</div>
-              <div className="flex text-yellow-300">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-              </div>
-            </div>
-            <div>
-              <img
-                src={Icon}
-                className="w-[35px] mt-[10%] ml-[90%] max-lg:mt-5 "
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex   justify-evenly	 sm:w-[45%] w-[95%] mt-8 ml-5 flex-wrap ">
-          <div className="w-2/5 max-lg:w-[70%]">
-            <img src={img} className=" w-[100%] max-lg:w-[100%]" alt="" />
-          </div>
-          <div className=" justify-evenly	w-2/5 	 max-lg:flex  max-lg:w-3/5 ">
-            <div className="w-[100%] ">
-              <div className=" text-xl font-bold">The three musketeert</div>
-              <div className="flex text-yellow-300">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-              </div>
-            </div>
-            <div>
-              <img
-                src={Icon}
-                className="w-[35px] mt-[10%] ml-[90%] max-lg:mt-5 "
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex   justify-evenly	 sm:w-[45%] w-[95%] mt-8 ml-5 flex-wrap ">
-          <div className="w-2/5 max-lg:w-[70%]">
-            <img src={img} className=" w-[100%] max-lg:w-[100%]" alt="" />
-          </div>
-          <div className=" justify-evenly	w-2/5 	 max-lg:flex  max-lg:w-3/5 ">
-            <div className="w-[100%] ">
-              <div className=" text-xl font-bold">The three musketeert</div>
-              <div className="flex text-yellow-300">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-              </div>
-            </div>
-            <div>
-              <img
-                src={Icon}
-                className="w-[35px] mt-[10%] ml-[90%] max-lg:mt-5 "
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex   justify-evenly	 sm:w-[45%] w-[95%] mt-8 ml-5 flex-wrap ">
-          <div className="w-2/5 max-lg:w-[70%]">
-            <img src={img} className=" w-[100%] max-lg:w-[100%]" alt="" />
-          </div>
-          <div className=" justify-evenly	w-2/5 	 max-lg:flex  max-lg:w-3/5 ">
-            <div className="w-[100%] ">
-              <div className=" text-xl font-bold">The three musketeert</div>
-              <div className="flex text-yellow-300">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-              </div>
-            </div>
-            <div>
-              <img
-                src={Icon}
-                className="w-[35px] mt-[10%] ml-[90%] max-lg:mt-5 "
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex justify-center sticky bottom-0 w-full bg-white p-5 z-[1000]">
+     
+      <div className="flex justify-center sticky bottom-0 w-full bg-gray-200 p-5 z-[1000]">
         <button className="text-black border border-black rounded-[5px] px-[20px] py-[10px] ">Bài trước</button>
         <button className="text-black border border-black rounded-[5px] px-[20px] py-[10px] ">Bài tiếp theo</button>
         <button onClick={handleClick} className="text-black border border-black rounded-[5px] px-[20px] py-[10px] ">{flag ? "Bài học" : "Hỏi đáp"}</button>
@@ -249,6 +154,7 @@ function Learn() {
 
 
     </div>
+    </>
   );
 }
 

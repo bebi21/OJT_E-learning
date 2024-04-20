@@ -640,7 +640,7 @@ function Home() {
           <div>
             {" "}
             <h2 className='sm:text-[45px] text-[24px] text-center font-bold text-[#BC2228] py-[20px]'>
-              CÁC KHÓA HỌC TẠI CODEGYM
+              CÁC KHÓA HỌC TẠI Rikkei
             </h2>
           </div>
           <div className='flex justify-center'>

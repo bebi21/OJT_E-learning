@@ -1,159 +1,215 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoChevronForwardOutline } from "react-icons/io5";
-
+import ReactPlayer from "react-player";
 import Call from "../../img/logo/Call Button.png";
-import Icon from "../../img/icon.png";
-import elip from "../../img/Ellipse 173.png";
-import img from "../../img/Image1.png";
-import { FaStar } from "react-icons/fa";
-import CKEditorComponent from "../../components/ckEditer/CkEditor";
-import { Collapse } from "antd";
-import { Header } from "antd/es/layout/layout";
-
+import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import { IoMenuSharp } from "react-icons/io5";
+import { NavLink, useParams } from "react-router-dom";
+import publicAxios from "../../../../admin_e-learning/src/database/publicAxios";
+import "./learn.css";
+import { Avatar, Badge, Divider, Input } from "antd";
+import { UserOutlined, SearchOutlined, BellOutlined } from "@ant-design/icons";
+const { Search } = Input;
+import Tour from "reactour";
+import { IoIosArrowDown } from "react-icons/io";
 function Learn() {
-  const [flag, setFlag] = useState(false);
-  const items = [
+  const [collapsed, setCollapsed] = useState(false);
+  const [currentLesson, setCurrentLesson] = useState("");
+  const [brandData, setBrandData] = useState([]);
+  const { id } = useParams();
+  const [chapter, setChapter] = useState();
+  const takeDataInDb = async () => {
+    const data = await publicAxios.get(`/courses/findCourseByIdAdmin/${id}`);
+    const newData = data.data.chapters;
+    setCurrentLesson(newData[0].lessons[0]);
+    setBrandData(newData);
+    setChapter(newData[0]);
+  };
+  useEffect(() => {
+    takeDataInDb();
+  }, []);
+  const handleTakeValue = ({ lesson, item }) => {
+    setCurrentLesson(lesson);
+    console.log("adsad", item);
+    setChapter(item);
+  };
+  const handleBack = () => {
+    const index = brandData.findIndex((item) => item.id === currentLesson.id);
+    if (index > 0) {
+      setCurrentLesson(brandData[index - 1]);
+    }
+    return;
+  };
+  const handleNext = () => {};
+
+  const [isTourOpen, setIsTourOpen] = useState(false);
+  const steps = [
     {
-      key: "1",
-      label: "This is panel header 1",
-      children: (
-        <div>
-          <p className="flex justify-between">
-            Bài 1<img className="w-[30px] h-[30px]" src={Call} />
-          </p>
-          <p className="flex justify-between mt-[10px]">
-            Bài 2<img className="w-[30px] h-[30px]" src={Call} />
-          </p>
-        </div>
-      ),
+      selector: ".first-step",
+      content: "đây là video",
     },
     {
-      key: "2",
-      label: "This is panel header 2",
-      children: <p>ưewqewq</p>,
+      selector: ".second-step",
+      content: "Đây  là nơi chọn  bài học",
     },
     {
-      key: "3",
-      label: "This is panel header 3",
-      children: <p>sfdfsdf</p>,
+      selector: ".third-step",
+      content: "Đây  là nội  dung bài học",
     },
+    {
+      selector: ".fourth-step",
+      content: "Đây  là nơi  chuyển sang bài Học mới",
+    },
+    {
+      selector: ".fifth-step",
+      content: "Chúc bạn học  tập  tốt",
+    },
+    // Thêm bao nhiêu bước tùy ý
   ];
-  const onChange = (key) => {
-    console.log(key);
+
+  const closeTour = () => {
+    setIsTourOpen(false);
   };
 
-  const handleClick=()=>{
-    setFlag(!flag)
-  }
-  return (<>
-    <Header />
-    <div>
-      <div className="bg-[rgb(239,235,245)] py-[10px] px-[40px] ">
-        <div className="py-[15px]">
-          <h2 className="flex items-center text-[#BC2228] font-bold">
-            Home <IoChevronForwardOutline /> Courses <IoChevronForwardOutline />{" "}
-            Course A <IoChevronForwardOutline />
-          </h2>
+  return (
+    <>
+      <Tour
+        startAt={0}
+        onAfterOpen={() => setIsTourOpen(true)}
+        steps={steps}
+        isOpen={isTourOpen}
+        onRequestClose={closeTour}
+        lastStepNextButton={<button>Bắt Đầu Học Nào</button>}
+      />
+      <div className="h-[100vh]">
+        <div>
+          {/* Thêm các đối tượng nội dung khác cho các bước tiếp theo */}
         </div>
-        <div className="sm:flex block shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]  h-[400px]">
-        
-          <div className="w-[65%]">
-            <iframe
-              className="w-[100%] h-[100%]"
-              src="https://www.youtube.com/embed/AH2K450-B6A?si=9BaAKafkYFP8VnIq"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </div>
-          {flag ? 
-            <div className="w-[35%] bg-white p-[30px] overflow-auto">
-              <h2>421 bình luận</h2>
-              <div>
-                <textarea className="pl-[10px] pt-[10px] border-solid border-slate-400 border" placeholder="Nội dung bình luận"  cols="40" rows="5"></textarea><br/>
-                <button className="bg-[#BC2228] text-white px-[10px] py-[5px] rounded-[5px] ml-[260px] hover:bg-[green] text-[14px]">BÌNH LUẬN</button>
-              </div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus harum voluptate facilis repudiandae saepe recusandae cum quaerat earum minima, dolorum amet, architecto dicta modi inventore illo cumque quos. Labore, aspernatur.
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam magnam adipisci error est expedita, accusamus eligendi! Facilis id magni aperiam, eius quibusdam error molestias assumenda earum provident quas dignissimos non!
-            </div> 
-              : 
-            <div className="w-[35%] bg-white">
-              <Collapse
-              items={items}
-              defaultActiveKey={["1"]}
-              onChange={onChange}
+        <div className="fixed top-0 h-[10vh] w-[100vw] z-[999]">
+          <div className="p-4 flex justify-between items-center bg-[rgb(239,235,245)]">
+            <div>
+              {" "}
+              <img
+                src="https://play-lh.googleusercontent.com/UuYYGTDU7fFQXlFAk4h5EF_OC01Flh-Vj0YSsB2_8xFXWapxvuE3jZA9wcFtfEFEB6VG"
+                alt=""
+                className="w-[30px]"
               />
-            </div>}
+            </div>
+            <div className="flex gap-4 cursor-pointer">
+              <Badge count={1}>
+                <Avatar size={37} icon={<BellOutlined />} />
+              </Badge>
+              <div className="p-1 bg-slate-500 rounded-full min-w-[50px] flex justify-between items-center gap-9">
+                <div className="flex items-center gap-4">
+                  {" "}
+                  <Avatar size={32} icon={<UserOutlined />} />
+                  <span className=" text-white">Admin</span>
+                </div>
+                <IoIosArrowDown />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className=" flex h-[90vh]   z-[1] ">
+          {" "}
+          <div className="  overflow-scroll overflow-x-hidden h-full mt-[10vh] w-[100%] scrollable-container">
+            <div className="">
+              {" "}
+              <div>
+                <div className="bg-[rgb(239,235,245)] mb-[10px]  ">
+                  <div className="sm:flex   h-[80vh] ">
+                    <div className="w-full flex justify-center items-center bg-black">
+                      {!currentLesson?.video ? (
+                        <h1 className="text-white z-99999">
+                          Video không tồn tại
+                        </h1>
+                      ) : (
+                        <ReactPlayer
+                          style={{ padding: "10px" }}
+                          width={"80%"}
+                          height={"100%"}
+                          h2
+                          url={currentLesson.video}
+                          controls
+                          className="first-step"
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div
+                  className="bg-white p-5 third-step"
+                  dangerouslySetInnerHTML={{
+                    __html: currentLesson?.description,
+                  }}
+                />
+              </div>
+              <div className="fourth-step flex justify-center items-center sticky bottom-0 w-full py-5  bg-gray-200 z-[1000]">
+                <button
+                  onClick={handleBack}
+                  className="text-black border border-black rounded-[5px] px-[20px] py-[10px] "
+                >
+                  Bài trước
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="text-black border border-black rounded-[5px] px-[20px] py-[10px] "
+                >
+                  Bài tiếp theo
+                </button>
+                <button
+                  className="absolute right-[20px] p-3 rounded-md border-[1px] border-blue-500 border-solid"
+                  onClick={() => setCollapsed(!collapsed)}
+                >
+                  <IoMenuSharp />
+                </button>
+                <button onClick={() => setIsTourOpen(true)}>
+                  Bắt đầu Tour
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className=" h-full mt-[10vh] sticky bottom-0 z-[1] second-step">
+            {" "}
+            <div className=" overflow-scroll overflow-x-hidden  h-full scrollable-container  ">
+              <Sidebar collapsed={collapsed} collapsedWidth={"0px"}>
+                <Input
+                  addonBefore={<SearchOutlined />}
+                  placeholder="large size"
+                />
+                <Menu
+                  transitionDuration={1000}
+                  MenuItemStyles={{ color: "red" }}
+                >
+                  {brandData.map((item, index) => {
+                    return (
+                      <>
+                        <SubMenu key={index} label={`${item.title} `}>
+                          {item.lessons.map((lesson, index) => {
+                            return (
+                              <MenuItem
+                                key={index}
+                                onClick={() => {
+                                  handleTakeValue(lesson, item);
+                                }}
+                              >
+                                {lesson.title}
+                              </MenuItem>
+                            );
+                          })}
+                        </SubMenu>
+                        <Divider style={{ padding: 0, margin: 0 }} />
+                      </>
+                    );
+                  })}
+                </Menu>
+              </Sidebar>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <div className="p-[40px]">
-          <h3 className="text-xl font-bold">Course Details</h3>
-          <p className="text-[#5D5A6F] text-[14px]">Cập nhật tháng 3/2024</p>
-          <p className="text-[#5D5A6F] text-[14px]">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Accusantium, voluptatum minima fuga, praesentium suscipit maxime
-            temporibus, dolores quisquam
-          </p>
-        
-        </div>
-        <div className="pl-[40px]">
-          <h3 className="text-xl font-bold">Who this course is for</h3>
-          <p className="text-[#5D5A6F] text-[14px]">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-            sit enim quaerat quod, non, ex blanditiis dolorem rem iste
-            exercitationem quidem corporis amet? Odit reiciendis libero et quos
-            quidem minima.
-          </p>
-        </div>
-      </div>
-      <div className="mt-10">
-        <h3 className="text-xl font-bold ml-10">
-          What you'll learn in this course:
-        </h3>
-        <div className="flex flex-wrap ml-10 ">
-          <p className="flex sm:w-[49%] w-[45%] mt-5 ">
-            <img className="w-8 h-2 sm:mt-2 mt-[35px] mr-3" src={elip} alt="" />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit
-          </p>
-          <p className="flex sm:w-[49%] w-[45%] mt-5 ">
-            <img className="w-8 h-2 sm:mt-2 mt-[35px] mr-3" src={elip} alt="" />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit
-          </p>
-          <p className="flex sm:w-[49%] w-[45%] mt-5 ">
-            <img className="w-8 h-2 sm:mt-2 mt-[35px] mr-3" src={elip} alt="" />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit
-          </p>
-          <p className="flex sm:w-[49%] w-[45%] mt-5 ">
-            <img className="w-8 h-2 sm:mt-2 mt-[35px] mr-3" src={elip} alt="" />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit
-          </p>
-          <p className="flex sm:w-[49%] w-[45%] mt-5 ">
-            <img className="w-8 h-2 sm:mt-2 mt-[35px] mr-3" src={elip} alt="" />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit
-          </p>
-          <p className="flex sm:w-[49%] w-[45%] mt-5 ">
-            <img className="w-8 h-2 sm:mt-2 mt-[35px] mr-3" src={elip} alt="" />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit
-          </p>
-        </div>
-      </div>
-
-      <h3 className="text-2xl justify-between	 font-bold ml-10 mt-[200px]">
-        Similar Courses
-      </h3>
-
-     
-      <div className="flex justify-center sticky bottom-0 w-full bg-gray-200 p-5 z-[1000]">
-        <button className="text-black border border-black rounded-[5px] px-[20px] py-[10px] ">Bài trước</button>
-        <button className="text-black border border-black rounded-[5px] px-[20px] py-[10px] ">Bài tiếp theo</button>
-        <button onClick={handleClick} className="text-black border border-black rounded-[5px] px-[20px] py-[10px] ">{flag ? "Bài học" : "Hỏi đáp"}</button>
-      </div>
-
-
-    </div>
     </>
   );
 }

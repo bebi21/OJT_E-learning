@@ -29,19 +29,18 @@ const router = createBrowserRouter([
         element: <Course />,
       },
       {
-        path: "/courseDetail",
+        path: "/courseDetail/:id",
         element: <CourseDetail />,
       },
      
       {
         path: "/editor",
-
         element: <CKEditorComponent getValue={handleGetValue} />,
       },
     ],
   },
   {
-    path: "/learn",
+    path: "/learn/:id",
     element: <Learn />,
   },
   {

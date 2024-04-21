@@ -236,7 +236,7 @@ export default function CourseDetail() {
         <div className="flex mt-5 w-[200px] justify-around  ">
           <div className="bg-red-200 h-[60px] w-[60px] rounded-full"></div>
           <div className="">
-            <span className="">{getData.teacher_id.name}</span>
+            <span className="">{getData.teacher_id?.name}</span>
             <span className="flex">
               <span className=" pt-2 ">
                 {" "}

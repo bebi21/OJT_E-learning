@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import ReactPlayer from "react-player";
 import Call from "../../img/logo/Call Button.png";
+
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { IoMenuSharp } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";
 import publicAxios from "../../configs/public";
 import "./learn.css";
+import publicAxios from "../../configs/public";
 import { Avatar, Badge, Divider, Input } from "antd";
 import { UserOutlined, SearchOutlined, BellOutlined } from "@ant-design/icons";
 const { Search } = Input;
@@ -69,6 +71,7 @@ function Learn() {
 
   const [isTourOpen, setIsTourOpen] = useState(false);
   const steps = [
+
     {
       selector: ".first-step",
       content: "đây là video",

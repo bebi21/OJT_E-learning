@@ -15,8 +15,7 @@ import { Menu } from "antd";
 import "./Courses.css";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Pagination } from 'antd';
-
+import { Pagination } from "antd";
 
 // function getItem(label, key, icon, children, type) {
 //   return {
@@ -64,13 +63,10 @@ import { Pagination } from 'antd';
 //     type: "divider",
 //   },
 // ];
-const onChange = (pageNumber) => {
-  console.log('Page: ', pageNumber);
-};
 
 export default function Course() {
   const [getCourse, setGetCourse] = useState([]);
-  const [valueInput,setValueInput] = useState("")
+  const [valueInput, setValueInput] = useState("");
   const handleGetCourse = async () => {
     try {
       const response = await publicAxios.get("/courses/list");
@@ -80,34 +76,61 @@ export default function Course() {
     }
   };
   useEffect(() => {
-    handleGetCourse();
+    handlePaginationRenderOne();
   }, []);
-  
-  const handleSearch = async ()=>{
-    const dataValue = valueInput
+
+  const handleSearch = async () => {
+    const dataValue = valueInput;
     try {
-      console.log(valueInput)
-        const response = await publicAxios.get(`/courses/searchCourse?key=${dataValue}`);
-        setGetCourse(response.data);
+      const response = await publicAxios.get(
+        `/courses/searchCourse?key=${dataValue}`
+      );
+      setGetCourse(response.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
-  const handleGetvalue=(e)=>{
-    const inputValue = e.target.value
-    if(inputValue){
-      setValueInput(inputValue)
-    }else{
-     handleGetCourse()
+  const handleGetvalue = (e) => {
+    const check = e.target.value;
+    if (check) {
+      setValueInput(check);
+    } else {
+      handleGetCourse();
     }
-  }
+  };
 
- 
+  const handlePaginationRenderOne = async () => {
+    const limit = 6;
+    window.scrollTo({ top: 600, behavior: "smooth" });
+    let firstPage = 1;
+    try {
+      const response = await publicAxios.get(
+        `/courses/PaginationCourse?page=${firstPage}&limit=${limit}`
+      );
+      setGetCourse(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handlePagination = async (page) => {
+    const limit = 6;
+    window.scrollTo({ top: 600, behavior: "smooth" });
+    try {
+      const response = await publicAxios.get(
+        `/courses/PaginationCourse?page=${page}&limit=${limit}`
+      );
+      setGetCourse(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // const onClick = (e) => {
   //   console.log("click ", e);
   // };
+
   return (
     <>
       <div className="trans-font">
@@ -127,14 +150,19 @@ export default function Course() {
           <div className=" lg:h-[100%] lg:pb-8   lg:w-[370px] w-[370px] lg:ml-1158z sm:mt-4 lg:ml-4 lg:mt-2 rounded-sm">
             <p className="ml-5 text-xl font-bold mt-2">Bạn cần tìm gì ?</p>
             <span className="flex">
-            <Input
-              placeholder="Nhập khóa học..."
-              className="mt-2 h-[40px] mx-auto max-w-[320px] ml-5"
-              onChange={handleGetvalue}
-            />
-            <Button className="mt-2 h-[40px] mx-auto mr-2 ml-1" onClick={handleSearch}>Tìm</Button>
+              <Input
+                placeholder="Nhập khóa học..."
+                className="mt-2 h-[40px] mx-auto max-w-[320px] ml-5"
+                onChange={handleGetvalue}
+              />
+              <Button
+                className="mt-2 h-[40px] mx-auto mr-2 ml-1"
+                onClick={handleSearch}
+              >
+                Tìm
+              </Button>
             </span>
-            
+
             {/* <Menu
               className="mt-5 ml-5 w-[320px] rounded-sm"
               onClick={onClick}
@@ -146,15 +174,10 @@ export default function Course() {
           </div>
 
           <div className="  h-[100%] grid grid-cols-1 lg:ml-6 lg:grid-cols-3 sm:grid-cols-2  sm:gap-x-[2px] sm:gap-y-[40px] lg:gap-5 gap-[50px] lg:mt-2 mt-4 ">
-            {getCourse.map((item, index) => {
+            {getCourse.data?.map((item, index) => {
               return (
-                <NavLink
-                    key={index}
-                    to={`/courseDetail/${item.id}`}
-                >
-                  <div
-                    className="  lg:w-[300px] w-[340px] sm:h-[250px] sm:w-[280px]  lg:h-[310px] h-[272px] sm:ml-5  ml-11 shadow-lg rounded-[7px] transform hover:scale-95 transition-all duration-300 cursor-pointer border-2 border-gray-100 border-solid "
-                  >
+                <NavLink key={index} to={`/courseDetail/${item.id}`}>
+                  <div className="  lg:w-[300px] w-[340px] sm:h-[250px] sm:w-[280px]  lg:h-[310px] h-[272px] sm:ml-5  ml-11 shadow-lg rounded-[7px] transform hover:scale-95 transition-all duration-300 cursor-pointer border-2 border-gray-100 border-solid ">
                     <div
                       to="/courseDetail"
                       className="lg:h-[200px] sm:h-[140px] "
@@ -193,7 +216,13 @@ export default function Course() {
           </div>
         </div>
         <div className="mt-[60px] text-center">
-          <Pagination showQuickJumper showSizeChanger={false} defaultCurrent={2} total={500} onChange={onChange} />
+          <Pagination
+            showSizeChanger={false}
+            defaultCurrent={1}
+            total={getCourse?.courseTotal}
+            pageSize={getCourse?.itemByPage}
+            onChange={handlePagination}
+          />
         </div>
 
         <div className=" lg:h-[450px] sm:h-[400px] h-[690px] lg:w-[100%] sm:w-[970px] w-[430px] sm:pt-[100px] pt-11  flex justify-center sm:items-center sm:mt-[70px] mt-[200px] sm:bg-white  sm:mb-[100px]  ">

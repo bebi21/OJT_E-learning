@@ -5,13 +5,14 @@ import Call from "../../img/logo/Call Button.png";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { IoMenuSharp } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";
-import publicAxios from "../../../../admin_e-learning/src/database/publicAxios";
+import publicAxios from "../../configs/public";
 import "./learn.css";
 import { Avatar, Badge, Divider, Input } from "antd";
 import { UserOutlined, SearchOutlined, BellOutlined } from "@ant-design/icons";
 const { Search } = Input;
 import Tour from "reactour";
 import { IoIosArrowDown } from "react-icons/io";
+import { MdOutlineHelp } from "react-icons/md";
 function Learn() {
   const [collapsed, setCollapsed] = useState(false);
   const [currentLesson, setCurrentLesson] = useState("");
@@ -21,6 +22,7 @@ function Learn() {
   const takeDataInDb = async () => {
     const data = await publicAxios.get(`/courses/findCourseByIdAdmin/${id}`);
     const newData = data.data.chapters;
+    console.log(newData)
     setCurrentLesson(newData[0].lessons[0]);
     setBrandData(newData);
     setChapter(newData[0]);
@@ -28,7 +30,7 @@ function Learn() {
   useEffect(() => {
     takeDataInDb();
   }, []);
-  const handleTakeValue = ({ lesson, item }) => {
+  const handleTakeValue = ( lesson, item ) => {
     setCurrentLesson(lesson);
     console.log("adsad", item);
     setChapter(item);
@@ -40,7 +42,30 @@ function Learn() {
     }
     return;
   };
-  const handleNext = () => {};
+ 
+  const handleNext = async () => {
+    const index = brandData.findIndex((item) => item.id === chapter.id);
+    const index2 = brandData[index].lessons.findIndex(
+      (item) => item.id === currentLesson.id
+    );
+    console.log(index)
+    console.log(index2)
+    if(index2 < brandData[index].lessons.length - 1) {
+      setCurrentLesson(brandData[index].lessons[index2 + 1]);
+    }
+    if (index2>= brandData[index].lessons.length - 1) {
+      const index = brandData.findIndex((item) => item.id === chapter.id);
+      const index2 = brandData[index].lessons.findIndex(
+        (item) => item.id === currentLesson.id
+      );
+      if (index < brandData.length - 1) {
+        setCurrentLesson(brandData[index + 1].lessons[0]);
+        setChapter(brandData[index + 1]);
+      }
+      
+    }
+     
+  };
 
   const [isTourOpen, setIsTourOpen] = useState(false);
   const steps = [
@@ -160,13 +185,13 @@ function Learn() {
                   Bài tiếp theo
                 </button>
                 <button
-                  className="absolute right-[20px] p-3 rounded-md border-[1px] border-blue-500 border-solid"
+                  className="text-[1.5rem] absolute right-[20px] p-3 rounded-md border-[1px] border-blue-500 border-solid"
                   onClick={() => setCollapsed(!collapsed)}
                 >
                   <IoMenuSharp />
                 </button>
                 <button onClick={() => setIsTourOpen(true)}>
-                  Bắt đầu Tour
+                <MdOutlineHelp />
                 </button>
               </div>
             </div>

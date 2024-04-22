@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import "./CourseDetail.css";
-import { Dropdown, Space } from "antd";
-import { FaPlus } from "react-icons/fa6";
 import { AiFillDribbbleCircle } from "react-icons/ai";
 import { FaClock } from "react-icons/fa6";
 import { FaFilm } from "react-icons/fa6";
 import { PiCertificateFill } from "react-icons/pi";
 import { IoBookSharp } from "react-icons/io5";
-import { Link, NavLink, useParams } from "react-router-dom";
+import {  NavLink, useParams } from "react-router-dom";
 
-import { PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined, InteractionOutlined} from "@ant-design/icons";
 import { Menu } from "antd";
 import publicAxios from "../../configs/public";
 function getItem(label, key, icon, children, type) {
@@ -22,34 +20,33 @@ function getItem(label, key, icon, children, type) {
     type,
   };
 }
-const items = [
-  getItem(
-    <div className="">
-      <p className="font-bold ">Chương 1</p>
-    </div>,
-    "sub1",
-    <PlusOutlined />,
-    [
-      getItem(
-        <div>
-          <p>Bài 1:</p>
-        </div>
-      ),
-      getItem(
-        <div>
-          <p>Bài 2:</p>
-        </div>
-      ),
-    ]
-  ),
+// const items = [
+//   getItem(
+//     <div className="">
+//       <p className="font-bold ">Chương 1</p>
+//     </div>,
+//     "sub1",
+//     <PlusOutlined />,
+//     [
+//       getItem(
+//         <div>
+//           <p>Bài 1:</p>
+//         </div>
+//       ),
+      
+//     ]
+//   ),
 
-  {
-    type: "divider",
-  },
-];
+//   {
+//     type: "divider",
+//   },
+// ];
+
+
 export default function CourseDetail() {
   const [getData, setData] = useState([]);
   const {id} = useParams()
+  
   const handleGetData = async () => {
     try {
       const response = await publicAxios.get(
@@ -66,9 +63,31 @@ export default function CourseDetail() {
   const onClick = (e) => {
     console.log("click ", e);
   };
+const data = getData.chapters
+  const generateItems=(data)=>{
+      return data?.map((item,index)=>{
+        const chapterItem = getItem(
+          <div className="">
+            <p className="font-bold ">{item.title}</p>
+          </div>,
+          `sub${index + 1}`,
+          <PlusOutlined />,
+          item.lessons?.map((itemLesson, lessonIndex) =>
+            getItem(
+              <div>
+                <p>{itemLesson.title}</p>
+              </div>,
+              `lesson${index + 1}_${lessonIndex + 1}`
+            )
+          )
+        );
+      return chapterItem;
 
-  console.log(getData)
+      }).concat({ type: "divider" });
+  }
+  const items = generateItems(data);
 
+  
   return (
     <>
       <div className=" lg:h-[90px] lg:pt-8 pt-[20px] ml-[140px]  ">
@@ -200,11 +219,11 @@ export default function CourseDetail() {
 
             <div className="flex  px-[19%] mt-6    ">
               <span className=" pl-3 pt-[2px]">
-                <FaClock className="text-xl  " />{" "}
+                <InteractionOutlined className="text-xl  " />{" "}
               </span>
               <span className=" pl-5 lg:text-[17px]  text-sm">
                 {" "}
-                
+                 Phụ đề chuẩn
               </span>
             </div>
 

@@ -35,7 +35,6 @@ const router = createBrowserRouter([
      
       {
         path: "/editor",
-
         element: <CKEditorComponent getValue={handleGetValue} />,
       },
     ],

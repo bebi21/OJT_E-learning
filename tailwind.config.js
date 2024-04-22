@@ -13,6 +13,16 @@ export default {
       }
      
     },
+
   },
+  variants: {
+    extend: {
+      // Thêm các variants bạn muốn tùy chỉnh cho thanh cuộn
+      scrollbar: ['rounded']
+    },
+  },
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
   plugins: [],
 };

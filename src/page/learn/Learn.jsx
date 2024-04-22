@@ -6,7 +6,6 @@ import Call from "../../img/logo/Call Button.png";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { IoMenuSharp } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";
-import publicAxios from "../../configs/public";
 import "./learn.css";
 import publicAxios from "../../configs/public";
 import { Avatar, Badge, Divider, Input } from "antd";
@@ -24,7 +23,7 @@ function Learn() {
   const takeDataInDb = async () => {
     const data = await publicAxios.get(`/courses/findCourseByIdAdmin/${id}`);
     const newData = data.data.chapters;
-    console.log(newData)
+   
     setCurrentLesson(newData[0].lessons[0]);
     setBrandData(newData);
     setChapter(newData[0]);
@@ -38,11 +37,24 @@ function Learn() {
     setChapter(item);
   };
   const handleBack = () => {
-    const index = brandData.findIndex((item) => item.id === currentLesson.id);
-    if (index > 0) {
-      setCurrentLesson(brandData[index - 1]);
+    const index = brandData.findIndex((item) => item.id === chapter.id);
+    const index2 = brandData[index].lessons.findIndex(
+      (item) => item.id === currentLesson.id
+    );
+    if (index2 > 0) {
+      setCurrentLesson(brandData[index].lessons[index2 - 1]);
     }
-    return;
+    if (index2 <= 0) {
+      const index = brandData.findIndex((item) => item.id === chapter.id);
+      const index2 = brandData[index].lessons.findIndex(
+        (item) => item.id === currentLesson.id
+      );
+      if (index > 0) {
+        setCurrentLesson(brandData[index - 1].lessons[0]);
+        setChapter(brandData[index - 1]);
+      }
+      
+    }
   };
  
   const handleNext = async () => {
@@ -50,8 +62,7 @@ function Learn() {
     const index2 = brandData[index].lessons.findIndex(
       (item) => item.id === currentLesson.id
     );
-    console.log(index)
-    console.log(index2)
+    
     if(index2 < brandData[index].lessons.length - 1) {
       setCurrentLesson(brandData[index].lessons[index2 + 1]);
     }
@@ -113,8 +124,8 @@ function Learn() {
         <div>
           {/* Thêm các đối tượng nội dung khác cho các bước tiếp theo */}
         </div>
-        <div className="fixed top-0 h-[10vh] w-[100vw] z-[999]">
-          <div className="p-4 flex justify-between items-center bg-[rgb(239,235,245)]">
+        <div className="fixed top-0 h-[11vh] w-[100vw] z-[999] ">
+          <div className="p-4 flex justify-between items-center bg-red-500">
             <div>
               {" "}
               <img
@@ -124,16 +135,16 @@ function Learn() {
               />
             </div>
             <div className="flex gap-4 cursor-pointer">
-              <Badge count={1}>
+              {/* <Badge count={1}>
                 <Avatar size={37} icon={<BellOutlined />} />
-              </Badge>
-              <div className="p-1 bg-slate-500 rounded-full min-w-[50px] flex justify-between items-center gap-9">
+              </Badge> */}
+              <div className="p-1 bg-red-700 rounded-full min-w-[50px] flex justify-between items-center gap-9">
                 <div className="flex items-center gap-4">
                   {" "}
                   <Avatar size={32} icon={<UserOutlined />} />
-                  <span className=" text-white">Admin</span>
+                  <span className=" text-white"></span>
                 </div>
-                <IoIosArrowDown />
+               {/*  <IoIosArrowDown className="text-white" /> */}
               </div>
             </div>
           </div>
@@ -203,10 +214,10 @@ function Learn() {
             {" "}
             <div className=" overflow-scroll overflow-x-hidden  h-full scrollable-container  ">
               <Sidebar collapsed={collapsed} collapsedWidth={"0px"}>
-                <Input
+               {/*  <Input
                   addonBefore={<SearchOutlined />}
                   placeholder="large size"
-                />
+                /> */}
                 <Menu
                   transitionDuration={1000}
                   MenuItemStyles={{ color: "red" }}

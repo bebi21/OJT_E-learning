@@ -21,6 +21,8 @@ import course_1 from "../../img/home_img/course_1.webp";
 import course_2 from "../../img/home_img/course_2.jpeg";
 import course_3 from "../../img/home_img/course_3.jpeg";
 import hv_1 from "../../img/home_img/hv.jpg";
+import hv_2 from "../../img/test1.png";
+
 import React, { useRef, useState } from "react";
 import { FaPeopleArrows } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
@@ -83,38 +85,39 @@ function Home() {
   ];
   const listCourse = [
     {
-      img: course_1,
-      title: "NodeJS",
+      img: "https://cdn.codegym.vn/wp-content/uploads/2024/01/java-web-fullstack.png",
+      title: "Bootcamp Java Web",
       content:
         " Lorem ipsum dolor sit amet consectetur. Sapien rutrum non  viverra magna at aliquam.",
     },
     {
-      img: course_2,
-      title: "NodeJS",
+      img: "https://cdn.codegym.vn/wp-content/uploads/2024/01/lap-trinh-Web-Frontend.png",
+      title: "Web Front-end",
       content:
         " Lorem ipsum dolor sit amet consectetur. Sapien rutrum non  viverra magna at aliquam.",
     },
     {
-      img: course_3,
-      title: "NodeJS",
+      img: "https://cdn.codegym.vn/wp-content/uploads/2024/03/Artboard-2-3.jpg",
+      title: "Web Back-end với  Spring Boot",
+
       content:
         " Lorem ipsum dolor sit amet consectetur. Sapien rutrum non  viverra magna at aliquam.",
     },
     {
-      img: course_3,
-      title: "NodeJS",
+      img: "https://cdn.codegym.vn/wp-content/uploads/2024/01/java-web-back-end.png",
+      title: "Java Web Back-end",
       content:
         " Lorem ipsum dolor sit amet consectetur. Sapien rutrum non  viverra magna at aliquam.",
     },
     {
-      img: course_1,
-      title: "NodeJS",
+      img: "https://cdn.codegym.vn/wp-content/uploads/2024/01/data-analysis.png",
+      title: "Data Analyst",
       content:
         " Lorem ipsum dolor sit amet consectetur. Sapien rutrum non  viverra magna at aliquam.",
     },
     {
-      img: course_2,
-      title: "NodeJS",
+      img: "https://cdn.codegym.vn/wp-content/uploads/2024/01/python-co-ban.png",
+      title: "Python Web",
       content:
         " Lorem ipsum dolor sit amet consectetur. Sapien rutrum non  viverra magna at aliquam.",
     },
@@ -125,38 +128,43 @@ function Home() {
       title: "HTML,CSS cơ bản",
       content:
         " Lorem ipsum dolor sit amet consectetur. Sapien rutrum non  viverra magna at aliquam.",
+      video:
+        "https://www.youtube.com/watch?v=J7Bg-UCq0ZY&pp=ygUOcmlra2VpIGFjYWRlbXk%3D",
     },
     {
       img: img_test,
       title: "JSX là gì",
       content:
         " Lorem ipsum dolor sit amet consectetur. Sapien rutrum non  viverra magna at aliquam.",
+      video: "https://www.youtube.com/watch?v=wkrXGpJlk_o",
     },
     {
       img: img_test,
       title: "Hook trong React được sử dụng như thế nào?",
       content:
         " Lorem ipsum dolor sit amet consectetur. Sapien rutrum non  viverra magna at aliquam.",
+      video: "https://www.youtube.com/watch?v=4qT3kobGZVA",
     },
     {
       img: img_test,
       title: "NodeJS là gì",
       content:
         " Lorem ipsum dolor sit amet consectetur. Sapien rutrum non  viverra magna at aliquam.",
+      video: "https://www.youtube.com/watch?v=MGyIhNaUAV0",
     },
   ];
   const listMentor = [
     {
-      img: mentor_1,
+      img:"https://rikkei.edu.vn/wp-content/uploads/2024/01/aquang-1.jpg",
       name: "Nguyễn Duy Quang",
       position: "Trưởng phòng đào tạo",
       title1: "Kỹ sư Công Nghệ thông tin Đại học Bách Khoa Hà Nội",
       title2: "Chứng chỉ Oracle - OCA",
-      title3: "Chứng chỉ Aptech toàn cầu",
-      title4: "Chứng chỉ sư phạm",
+      title3: "",
+      title4: "",
     },
     {
-      img: mentor_2,
+      img: "https://rikkei.edu.vn/wp-content/uploads/2024/01/a-Tung.jpg",
       name: "Tạ Sơn  Tùng",
       position: "Cố vấn",
       title1: "Chủ tịch HĐQT Rikkeisoft",
@@ -165,17 +173,17 @@ function Home() {
       title4: "",
     },
     {
-      img: mentor_3,
-      name: "Phan Thế Dũng",
+      img: "https://rikkei.edu.vn/wp-content/uploads/2024/02/Anh-Bui-Quang-Huy-1.jpg",
+      name: "Bùi Quang Huy",
       position: "Cố vấn",
-      title1: "CEO Rikkeisoft",
+      title1: "Giám Đốc Rikkei Japan",
       title2: "Đại học Bách Khoa Hà Nội & Keio Japan",
       title3: "",
       title4: "",
     },
 
     {
-      img: mentor_4,
+      img: "https://rikkei.edu.vn/wp-content/uploads/2024/01/anhlam.jpg",
       name: "Nguyễn Viết Lâm",
       position: "Cố vấn",
       title1: "Phó tổng giám đốc Rikkeisoft",
@@ -184,17 +192,17 @@ function Home() {
       title4: "",
     },
     {
-      img: mentor_1,
-      name: "Nguyễn Duy Quang",
-      position: "Trưởng phòng đào tạo",
-      title1: "Kỹ sư Công Nghệ thông tin Đại học Bách Khoa Hà Nội",
-      title2: "Chứng chỉ Oracle - OCA",
-      title3: "Chứng chỉ Aptech toàn cầu",
-      title4: "Chứng chỉ sư phạm",
+      img:"https://rikkei.edu.vn/wp-content/uploads/2024/01/adungpng.png",
+      name: "Phan Thế Dũng",
+      position: "Cố vấn",
+      title1:"Phó Chủ tịch cấp cao Rikkeisoft",
+      title2: "",
+      title3: "",
+      title4: "",
     },
     {
-      img: mentor_2,
-      name: "Tạ Sơn  Tùng",
+      img: "https://rikkei.edu.vn/wp-content/uploads/2024/01/anhhoa.png",
+      name: "Đặng Thái Hòa",
       position: "Cố vấn",
       title1: "Chủ tịch HĐQT Rikkeisoft",
       title2: "Top 30 Forbes Under 30, 2015",
@@ -202,61 +210,25 @@ function Home() {
       title4: "",
     },
     {
-      img: mentor_3,
-      name: "Phan Thế Dũng",
+      img: "https://rikkei.edu.vn/wp-content/uploads/2024/01/achung.jpg",
+      name: "Đào Thanh Chung",
       position: "Cố vấn",
-      title1: "CEO Rikkeisoft",
-      title2: "Đại học Bách Khoa Hà Nội & Keio Japan",
+      title1: "CEO Oraichain Labs",
+      title2: "",
       title3: "",
       title4: "",
     },
 
     {
-      img: mentor_4,
-      name: "Nguyễn Viết Lâm",
+      img: "https://rikkei.edu.vn/wp-content/uploads/2024/01/adat.jpg",
+      name: "Trịnh Minh Đạt",
       position: "Cố vấn",
       title1: "Phó tổng giám đốc Rikkeisoft",
-      title2: "CEO Rikkei Academy",
+      title2: "Director Rikkei Fukuoka",
       title3: "",
       title4: "",
     },
-    {
-      img: mentor_1,
-      name: "Nguyễn Duy Quang",
-      position: "Trưởng phòng đào tạo",
-      title1: "Kỹ sư Công Nghệ thông tin Đại học Bách Khoa Hà Nội",
-      title2: "Chứng chỉ Oracle - OCA",
-      title3: "Chứng chỉ Aptech toàn cầu",
-      title4: "Chứng chỉ sư phạm",
-    },
-    {
-      img: mentor_2,
-      name: "Tạ Sơn  Tùng",
-      position: "Cố vấn",
-      title1: "Chủ tịch HĐQT Rikkeisoft",
-      title2: "Top 30 Forbes Under 30, 2015",
-      title3: "",
-      title4: "",
-    },
-    {
-      img: mentor_3,
-      name: "Phan Thế Dũng",
-      position: "Cố vấn",
-      title1: "CEO Rikkeisoft",
-      title2: "Đại học Bách Khoa Hà Nội & Keio Japan",
-      title3: "",
-      title4: "",
-    },
-
-    {
-      img: mentor_4,
-      name: "Nguyễn Viết Lâm",
-      position: "Cố vấn",
-      title1: "Phó tổng giám đốc Rikkeisoft",
-      title2: "CEO Rikkei Academy",
-      title3: "",
-      title4: "",
-    },
+  
   ];
   // sử dụng  thư  viện swiper
   const swiperCss = useSwiper();
@@ -269,7 +241,6 @@ function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const onPlayVideo = () => {
-    videoRef.current.internalPlayer.playVideo();
     setIsPlaying(true);
   };
 
@@ -419,6 +390,8 @@ function Home() {
                 <ReactPlayer
                   url="https://www.youtube.com/watch?v=Dvq090AsOiQ"
                   ref={videoRef}
+                  controls
+                  playing={isPlaying}
                 />
                 <div
                   className={`bg_video  flex justify-center items-center ${
@@ -647,7 +620,7 @@ function Home() {
           <div>
             {" "}
             <h2 className="sm:text-[45px] text-[24px] text-center font-bold text-[#BC2228] py-[20px]">
-              CÁC KHÓA HỌC TẠI Rikkei
+              CÁC KHÓA HỌC TẠI RIKKEI
             </h2>
           </div>
           <div className="flex justify-center">
@@ -665,7 +638,7 @@ function Home() {
                   <div className="text-center">
                     <p className="text-[#4CBBE0] text-[25px]">Lập trình</p>
                     <p className="text-[#ffcd32] font-bold text-[27px]">
-                      BOOTCAMP FULLTIME
+                      {item.title}
                     </p>
                     <p className="text-white">ONLINE, OFFLINE</p>
                   </div>
@@ -687,54 +660,36 @@ function Home() {
               Bài Giảng Chất Lượng Cao
             </h2>
             <p className="text-[#5D5A6F] text-[16px] text-center sm:block hidden">
-              A lesson or class is a structured period of time where learning is
-              intended to occur. It involves one or more students being taught
-              by a teacher or instructor.
+            Khám phá những bài giảng chất lượng cao, được thiết kế kỹ lưỡng để nâng cao kiến thức và kỹ năng của bạn, mọi lúc, mọi nơi
             </p>
           </div>
           <div className="flex justify-center mt-[40px]">
-            <div className="grid sm:grid-cols-2  grid-cols-1 gap-[40px]">
+            <div className="grid sm:grid-cols-2  grid-cols-1 gap-[40px] pb-[20px]">
               {listCourse2.map((item, index) => (
                 <div
                   key={index}
-                  className="lg:w-[654px]   sm:w-[462px] w-[345px] lg:h-[393px] sm:h-[417px] "
+                  className="lg:w-[654px]   sm:w-[462px] w-[345px] lg:h-[393px] sm:h-[417px]  mt-[20px]"
                 >
                   <div>
                     <div className="">
                       <div className="relative  rounded-[10px] ">
                         <ReactPlayer
-                          url="https://www.youtube.com/watch?v=Dvq090AsOiQ"
+                          url={item.video}
                           opts={{
                             width: "500",
                             height: "293",
-                            playerVars: {
-                              autoplay: 1,
-                            },
                           }}
+                          style={{ borderRadius: "10px" }}
                         />
-
-                        <div
-                          className={`bg_video  flex justify-center items-center ${
-                            isPlaying ? "hidden" : ""
-                          }`}
-                        ></div>
-                        <div
-                          onClick={onPlayVideo}
-                          className={`cursor-pointer absolute top-0 w-[100%] h-[100%] z-[15] bg-transparent transition-color duration-300 ease-in-out hover:bg-[rgba(0,0,0,0.5)] flex justify-center items-center  ${
-                            isPlaying ? "hidden" : ""
-                          }`}
-                        >
-                          <FiPlayCircle className="text-[80px] z-[20] text-white" />
-                        </div>
                       </div>
                     </div>
                     <div className="text-[#221651] ">
-                      <div className="py-[10px] flex">
+                      <div className="py-[10px] flex justify-between">
                         {" "}
-                        <h5 className="font-semibold text-[20px] sm:max-w-[350px] max-w-[200px] ">
+                        <h5 className="font-semibold text-[20px]  ">
                           {item.title}
                         </h5>
-                        <button className="text-center min-w-[80px] pl:h-auto h-[30px] ml-[10px] border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px]">
+                        <button className=" text-center min-w-[80px] pl:h-auto h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
                           Truy cập ngay
                         </button>
                       </div>
@@ -754,9 +709,7 @@ function Home() {
               Cảm Nhận Học Viên
             </h2>
             <p className="text-[#5D5A6F] text-[16px] text-center sm:block hidden">
-              A lesson or class is a structured period of time where learning is
-              intended to occur. It involves one or more students being taught
-              by a teacher or instructor.
+            Chúng tôi tin rằng chất lượng của một tổ chức giáo dục có thể được đánh giá qua sự thành công và đóng góp của các cựu học viên tài năng. Với mục tiêu thúc đẩy học viên trọn đời, RA Alumni cam kết mang đến giá trị tốt hơn cho từng thành viên và cho cả cộng đồng, xã hội, đóng góp cho sự phát triển của ngành CNTT và đất nước.
             </p>
           </div>
           <div className="flex justify-center mt-[40px]">
@@ -812,25 +765,20 @@ function Home() {
               <SwiperSlide style={{ width: "350px" }}>
                 <div className="relative w-[350px]  h-[525px] flex justify-center  items-center rounded-lg z-20 ">
                   <img
-                    src={hv_1}
+                    src="https://cdn.codegym.vn/wp-content/uploads/2024/02/duong-tuan-anhh.jpg"
                     alt=""
-                    className=" w-full  rounded-lg absolute top-0 z-[-3] "
+                    className=" h-full rounded-lg absolute top-0 z-[-3] "
                   />
                   <div className="absolute top-0 w-full h-full z-[-1] rounded-lg bg-[rgba(0,0,0,0.6)]"></div>
                   <div className="text-center z-20">
                     <p className="text-white font-bold text-[1.5rem]">
-                      Trần Văn Cao
+                     Nguyễn  Văn  Anh
                     </p>
                     <i className="text-[#4CBBE0] text-[1.4rem]">
-                      Team Leader, NTT Data VDS
+                     Học  Viên Khóa  10
                     </i>
                     <p className="text-[rgb(255,255,255,0.8)] text-[1rem]">
-                      Tính kỷ luật là thứ mà mình đã được trui rèn trong suốt 6
-                      tháng học tại CodeGym. Để phát triển trong ngành IT với
-                      những vị trí quản lý như Leader, Manager, bạn cần có năng
-                      lực cả về chuyên môn, ngoại ngữ, kỹ năng quản lý, ngoại
-                      ngữ… Chính sự kỷ luật đã giúp mình bám đuổi kế hoạch học
-                      tập và đạt được mục tiêu.
+                    Nếu bạn đặt mục tiêu học để đi làm, xác định cho mình tâm lý nghiêm túc và chuẩn bị một tâm trí vững vàng, CodeGym sẽ là bệ đỡ hoàn hảo cho bạn để bắt đầu theo đuổi nghề lập trình viên.
                     </p>
                   </div>
                 </div>
@@ -838,25 +786,20 @@ function Home() {
               <SwiperSlide style={{ width: "350px" }}>
                 <div className="relative w-[350px]  h-[525px] flex justify-center  items-center rounded-lg z-20 ">
                   <img
-                    src={hv_1}
+                    src="https://cdn.codegym.vn/wp-content/uploads/2023/03/Tran-Duc-Quy-CHV-CodeGym.jpg"
                     alt=""
-                    className=" w-full  rounded-lg absolute top-0 z-[-3] "
+                    className=" h-full  rounded-lg absolute top-0 z-[-3] "
                   />
                   <div className="absolute top-0 w-full h-full z-[-1] rounded-lg bg-[rgba(0,0,0,0.6)]"></div>
                   <div className="text-center z-20">
                     <p className="text-white font-bold text-[1.5rem]">
-                      Trần Văn Cao
+                      Trần Văn Tuấn
                     </p>
                     <i className="text-[#4CBBE0] text-[1.4rem]">
-                      Team Leader, NTT Data VDS
+                      Team Leader Java
                     </i>
                     <p className="text-[rgb(255,255,255,0.8)] text-[1rem]">
-                      Tính kỷ luật là thứ mà mình đã được trui rèn trong suốt 6
-                      tháng học tại CodeGym. Để phát triển trong ngành IT với
-                      những vị trí quản lý như Leader, Manager, bạn cần có năng
-                      lực cả về chuyên môn, ngoại ngữ, kỹ năng quản lý, ngoại
-                      ngữ… Chính sự kỷ luật đã giúp mình bám đuổi kế hoạch học
-                      tập và đạt được mục tiêu.
+                    Trước khi đến Rikkei, mình từng học đại học và bỏ ngang, sau đó cũng trải qua nhiều ngành nghề khác nhau nhưng cuối cùng vẫn quyết định bắt đầu lại với ngành lập trình tại CodeGym. Tập trung rèn luyện sau 6 tháng, mình tốt nghiệp và đi làm. Sau gần 2 năm, mình đang là PO/Team Leader tại BiPlus
                     </p>
                   </div>
                 </div>
@@ -864,17 +807,17 @@ function Home() {
               <SwiperSlide style={{ width: "350px" }}>
                 <div className="relative w-[350px]  h-[525px] flex justify-center  items-center rounded-lg z-20 ">
                   <img
-                    src={hv_1}
+                    src="https://cdn.codegym.vn/wp-content/uploads/2023/03/Le-Phung-Nhat-Truong-CHV-CodeGym.jpg"
                     alt=""
-                    className=" w-full  rounded-lg absolute top-0 z-[-3] "
+                    className=" h-full  rounded-lg absolute top-0 z-[-3] "
                   />
                   <div className="absolute top-0 w-full h-full z-[-1] rounded-lg bg-[rgba(0,0,0,0.6)]"></div>
                   <div className="text-center z-20">
                     <p className="text-white font-bold text-[1.5rem]">
-                      Trần Văn Cao
+                      Trần Nguyễn Phúc
                     </p>
                     <i className="text-[#4CBBE0] text-[1.4rem]">
-                      Team Leader, NTT Data VDS
+                    Học Viên Khóa Python
                     </i>
                     <p className="text-[rgb(255,255,255,0.8)] text-[1rem]">
                       Tính kỷ luật là thứ mà mình đã được trui rèn trong suốt 6
@@ -926,7 +869,7 @@ function Home() {
                       key={index}
                       className=" min-[1024px]:w-[290px] w-[235px] min-[1024px]:h-[490px] h-[auto] text-center text-[#221651] p-[16px] border-[1px] border-solid border-[rgba(0,0,0,0.1)] shadow-[0px_0px_3px_0px_rgba(0,0,0,0.3)]"
                     >
-                      <img src={item.img} alt="mentor" />
+                      <img src={item.img} alt="mentor" className="w-full h-[254px]"  />
                       <div className="py-[8px]">
                         <h5 className="text-[20px] font-semibold py-[8px]">
                           {item.name}
@@ -988,23 +931,19 @@ function Home() {
           </div>
         </div>
         {/*  */}
-        <Divider plain style={{ marginTop: "50px" }}>
+        <Divider plain style={{ marginTop: "50px",  }}>
           <div className="sm:text-[45px] text-[24px] font-bold text-[#BC2228] ">
             {" "}
-            <FaPen />
+            Blog
           </div>{" "}
-        </Divider>
+        </Divider >
         <div className="w-[100%] h-auto bg-[#ffff] pt-[40px] pb-[80px] sm:px-auto px-[30px]">
-          <div>
-            {" "}
-            <h2 className="sm:text-[45px] text-[24px]  text-center font-bold text-[#BC2228] pb-[20px]">
-              Blog
-            </h2>
-          </div>
+         
 
           <div className="flex justify-center gap-[40px] px-[40px]  mt-[40px] text-[#221651]">
             <div>
-              <h3 className="text-[2rem] mb-[30px]">Tin Tức Hoạt Động</h3>
+              <h3 className="text-[2rem] mb-[30px]">Mẹo Hữu</h3>
+             
               <div className="flex justify-center gap-[10px] py-[20px] cursor-pointer">
                 <div>
                   <img
@@ -1013,122 +952,112 @@ function Home() {
                     className="w-[300px] rounded-md "
                   />
                 </div>
-                <div>
+                <div className="relative">
                   <span className="text-[1.5rem]">
                     {" "}
                     Hướng dẫn sử dụng NVM để cài đặt nhiều phiên bản Node.js
                   </span>
-                </div>
+                  <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
+                       Xem  Chi Tiết
+                        </div>                </div>
+               
               </div>
-              <div className="flex justify-center gap-[10px] py-[20px] cursor-pointer">
-                <div>
-                  <img
-                    src={course_2}
-                    alt="course"
-                    className="w-[300px] rounded-md "
-                  />
-                </div>
-                <div>
-                  <span className="text-[1.5rem]">
-                    {" "}
-                    Hướng dẫn sử dụng NVM để cài đặt nhiều phiên bản Node.js
-                  </span>
-                </div>
-              </div>
-              <div className="flex justify-center gap-[10px] py-[20px] cursor-pointer">
+              <div className="grid grid-cols-3 gap-[10px] py-[20px] cursor-pointer">
                 <div>
                   <img
                     src={course_3}
                     alt="course"
-                    className="w-[300px] rounded-md "
+                    className="w-[225px] rounded-md "
                   />
                 </div>
-                <div>
+                <div  className="relative col-span-2 ">
                   <span className="text-[1.5rem]">
                     {" "}
-                    Hướng dẫn sử dụng NVM để cài đặt nhiều phiên bản Node.js
+                   Kĩ Thuật Số Hóa là gì ?
                   </span>
+                  <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
+                       Xem  Chi Tiết
+                        </div>  
                 </div>
               </div>
-              <div className="flex justify-center gap-[10px] py-[20px] cursor-pointer">
+              <div className="grid grid-cols-3 gap-[10px] py-[20px] cursor-pointer">
                 <div>
                   <img
                     src={course_1}
                     alt="course"
-                    className="w-[300px] rounded-md "
+                    className="w-[225px] rounded-md "
                   />
                 </div>
-                <div>
+                <div  className="relative col-span-2">
                   <span className="text-[1.5rem]">
                     {" "}
-                    Hướng dẫn sử dụng NVM để cài đặt nhiều phiên bản Node.js
+                   Hướng dẫn sử dụng  Docker ?
                   </span>
+                  <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
+                       Xem  Chi Tiết
+                        </div>  
                 </div>
               </div>
             </div>
             <div>
-              <h3 className="text-[2rem] mb-[30px]">Bài Viết Công Nghệ</h3>
+              <h3 className="text-[2rem] mb-[30px]">Tin Tức Hoạt Động</h3>
+             
               <div className="flex justify-center gap-[10px] py-[20px] cursor-pointer">
                 <div>
                   <img
-                    src={course_2}
+                    src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/437938841_456414413577280_4975156615058686742_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGOdlMSRHmmElDXnOOWdgj2swx59ScdRo2zDHn1Jx1Gjd8lpI5TkGVOm6pkF-D1F23zK16GQyKDF889miowYmzZ&_nc_ohc=-rwP8r5P4L4Ab5hOxt7&_nc_ht=scontent.fhan15-1.fna&oh=00_AfCrMgrum9DUHKHk09Pj1qpxC6uO1wAieZFzRdr_XnAIPA&oe=662C7242"
                     alt="course"
-                    className="w-[300px] rounded-md "
+                    className="w-[270px] rounded-md "
                   />
                 </div>
-                <div>
+                <div className="relative">
                   <span className="text-[1.5rem]">
                     {" "}
-                    Hướng dẫn sử dụng NVM để cài đặt nhiều phiên bản Node.js
+                  Trận trung kết,  Giải  Bóng Đá Rikkei  ?? Ai Là Thắng Cuộc
                   </span>
+                  <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
+                       Xem  Chi Tiết
+                        </div>                </div>
+               
+              </div>
+              <div className="grid grid-cols-3 gap-[10px] py-[20px] cursor-pointer">
+                <div>
+                  <img
+                    src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/438198313_457330603485661_5538373835705511828_n.jpg?stp=dst-jpg_s552x414&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHo20Gp68jIKTTSVjNbzRHTVRoYyZxn-aNVGhjJnGf5ozENdIXtAe7zcEzOtvImm0jLcxTRUG3wNzjzm7sdalAO&_nc_ohc=DKkNHd9y6owAb5EkJ-I&_nc_ht=scontent.fhan15-1.fna&oh=00_AfCijqTXtrhEUY2dxZ_4V7WtAlXutTMsYnRyG_lRGEoX-A&oe=662C7917"
+                    alt="course"
+                    className="w-[270px] h-[145px] rounded-md "
+                  />
+                </div>
+                <div  className="relative col-span-2 ">
+                  <span className="text-[1.5rem]">
+                    {" "}
+                 Thông Báo Lịch Nghỉ 30/4-1/5
+                  </span>
+                  <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
+                       Xem  Chi Tiết
+                        </div>  
                 </div>
               </div>
-              <div className="flex justify-center gap-[10px] py-[20px] cursor-pointer">
+              <div className="grid grid-cols-3 gap-[10px] py-[20px] cursor-pointer">
                 <div>
                   <img
-                    src={course_2}
+                    src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/438221499_457324266819628_4556945443981845627_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHbPAmAFCWGGYdgs9bxyFiaiNXAtnP22pmI1cC2c_bamaV0WGkBHDyKT1aQGP_bBxjrz6RbWcEdAJVQ679JDHnY&_nc_ohc=vQYq7GGTf4kAb4--bvg&_nc_ht=scontent.fhan15-1.fna&oh=00_AfDJV5qxTEykNMaVq8mHA7WG2tjOPKUC1e1odI_gIoGjBQ&oe=662C8708"
                     alt="course"
-                    className="w-[300px] rounded-md "
+                    className="w-[225px] h-[140px] rounded-md "
                   />
                 </div>
-                <div>
+                <div  className="relative col-span-2">
                   <span className="text-[1.5rem]">
                     {" "}
-                    Hướng dẫn sử dụng NVM để cài đặt nhiều phiên bản Node.js
+                    Khai Giảng Lớp Passtime JV240116
                   </span>
-                </div>
-              </div>
-              <div className="flex justify-center gap-[10px] py-[20px] cursor-pointer">
-                <div>
-                  <img
-                    src={course_3}
-                    alt="course"
-                    className="w-[300px] rounded-md "
-                  />
-                </div>
-                <div>
-                  <span className="text-[1.5rem]">
-                    {" "}
-                    Hướng dẫn sử dụng NVM để cài đặt nhiều phiên bản Node.js
-                  </span>
-                </div>
-              </div>
-              <div className="flex justify-center gap-[10px] py-[20px] cursor-pointer">
-                <div>
-                  <img
-                    src={course_1}
-                    alt="course"
-                    className="w-[300px] rounded-md "
-                  />
-                </div>
-                <div>
-                  <span className="text-[1.5rem]">
-                    {" "}
-                    Hướng dẫn sử dụng NVM để cài đặt nhiều phiên bản Node.js
-                  </span>
+                  <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
+                       Xem  Chi Tiết
+                        </div>  
                 </div>
               </div>
             </div>
+            
           </div>
         </div>
       </div>

@@ -6,9 +6,9 @@ import { FaClock } from "react-icons/fa6";
 import { FaFilm } from "react-icons/fa6";
 import { PiCertificateFill } from "react-icons/pi";
 import { IoBookSharp } from "react-icons/io5";
-import {  NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
-import { PlusOutlined, InteractionOutlined} from "@ant-design/icons";
+import { PlusOutlined, InteractionOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import publicAxios from "../../configs/public";
 function getItem(label, key, icon, children, type) {
@@ -20,38 +20,13 @@ function getItem(label, key, icon, children, type) {
     type,
   };
 }
-// const items = [
-//   getItem(
-//     <div className="">
-//       <p className="font-bold ">Chương 1</p>
-//     </div>,
-//     "sub1",
-//     <PlusOutlined />,
-//     [
-//       getItem(
-//         <div>
-//           <p>Bài 1:</p>
-//         </div>
-//       ),
-      
-//     ]
-//   ),
-
-//   {
-//     type: "divider",
-//   },
-// ];
-
-
 export default function CourseDetail() {
   const [getData, setData] = useState([]);
-  const {id} = useParams()
-  
+  const { id } = useParams();
+
   const handleGetData = async () => {
     try {
-      const response = await publicAxios.get(
-        `/courses/findCourseById/${id}`
-      );
+      const response = await publicAxios.get(`/courses/findCourseById/${id}`);
       setData(response.data);
     } catch (error) {
       console.log(error);
@@ -63,9 +38,10 @@ export default function CourseDetail() {
   const onClick = (e) => {
     console.log("click ", e);
   };
-const data = getData.chapters
-  const generateItems=(data)=>{
-      return data?.map((item,index)=>{
+  const data = getData.chapters;
+  const generateItems = (data) => {
+    return data
+      ?.map((item, index) => {
         const chapterItem = getItem(
           <div className="">
             <p className="font-bold ">{item.title}</p>
@@ -81,13 +57,12 @@ const data = getData.chapters
             )
           )
         );
-      return chapterItem;
-
-      }).concat({ type: "divider" });
-  }
+        return chapterItem;
+      })
+      .concat({ type: "divider" });
+  };
   const items = generateItems(data);
 
-  
   return (
     <>
       <div className=" lg:h-[90px] lg:pt-8 pt-[20px] ml-[140px]  ">
@@ -157,7 +132,10 @@ const data = getData.chapters
           </div>
 
           <h2 className="mt-7 text-xl font-bold flex justify-between">
-            Nội dung khóa học <span className="text-lg mr-2">{getData.chapters?.length} chương</span>
+            Nội dung khóa học{" "}
+            <span className="text-lg mr-2">
+              {getData.chapters?.length} chương
+            </span>
           </h2>
 
           <Menu
@@ -201,10 +179,12 @@ const data = getData.chapters
               <NavLink className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl ml-3 items-center">
                 Add WishList
               </NavLink>
-                <NavLink to={`/learn/${getData.id}`} className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl  " >
-                  Học ngay
-                </NavLink>
-              
+              <NavLink
+                to={`/learn/${getData.id}`}
+                className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl  "
+              >
+                Học ngay
+              </NavLink>
             </div>
 
             <div className="flex  px-[19%] mt-6    ">
@@ -213,7 +193,7 @@ const data = getData.chapters
               </span>
               <span className=" pl-5 lg:text-[17px]  text-sm">
                 {" "}
-               {getData.title}
+                {getData.title}
               </span>
             </div>
 
@@ -223,7 +203,7 @@ const data = getData.chapters
               </span>
               <span className=" pl-5 lg:text-[17px]  text-sm">
                 {" "}
-                 Phụ đề chuẩn
+                Phụ đề chuẩn
               </span>
             </div>
 
@@ -231,7 +211,10 @@ const data = getData.chapters
               <span className=" pl-3 pt-[2px]">
                 <FaFilm className="text-xl  " />{" "}
               </span>
-              <span className=" pl-5 lg:text-[17px]  text-sm"> Số Chương: {getData.chapters?.length}</span>
+              <span className=" pl-5 lg:text-[17px]  text-sm">
+                {" "}
+                Số Chương: {getData.chapters?.length}
+              </span>
             </div>
 
             <div className="flex  px-[19%] mt-6    ">
@@ -251,7 +234,10 @@ const data = getData.chapters
         <h1 className="text-xl font-bold pt-5">Giảng viên</h1>
         <div className="flex mt-5 w-[250px] justify-around  ">
           <div className="">
-            <img className="bg-red-200 h-[60px] w-[60px] rounded-full" src={getData.teacher_id?.image} />
+            <img
+              className="bg-red-200 h-[60px] w-[60px] rounded-full"
+              src={getData.teacher_id?.image}
+            />
           </div>
           <div className="">
             <span className="">{getData.teacher_id?.name}</span>
@@ -260,13 +246,13 @@ const data = getData.chapters
                 {" "}
                 <IoBookSharp className="" />{" "}
               </span>
-              <span className="mt-[3px] ml-2">{getData.teacher_id?.specialize}</span>
+              <span className="mt-[3px] ml-2">
+                {getData.teacher_id?.specialize}
+              </span>
             </span>
           </div>
         </div>
-        <p className="pt-5">
-          {getData.teacher_id?.description}
-        </p>
+        <p className="pt-5">{getData.teacher_id?.description}</p>
       </div>
 
       <br />

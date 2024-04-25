@@ -4,72 +4,22 @@ import { PiBookOpenTextLight } from "react-icons/pi";
 import { RxBackpack } from "react-icons/rx";
 import { TbMessages } from "react-icons/tb";
 import { GoMortarBoard } from "react-icons/go";
-import { Button, Input } from "antd";
-import publicAxios from "../../configs/public";
-import {
-  SettingOutlined,
-  BookOutlined,
-  FieldTimeOutlined,
-} from "@ant-design/icons";
-import { Menu } from "antd";
+import { Button, Input, Pagination } from "antd";
 import "./Courses.css";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Pagination } from "antd";
-
-// function getItem(label, key, icon, children, type) {
-//   return {
-//     key,
-//     icon,
-//     children,
-//     label,
-//     type,
-//   };
-// }
-// const items = [
-//   getItem("Khóa học", "sub1", <BookOutlined />, [
-//     getItem(
-//       <div className="flex">
-//         {" "}
-//         <input type="checkbox" />{" "}
-//         <span className="pl-2">Java</span>{" "}
-//       </div>
-//     ),
-//     getItem(
-//       <div className="flex">
-//         {" "}
-//         <input type="checkbox" /> <span className="pl-2">HTML,CSS,Javascript</span>{" "}
-//       </div>
-//     ),
-//     getItem(
-//       <div className="flex">
-//         {" "}
-//         <input type="checkbox" /> <span className="pl-2"></span>{" "}
-//       </div>
-//     ),
-//   ]),
-//   {
-//     type: "divider",
-//   },
-//   getItem("Level", "sub2", <FieldTimeOutlined />, [
-//     getItem(
-//       <div className="flex">
-//         {" "}
-//         <input type="checkbox" /> <span className="pl-2"></span>{" "}
-//       </div>
-//     ),
-//   ]),
-//   {
-//     type: "divider",
-//   },
-// ];
+import {
+  getALlCourseApi,
+  handleSearchCourseApi,
+  handlePaginationRenderOneApi,
+} from "../../api/course/index";
 
 export default function Course() {
   const [getCourse, setGetCourse] = useState([]);
   const [valueInput, setValueInput] = useState("");
   const handleGetCourse = async () => {
     try {
-      const response = await publicAxios.get("/courses/list");
+      const response = await getALlCourseApi();
       setGetCourse(response.data);
     } catch (error) {
       console.log(error);
@@ -82,9 +32,7 @@ export default function Course() {
   const handleSearch = async () => {
     const dataValue = valueInput;
     try {
-      const response = await publicAxios.get(
-        `/courses/searchCourse?key=${dataValue}`
-      );
+      const response = await handleSearchCourseApi(dataValue);
       setGetCourse(response.data);
     } catch (error) {
       console.log(error);
@@ -105,9 +53,7 @@ export default function Course() {
     window.scrollTo({ top: 600, behavior: "smooth" });
     let firstPage = 1;
     try {
-      const response = await publicAxios.get(
-        `/courses/PaginationCourse?page=${firstPage}&limit=${limit}`
-      );
+      const response = await handlePaginationRenderOneApi(firstPage, limit);
       setGetCourse(response.data);
     } catch (error) {
       console.log(error);
@@ -118,18 +64,12 @@ export default function Course() {
     const limit = 6;
     window.scrollTo({ top: 600, behavior: "smooth" });
     try {
-      const response = await publicAxios.get(
-        `/courses/PaginationCourse?page=${page}&limit=${limit}`
-      );
+      const response = await handlePaginationRenderOneApi(page, limit);
       setGetCourse(response.data);
     } catch (error) {
       console.log(error);
     }
   };
-
-  // const onClick = (e) => {
-  //   console.log("click ", e);
-  // };
 
   return (
     <>
@@ -162,15 +102,6 @@ export default function Course() {
                 Tìm
               </Button>
             </span>
-
-            {/* <Menu
-              className="mt-5 ml-5 w-[320px] rounded-sm"
-              onClick={onClick}
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              mode="inline"
-              items={items}
-            /> */}
           </div>
 
           <div className="  h-[100%] grid grid-cols-1 lg:ml-6 lg:grid-cols-3 sm:grid-cols-2  sm:gap-x-[2px] sm:gap-y-[40px] lg:gap-5 gap-[50px] lg:mt-2 mt-4 ">

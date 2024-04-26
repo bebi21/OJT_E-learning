@@ -2,15 +2,13 @@ import React, { useEffect, useState } from "react";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import "./CourseDetail.css";
 import { AiFillDribbbleCircle } from "react-icons/ai";
-import { FaClock } from "react-icons/fa6";
 import { FaFilm } from "react-icons/fa6";
 import { PiCertificateFill } from "react-icons/pi";
 import { IoBookSharp } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";
-
 import { PlusOutlined, InteractionOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
-import publicAxios from "../../configs/public";
+import { handleFindCourseByIdApi } from "../../api/course/ApiCourse";
 function getItem(label, key, icon, children, type) {
   return {
     key,
@@ -23,21 +21,17 @@ function getItem(label, key, icon, children, type) {
 export default function CourseDetail() {
   const [getData, setData] = useState([]);
   const { id } = useParams();
-
   const handleGetData = async () => {
     try {
-      const response = await publicAxios.get(`/courses/findCourseById/${id}`);
+      const response = await handleFindCourseByIdApi(id);
       setData(response.data);
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
   useEffect(() => {
     handleGetData();
   }, []);
-  const onClick = (e) => {
-    console.log("click ", e);
-  };
   const data = getData.chapters;
   const generateItems = (data) => {
     return data
@@ -62,7 +56,6 @@ export default function CourseDetail() {
       .concat({ type: "divider" });
   };
   const items = generateItems(data);
-
   return (
     <>
       <div className=" lg:h-[90px] lg:pt-8 pt-[20px] ml-[140px]  ">
@@ -74,11 +67,9 @@ export default function CourseDetail() {
           <p>{getData.title}</p>
         </div>
       </div>
-
       <div className=" ">
         <h1 className="text-[40px] ml-[140px] ">{getData.title} </h1>
       </div>
-
       <div className="flex  justify-between mt-6">
         <div className="ml-[130px]  lg:w-[60vw] sm:w-[50vw] pl-4  h-[100%]  leading-[35px]">
           <p className="text-2xl  font-bold">Tổng quan</p>
@@ -100,7 +91,6 @@ export default function CourseDetail() {
             cho người mới bắt đầu, muốn có một góc nhìn "thực sự chính xác" về
             React.JS.
           </p>
-
           <p className="pt-2">
             Ngoài ra, khi kết thúc khóa học, các bạn mới bắt đầu sẽ có đủ tự tin
             để làm chủ React, cũng như hiểu được, nắm vững được những kiến thức
@@ -112,7 +102,6 @@ export default function CourseDetail() {
             tin sử dụng React cho công việc của mình.
           </p>
           <br />
-
           <h2 className="text-lg font-bold">Bạn sẽ học được gì ?</h2>
           <div className="flex mt-3 justify-between sm:flex-wrap  ">
             <ul className="list-disc pl-4">
@@ -130,14 +119,12 @@ export default function CourseDetail() {
               <li>Nhận chứng chỉ khóa học do F8 cấp</li>
             </ul>
           </div>
-
           <h2 className="mt-7 text-xl font-bold flex justify-between">
             Nội dung khóa học{" "}
             <span className="text-lg mr-2">
               {getData.chapters?.length} chương
             </span>
           </h2>
-
           <Menu
             onClick={onClick}
             className="w-[100%] "
@@ -146,9 +133,7 @@ export default function CourseDetail() {
             mode="inline"
             items={items}
           />
-
           <h2 className="pt-6 text-lg font-bold">Yêu cầu</h2>
-
           <ul className="mt-3 list-disc pl-4">
             <li>Máy vi tính kết nối internet (Windows, Ubuntu hoặc MacOS)</li>
             <li>
@@ -164,7 +149,6 @@ export default function CourseDetail() {
             </li>
           </ul>
         </div>
-
         <div className="box shadow-lg border-2 border-solid border-gray-100 lg:w-[380px] lg:mr-[50px]  h-[520px] sticky top-20 z-[10] bg-white ">
           <div className="flex justify-center bg-gray-100 h-[220px]">
             <img
@@ -173,7 +157,6 @@ export default function CourseDetail() {
               className="rounded-[5px] w-[90%] h-[90%] mt-3"
             />
           </div>
-
           <div className=" mt-4 text-center  ">
             <div className="flex justify-evenly">
               <NavLink className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl ml-3 items-center">
@@ -186,7 +169,6 @@ export default function CourseDetail() {
                 Học ngay
               </NavLink>
             </div>
-
             <div className="flex  px-[19%] mt-6    ">
               <span className="pl-3 pt-[2px]">
                 <AiFillDribbbleCircle className="text-xl  " />{" "}
@@ -196,7 +178,6 @@ export default function CourseDetail() {
                 {getData.title}
               </span>
             </div>
-
             <div className="flex  px-[19%] mt-6    ">
               <span className=" pl-3 pt-[2px]">
                 <InteractionOutlined className="text-xl  " />{" "}
@@ -206,7 +187,6 @@ export default function CourseDetail() {
                 Phụ đề chuẩn
               </span>
             </div>
-
             <div className="flex  px-[19%] mt-6    ">
               <span className=" pl-3 pt-[2px]">
                 <FaFilm className="text-xl  " />{" "}
@@ -216,7 +196,6 @@ export default function CourseDetail() {
                 Số Chương: {getData.chapters?.length}
               </span>
             </div>
-
             <div className="flex  px-[19%] mt-6    ">
               <span className="pl-3 pt-[2px]">
                 <PiCertificateFill className="text-xl  " />{" "}
@@ -229,7 +208,6 @@ export default function CourseDetail() {
           </div>
         </div>
       </div>
-
       <div className=" ml-[140px] mt-6 bg-slate-100 h-[200px] w-[60%] pl-5 rounded-[5px]">
         <h1 className="text-xl font-bold pt-5">Giảng viên</h1>
         <div className="flex mt-5 w-[250px] justify-around  ">
@@ -254,7 +232,6 @@ export default function CourseDetail() {
         </div>
         <p className="pt-5">{getData.teacher_id?.description}</p>
       </div>
-
       <br />
       <br />
       <br />

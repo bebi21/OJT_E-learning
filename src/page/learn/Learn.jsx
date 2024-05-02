@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import ReactPlayer from "react-player";
 import Call from "../../img/logo/Call Button.png";
-
+import publicAxios from "../../configs/public";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { IoMenuSharp } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";

@@ -18,12 +18,9 @@ function Login() {
   const [otp, setOTP] = useState("");
   const [password,setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false);
-
-
   const handleEyeShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
   const handleSendOTP= async()=>{
     try {
       const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
@@ -33,7 +30,6 @@ function Login() {
       console.log(error)
     }
   }
-
   const verifyOTP= async()=>{
       try {
       const data = await user.confirm(otp)

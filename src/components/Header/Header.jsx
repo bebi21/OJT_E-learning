@@ -63,7 +63,6 @@ const items3 = [
 
 function Header() {
   const [user, setUser] = useState(localStorage.getItem("currentUser") );
-  console.log(user);
   const handleLogout = async () => {
     try {
       setUser();

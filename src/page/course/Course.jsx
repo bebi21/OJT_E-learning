@@ -108,7 +108,6 @@ export default function Course() {
       const response = await publicAxios.get(
         `/courses/PaginationCourse?page=${firstPage}&limit=${limit}`
       );
-      console.log(response.data);
       setGetCourse(response.data);
     } catch (error) {
       console.log(error);

@@ -108,6 +108,7 @@ export default function Course() {
       const response = await publicAxios.get(
         `/courses/PaginationCourse?page=${firstPage}&limit=${limit}`
       );
+      console.log(response.data);
       setGetCourse(response.data);
     } catch (error) {
       console.log(error);
@@ -116,10 +117,11 @@ export default function Course() {
 
   const handlePagination = async (page) => {
     const limit = 6;
+    const dataValue = valueInput;
     window.scrollTo({ top: 600, behavior: "smooth" });
     try {
       const response = await publicAxios.get(
-        `/courses/PaginationCourse?page=${page}&limit=${limit}`
+        `/courses/PaginationCourse?key=${dataValue}&page=${page}&limit=${limit}`
       );
       setGetCourse(response.data);
     } catch (error) {
@@ -131,6 +133,7 @@ export default function Course() {
   //   console.log("click ", e);
   // };
 
+ console.log(getCourse)
   return (
     <>
       <div className="trans-font">
@@ -219,7 +222,7 @@ export default function Course() {
           <Pagination
             showSizeChanger={false}
             defaultCurrent={1}
-            total={getCourse?.courseTotal}
+            total={getCourse?.totalItem}
             pageSize={getCourse?.itemByPage}
             onChange={handlePagination}
           />

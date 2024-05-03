@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { IoChevronForwardOutline } from "react-icons/io5";
 import ReactPlayer from "react-player";
+
 import Call from "../../img/logo/Call Button.png";
 import publicAxios from "../../configs/public";
+
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { IoMenuSharp } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";
 import "./learn.css";
-import { Avatar, Badge, Divider, Input } from "antd";
-import { UserOutlined, SearchOutlined, BellOutlined } from "@ant-design/icons";
+import publicAxios from "../../configs/public";
+import { Avatar, Divider, Input } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+
 const { Search } = Input;
 import Tour from "reactour";
-import { IoIosArrowDown } from "react-icons/io";
 import { MdOutlineHelp } from "react-icons/md";
+import { handleFindCourseByIdApi } from "../../api/course/index";
 function Learn() {
   const [collapsed, setCollapsed] = useState(false);
   const [currentLesson, setCurrentLesson] = useState("");
@@ -20,9 +23,8 @@ function Learn() {
   const { id } = useParams();
   const [chapter, setChapter] = useState();
   const takeDataInDb = async () => {
-    const data = await publicAxios.get(`/courses/findCourseByIdAdmin/${id}`);
+    const data = await handleFindCourseByIdApi(id);
     const newData = data.data.chapters;
-   
     setCurrentLesson(newData[0].lessons[0]);
     setBrandData(newData);
     setChapter(newData[0]);
@@ -30,9 +32,9 @@ function Learn() {
   useEffect(() => {
     takeDataInDb();
   }, []);
-  const handleTakeValue = ( lesson, item ) => {
+  const handleTakeValue = (lesson, item) => {
     setCurrentLesson(lesson);
-    console.log("adsad", item);
+
     setChapter(item);
   };
   const handleBack = () => {
@@ -52,20 +54,19 @@ function Learn() {
         setCurrentLesson(brandData[index - 1].lessons[0]);
         setChapter(brandData[index - 1]);
       }
-      
     }
   };
- 
+
   const handleNext = async () => {
     const index = brandData.findIndex((item) => item.id === chapter.id);
     const index2 = brandData[index].lessons.findIndex(
       (item) => item.id === currentLesson.id
     );
-    
-    if(index2 < brandData[index].lessons.length - 1) {
+
+    if (index2 < brandData[index].lessons.length - 1) {
       setCurrentLesson(brandData[index].lessons[index2 + 1]);
     }
-    if (index2>= brandData[index].lessons.length - 1) {
+    if (index2 >= brandData[index].lessons.length - 1) {
       const index = brandData.findIndex((item) => item.id === chapter.id);
       const index2 = brandData[index].lessons.findIndex(
         (item) => item.id === currentLesson.id
@@ -74,14 +75,11 @@ function Learn() {
         setCurrentLesson(brandData[index + 1].lessons[0]);
         setChapter(brandData[index + 1]);
       }
-      
     }
-     
   };
 
   const [isTourOpen, setIsTourOpen] = useState(false);
   const steps = [
-
     {
       selector: ".first-step",
       content: "đây là video",
@@ -102,7 +100,6 @@ function Learn() {
       selector: ".fifth-step",
       content: "Chúc bạn học  tập  tốt",
     },
-    // Thêm bao nhiêu bước tùy ý
   ];
 
   const closeTour = () => {
@@ -143,7 +140,7 @@ function Learn() {
                   <Avatar size={32} icon={<UserOutlined />} />
                   <span className=" text-white"></span>
                 </div>
-               {/*  <IoIosArrowDown className="text-white" /> */}
+                {/*  <IoIosArrowDown className="text-white" /> */}
               </div>
             </div>
           </div>
@@ -204,7 +201,7 @@ function Learn() {
                   <IoMenuSharp />
                 </button>
                 <button onClick={() => setIsTourOpen(true)}>
-                <MdOutlineHelp />
+                  <MdOutlineHelp />
                 </button>
               </div>
             </div>
@@ -213,7 +210,7 @@ function Learn() {
             {" "}
             <div className=" overflow-scroll overflow-x-hidden  h-full scrollable-container  ">
               <Sidebar collapsed={collapsed} collapsedWidth={"0px"}>
-               {/*  <Input
+                {/*  <Input
                   addonBefore={<SearchOutlined />}
                   placeholder="large size"
                 /> */}

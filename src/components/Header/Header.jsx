@@ -67,6 +67,7 @@ function Header() {
     try {
       setUser();
       localStorage.removeItem("currentUser");
+      localStorage.removeItem("token");
       window.location.href = "/";
     } catch (error) {
       console.log(error);

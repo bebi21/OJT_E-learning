@@ -7,7 +7,6 @@ import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { IoMenuSharp } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";
 import "./learn.css";
-import publicAxios from "../../configs/public";
 import { Avatar, Badge, Divider, Input } from "antd";
 import { UserOutlined, SearchOutlined, BellOutlined } from "@ant-design/icons";
 const { Search } = Input;

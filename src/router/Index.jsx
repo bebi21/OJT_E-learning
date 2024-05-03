@@ -3,10 +3,10 @@ import Home from "../page/home/Home";
 import Root from "./Root";
 import Register from "../page/register/Register";
 import Course from "../page/course/Course";
-import Login from "../page/login register/Login";
 import CourseDetail from "../page/course - detail/CourseDetail";
 import Learn from "../page/learn/Learn";
 import CKEditorComponent from "../page/ckEditor/CkEditor";
+import Login from "../page/login/Login";
 
 const handleGetValue = (value) => {
   console.log(value);

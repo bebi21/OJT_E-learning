@@ -2,15 +2,21 @@ import React from "react";
 import logo from "../../img/logo/Logo.png";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaBars } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { DownOutlined } from "@ant-design/icons";
-import { Dropdown, Space, Typography } from "antd";
+import { Button, Dropdown, Space, Typography } from "antd";
 import { icons } from "antd/es/image/PreviewGroup";
+import { useState } from "react";
 
 const items = [
   {
     key: "1",
-    label: <Link to='/course'> <p>Tất cả khóa học</p></Link>,
+    label: (
+      <Link to="/course">
+        {" "}
+        <p>Tất cả khóa học</p>
+      </Link>
+    ),
     className: "h-[45px] text-xl",
     icons: <IoIosArrowDown />,
   },
@@ -18,7 +24,11 @@ const items = [
 const items2 = [
   {
     key: "4",
-    label: <Link to=''><p>Blog</p></Link>,
+    label: (
+      <Link to="">
+        <p>Blog</p>
+      </Link>
+    ),
     className: "h-[45px] text-xl",
     icons: <IoIosArrowDown />,
   },
@@ -50,10 +60,21 @@ const items3 = [
     icons: <IoIosArrowDown />,
   },
 ];
+
 function Header() {
+  const [user, setUser] = useState(localStorage.getItem("currentUser") );
+  const handleLogout = async () => {
+    try {
+      setUser();
+      localStorage.removeItem("currentUser");
+      window.location.href = "/";
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="sticky top-0 z-[999] bg-white shadow-lg flex sm:justify-around justify-between items-center h-[72px] sm:px-[72px] px-[24px]">
-      <Link to='/'>
+      <Link to="/">
         <img src={logo} alt="logo" className="cursor-pointer" />
       </Link>
       <div className=" hidden sm:flex justify-evenly gap-[20px] text-[16px] text-[#221651] w-[50%]">
@@ -129,19 +150,31 @@ function Header() {
           <IoIosArrowDown /> */}
         </div>
       </div>
-      <div className="hidden sm:block">
-        <Link
-          to={"/login"}
-          className="min-w-[100px] text-[14px] text-white rounded-[5px] px-[20px] py-[10px] mr-[5px] bg-[#bd2228]"
-        >
-          Đăng Nhập
-        </Link>
-        <Link
-          to={"/register"}
-          className="min-w-[100px] text-[14px] text-[#bd2228] border-[1px] border-solid ml-[5px] border-[#bd2228] rounded-[5px] px-[20px] py-[10px] "
-        >
-          Đăng Kí
-        </Link>
+      <div className="hidden sm:block lg:flex justify-between  w-[17%]">
+        <p className="pt-1">{user} </p>
+        {user ? (
+          <Button
+            className="cursor-pointer text-red-500 w-[100px]"
+            onClick={handleLogout}
+          >
+            Đăng xuất
+          </Button>
+        ) : (
+          <div>
+            <NavLink
+              to={"/login"}
+              className="min-w-[100px] text-[14px] text-white rounded-[5px] px-[20px] py-[10px] mr-[5px] bg-[#bd2228]"
+            >
+              Đăng Nhập
+            </NavLink>
+            <NavLink
+              to={"/register"}
+              className="min-w-[100px] text-[14px] text-[#bd2228] border-[1px] border-solid ml-[5px] border-[#bd2228] rounded-[5px] px-[20px] py-[10px] "
+            >
+              Đăng Kí
+            </NavLink>
+          </div>
+        )}
       </div>
       <div className="sm:hidden  cursor-pointer text-[24px]">
         <FaBars />

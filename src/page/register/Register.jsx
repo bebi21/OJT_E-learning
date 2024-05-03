@@ -3,7 +3,7 @@ import { LuUser2 } from "react-icons/lu";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { IoEyeSharp } from "react-icons/io5";
 import { CiMail } from "react-icons/ci";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import publicAxios from "../../configs/public";
 import { failed, success } from "../../utils/notify";
 import PhoneInput from "react-phone-input-2";
@@ -27,13 +27,16 @@ function Register() {
   const handleEyeShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
+  
   const handleRegister = async () => {
     try {
       const dataRegister = {
         full_name: register.full_name,
-        phone: phone,
+        phone: `+${phone}`,
         password: register.password,
       };
+      console.log(dataRegister)
       const response = await publicAxios.post("/auth/register", dataRegister);
       setRegister({ full_name: "", phone: "", password: "" });
       success(response.data.message);
@@ -47,11 +50,14 @@ function Register() {
     <>
       <div className="w-4/5 ml-[10%] flex flex-wrap text-[#0A033C] max-[600px]:w-full max-[600px]:ml-0 max-[600px]:flex max-[600px]:justify-center max-[600px]:items-center max-[600px]:h-full">
         <div className="w-[44%] max-[600px]:w-full max-[600px]:flex max-[600px]:justify-center ">
+         <NavLink to='/'>
           <img
-            className="mb-[10%] mt-[5%]   max-[600px]:hidden	"
-            src="../../../public/img/logo-login.png"
-            alt="lỗi hiển thị"
-          />
+              className="mb-[10%] mt-[5%]   max-[600px]:hidden	"
+              src="../../../public/img/logo-login.png"
+              alt="lỗi hiển thị"
+            />
+         </NavLink>
+         
           <h1 className="text-4xl	text-[#0A033C] w-[60%] font-medium mb-[10%] max-[600px]:text-center max-[600px]:mt-[20%] max-[600px]:text-2xl	max-[1154px]:text-3xl max-[964px]:text-2xl">
             Welcome to RikeiEdu Online Learning Platfrom
           </h1>

@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
-import Call from "../../img/logo/Call Button.png";
-import publicAxios from "../../configs/public";
 
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { IoMenuSharp } from "react-icons/io5";
-import { NavLink, useParams } from "react-router-dom";
 import "./learn.css";
-import publicAxios from "../../configs/public";
 import { Avatar, Divider, Input } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 

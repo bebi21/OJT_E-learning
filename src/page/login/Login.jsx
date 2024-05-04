@@ -130,8 +130,6 @@ function Login() {
               </button>
             </div>
             <div className="text-center mt-5">
-              <small className="text-[#5D5A6F]">Forgot password ? </small>
-              <br />
               <small className="text-[#5D5A6F]">
                 You don't have an account?{" "}
               </small>{" "}
@@ -139,7 +137,7 @@ function Login() {
                 className="text-[#BC2228] cursor-pointer"
                 onClick={() => navigate("/register")}
               >
-                create an account{" "}
+                Create an account{" "}
               </small>
             </div>
           </div>

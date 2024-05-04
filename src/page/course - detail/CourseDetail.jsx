@@ -8,9 +8,9 @@ import { IoBookSharp } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";
 import { PlusOutlined, InteractionOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
-import { handleFindCourseByIdApi } from "../../api/course/ApiCourse";
+// import { handleFindCourseByIdApi } from "../../api/course/ApiCourse";
 function getItem(label, key, icon, children, type) {
-  return {
+  return {  
     key,
     icon,
     children,

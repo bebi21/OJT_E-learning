@@ -11,8 +11,7 @@ import "react-phone-input-2/lib/style.css";
 import { IoIosPhonePortrait } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa6";
 import { Button } from "antd";
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth"
-
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 
 function Register() {
   const navigate = useNavigate();
@@ -21,6 +20,8 @@ function Register() {
   const [otp, setOTP] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isOtpVerified, setOtpVerified] = useState(false);
+  const [checkPassword, setCheckPassword] = useState(true);
+
   const [register, setRegister] = useState({
     full_name: "",
     password: "",
@@ -48,20 +49,38 @@ function Register() {
     try {
       const data = await user.confirm(otp);
       if (data) {
-        success('Đã xác thực OTP')
+        success("Đã xác thực OTP");
         setOtpVerified(true);
       }
     } catch (error) {
-      if(error){
-        failed('OTP không đúng')
+      if (error) {
+        failed("OTP không đúng");
         setOtpVerified(false);
       }
     }
   };
+
+  const regexPhone = /(\+84[3|5|7|8|9])+([0-9]{8,9})\b/;
+  const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  
   const handleRegister = async () => {
-    if(!isOtpVerified) {
-      failed('Vui lòng nhập Otp')
-      return
+    if (register.full_name === "" || register.password === "" || phone === "") {
+      failed("Vui lòng điền đầy đủ thông tin");
+      return;
+    }
+    if (!regexPassword.test(register.password)) {
+      setCheckPassword(false);
+      return;
+    }
+
+    if (!regexPhone.test(phone)) {
+      failed("Số điện thoại không đúng định dạng");
+      return;
+    }
+
+    if (!isOtpVerified) {
+      failed("Vui lòng xác thực OTP");
+      return;
     }
     try {
       const dataRegister = {
@@ -69,7 +88,6 @@ function Register() {
         phone: phone,
         password: register.password,
       };
-      console.log(dataRegister);
       const response = await publicAxios.post("/auth/register", dataRegister);
       setRegister({ full_name: "", phone: "", password: "" });
       success(response.data.message);
@@ -85,7 +103,7 @@ function Register() {
         <div className="w-[44%] max-[600px]:w-full max-[600px]:flex max-[600px]:justify-center ">
           <NavLink to="/">
             <img
-              className="mb-[10%] mt-[5%]   max-[600px]:hidden	"
+              className="mb-[10%] mt-[5%]   max-[600px]:hidden"
               src="../../../public/img/logo-login.png"
               alt="lỗi hiển thị"
             />
@@ -160,6 +178,22 @@ function Register() {
                   )}
                 </div>
               </div>
+              {checkPassword === false ? (
+                <div className="mb-2 ml-3 ">
+                  <p className="text-[12px] text-red-600">
+                    Mật khẩu có tối thiểu 8 ký tự, chữ thường, chữ in Hoa, số và
+                    ký tự đặc biệt{" "}
+                  </p>
+                </div>
+              ) : (
+                <div className="mb-2 ml-3 hidden">
+                  <p className="text-[10px] text-red-600">
+                    Mật khẩu có tối thiểu 8 ký tự, chữ thường, chữ in Hoa, số và
+                    ký tự đặc biệt{" "}
+                  </p>
+                </div>
+              )}
+
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="username"
@@ -188,7 +222,7 @@ function Register() {
               >
                 OTP
               </label>
-              <div className="flex justify-between ">
+              <div className="flex justify-between">
                 <div className="  shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5 flex justify-between items-center">
                   <input
                     type="text"

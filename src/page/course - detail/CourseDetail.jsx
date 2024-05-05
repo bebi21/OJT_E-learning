@@ -8,7 +8,8 @@ import { IoBookSharp } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";
 import { PlusOutlined, InteractionOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
-import { handleFindCourseByIdApi } from "../../api/course/ApiCourse";
+import { handleFindCourseByIdApi } from "../../api/course";
+import teacher from "../../img/home_img/aquan_trongsuot.png";
 function getItem(label, key, icon, children, type) {
   return {
     key,
@@ -74,51 +75,10 @@ export default function CourseDetail() {
         <div className="ml-[130px]  lg:w-[60vw] sm:w-[50vw] pl-4  h-[100%]  leading-[35px]">
           <p className="text-2xl  font-bold">Tổng quan</p>
           <p className="text-lg pt-6 font-bold">Mô tả khóa học</p>
-          <p className="mt-2">
-            React.JS là một thư viện, framework giúp xây dựng một website hiện
-            đại, có tính mở rộng và hiệu năng cực lớn. Các sản phẩm tiêu biểu sử
-            dụng React có thể kể đến như Facebook và Instagram. Được Facebook
-            chống lưng, cũng như đầu tư mạnh mẽ, cộng với một cộng đồng đông đảo
-            sử dụng, React chính là thư viện Frontend phổ biến nhất hiện nay, bỏ
-            xa Vue và Angular. Với tên gọi React ULTIMATE - mục tiêu đề ra của
-            khóa học, đấy chính là nó là phiên bản cuối cùng, là thứ{" "}
-            <span className="italic font-bold"> DUY NHẤT </span>
-            các bạn cần, cũng như cập nhật{" "}
-            <span className="italic font-bold">
-              {" "}
-              MỚI NHẤT & ĐẦY ĐỦ NHẤT{" "}
-            </span>{" "}
-            cho người mới bắt đầu, muốn có một góc nhìn "thực sự chính xác" về
-            React.JS.
-          </p>
-          <p className="pt-2">
-            Ngoài ra, khi kết thúc khóa học, các bạn mới bắt đầu sẽ có đủ tự tin
-            để làm chủ React, cũng như hiểu được, nắm vững được những kiến thức
-            cốt lõi nhất để có thể xây dựng, phát triển một website thực tế với
-            React.JS Khóa học sẽ thực sự bổ ích cũng như mang lại rất nhiều kiến
-            thức cho các bạn mới bắt đầu. Với phương châm, học đi đôi với thực
-            hành, chúng ta chỉ học "vừa đủ", chỉ học những kiến thức code lỗi
-            nhất, hi vọng các bạn sẽ học hỏi được nhiều kiến thức, cũng như tự
-            tin sử dụng React cho công việc của mình.
-          </p>
+
+          <p className="pt-2">{getData.description}</p>
           <br />
-          <h2 className="text-lg font-bold">Bạn sẽ học được gì ?</h2>
-          <div className="flex mt-3 justify-between sm:flex-wrap  ">
-            <ul className="list-disc pl-4">
-              <li>Biết cách xây dựng giao diện web với HTML, CSS</li>
-              <li>Biết cách đặt tên class CSS theo chuẩn BEM</li>
-              <li>Làm chủ Flexbox khi dựng bố cục website</li>
-              <li>Biết cách tự tạo động lực cho bản thân</li>
-              <li>Học được cách làm UI chỉn chu, kỹ tính</li>
-            </ul>
-            <ul className="list-disc pl-4 ">
-              <li>Biết cách phân tích giao diện website</li>
-              <li>Biết cách làm giao diện web responsive</li>
-              <li>Sở hữu 2 giao diện web khi học xong khóa học</li>
-              <li>Biết cách tự học những kiến thức mới</li>
-              <li>Nhận chứng chỉ khóa học do F8 cấp</li>
-            </ul>
-          </div>
+
           <h2 className="mt-7 text-xl font-bold flex justify-between">
             Nội dung khóa học{" "}
             <span className="text-lg mr-2">
@@ -126,7 +86,6 @@ export default function CourseDetail() {
             </span>
           </h2>
           <Menu
-            onClick={onClick}
             className="w-[100%] "
             defaultSelectedKeys={["1"]}
             defaultOpenKeys={["sub1"]}
@@ -214,18 +173,18 @@ export default function CourseDetail() {
           <div className="">
             <img
               className="bg-red-200 h-[60px] w-[60px] rounded-full"
-              src={getData.teacher_id?.image}
+              src={teacher}
             />
           </div>
           <div className="">
-            <span className="">{getData.teacher_id?.name}</span>
+            <span className="">{getData.teacher?.name}</span>
             <span className="flex">
               <span className=" pt-2 ">
                 {" "}
                 <IoBookSharp className="" />{" "}
               </span>
               <span className="mt-[3px] ml-2">
-                {getData.teacher_id?.specialize}
+                {getData.teacher?.specialize}
               </span>
             </span>
           </div>

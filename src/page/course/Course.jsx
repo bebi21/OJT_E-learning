@@ -20,6 +20,7 @@ export default function Course() {
   const handleGetCourse = async () => {
     try {
       const response = await getALlCourseApi();
+
       setGetCourse(response.data);
     } catch (error) {
       console.log(error);
@@ -35,7 +36,7 @@ export default function Course() {
       const response = await handleSearchCourseApi(dataValue);
       setGetCourse(response.data);
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
@@ -44,7 +45,7 @@ export default function Course() {
     if (check) {
       setValueInput(check);
     } else {
-      handleGetCourse();
+      handlePaginationRenderOne();
     }
   };
 
@@ -54,9 +55,10 @@ export default function Course() {
     let firstPage = 1;
     try {
       const response = await handlePaginationRenderOneApi(firstPage, limit);
+      console.log(response.data);
       setGetCourse(response.data);
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
@@ -65,12 +67,10 @@ export default function Course() {
     const dataValue = valueInput;
     window.scrollTo({ top: 600, behavior: "smooth" });
     try {
-
       const response = await handlePaginationRenderOneApi(page, limit);
-
       setGetCourse(response.data);
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
   return (
@@ -133,9 +133,8 @@ export default function Course() {
                       </p>
                       <div className="sm:block hidden lg:mt-2">
                         <span className="text-red-500 sm:text-[16px]  lg:pl-2 ">
-                          Giảng viên:{" "}
+                          Giảng viên: {item.teacher?.name}
                           <span className="text-black">
-                            {" "}
                             {item.teacher_id?.name}{" "}
                           </span>
                         </span>

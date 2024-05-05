@@ -3,6 +3,7 @@ import {
   API_GET_ALL_COURSE,
   API_SEARCH_COURSE,
   API_PAGINATION_COURSE,
+  API_COURSES_BY_ID,
 } from "./ApiCourse";
 export const getALlCourseApi = async () => {
   try {
@@ -23,8 +24,6 @@ export const handleSearchCourseApi = async (dataValue) => {
     return error;
   }
 };
-
-
 export const handlePaginationRenderOneApi = async (firstPage, limit) => {
   try {
     const response = await publicAxios.get(

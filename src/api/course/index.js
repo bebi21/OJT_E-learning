@@ -24,7 +24,6 @@ export const handleSearchCourseApi = async (dataValue) => {
     return error;
   }
 };
-
 export const handlePaginationRenderOneApi = async (firstPage, limit) => {
   try {
     const response = await publicAxios.get(

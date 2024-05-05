@@ -10,8 +10,9 @@ import { PlusOutlined, InteractionOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import { handleFindCourseByIdApi } from "../../api/course";
 import teacher from "../../img/home_img/aquan_trongsuot.png";
+
 function getItem(label, key, icon, children, type) {
-  return {
+  return {  
     key,
     icon,
     children,

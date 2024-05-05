@@ -2,19 +2,26 @@ import React, { useState } from "react";
 import { LuUser2 } from "react-icons/lu";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { IoEyeSharp } from "react-icons/io5";
-import { CiMail } from "react-icons/ci";
-import { useNavigate } from "react-router-dom";
+import { auth } from "../../configs/firebase.config";
+import { NavLink, useNavigate } from "react-router-dom";
 import publicAxios from "../../configs/public";
 import { failed, success } from "../../utils/notify";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { IoIosPhonePortrait } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa6";
+import { Button } from "antd";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 
 function Register() {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("");
+  const [user, setUser] = useState(null);
+  const [otp, setOTP] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isOtpVerified, setOtpVerified] = useState(false);
+  const [checkPassword, setCheckPassword] = useState(true);
+
   const [register, setRegister] = useState({
     full_name: "",
     password: "",
@@ -24,10 +31,57 @@ function Register() {
     setRegister({ ...register, [e.target.name]: e.target.value });
   };
 
+  const handleSendOTP = async () => {
+    try {
+      const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
+      const confirmation = await signInWithPhoneNumber(auth, phone, recaptcha);
+      setUser(confirmation);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleEyeShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
+  const verifyOTP = async () => {
+    try {
+      const data = await user.confirm(otp);
+      if (data) {
+        success("Đã xác thực OTP");
+        setOtpVerified(true);
+      }
+    } catch (error) {
+      if (error) {
+        failed("OTP không đúng");
+        setOtpVerified(false);
+      }
+    }
+  };
+
+  const regexPhone = /(\+84[3|5|7|8|9])+([0-9]{8,9})\b/;
+  const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  
   const handleRegister = async () => {
+    if (register.full_name === "" || register.password === "" || phone === "") {
+      failed("Vui lòng điền đầy đủ thông tin");
+      return;
+    }
+    if (!regexPassword.test(register.password)) {
+      setCheckPassword(false);
+      return;
+    }
+
+    if (!regexPhone.test(phone)) {
+      failed("Số điện thoại không đúng định dạng");
+      return;
+    }
+
+    if (!isOtpVerified) {
+      failed("Vui lòng xác thực OTP");
+      return;
+    }
     try {
       const dataRegister = {
         full_name: register.full_name,
@@ -47,11 +101,14 @@ function Register() {
     <>
       <div className="w-4/5 ml-[10%] flex flex-wrap text-[#0A033C] max-[600px]:w-full max-[600px]:ml-0 max-[600px]:flex max-[600px]:justify-center max-[600px]:items-center max-[600px]:h-full">
         <div className="w-[44%] max-[600px]:w-full max-[600px]:flex max-[600px]:justify-center ">
-          <img
-            className="mb-[10%] mt-[5%]   max-[600px]:hidden	"
-            src="../../../public/img/logo-login.png"
-            alt="lỗi hiển thị"
-          />
+          <NavLink to="/">
+            <img
+              className="mb-[10%] mt-[5%]   max-[600px]:hidden"
+              src="../../../public/img/logo-login.png"
+              alt="lỗi hiển thị"
+            />
+          </NavLink>
+
           <h1 className="text-4xl	text-[#0A033C] w-[60%] font-medium mb-[10%] max-[600px]:text-center max-[600px]:mt-[20%] max-[600px]:text-2xl	max-[1154px]:text-3xl max-[964px]:text-2xl">
             Welcome to RikeiEdu Online Learning Platfrom
           </h1>
@@ -85,24 +142,6 @@ function Register() {
                   onChange={handleGetValueInput}
                   name="full_name"
                   value={register.full_name}
-                />
-              </div>
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="email"
-              >
-                Phone Number
-              </label>
-              <div className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5 flex items-center">
-                <IoIosPhonePortrait />
-                <PhoneInput
-                  type="text"
-                  placeholder="Phone Number"
-                  className=" px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  onChange={(e) => setPhone(e)}
-                  name="phone"
-                  country={"vn"}
-                  value={register.phone}
                 />
               </div>
 
@@ -139,19 +178,63 @@ function Register() {
                   )}
                 </div>
               </div>
-              {/* <label
-                className='block text-gray-700 text-sm font-bold mb-2'
-                htmlFor='password'>
+              {checkPassword === false ? (
+                <div className="mb-2 ml-3 ">
+                  <p className="text-[12px] text-red-600">
+                    Mật khẩu có tối thiểu 8 ký tự, chữ thường, chữ in Hoa, số và
+                    ký tự đặc biệt{" "}
+                  </p>
+                </div>
+              ) : (
+                <div className="mb-2 ml-3 hidden">
+                  <p className="text-[10px] text-red-600">
+                    Mật khẩu có tối thiểu 8 ký tự, chữ thường, chữ in Hoa, số và
+                    ký tự đặc biệt{" "}
+                  </p>
+                </div>
+              )}
+
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="username"
+              >
+                Phone Number
+              </label>
+              <div className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5 flex items-center">
+                <IoIosPhonePortrait />
+                <PhoneInput
+                  type="text"
+                  placeholder="Phone Number"
+                  className=" px-2 "
+                  country={"vn"}
+                  value={phone}
+                  onChange={(phone) => setPhone("+" + phone)}
+                />
+                <Button onClick={handleSendOTP} className="text-[#0A033C]">
+                  Send
+                </Button>
+              </div>
+              <div className="text-center" id="recaptcha"></div>
+
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="otp"
+              >
                 OTP
               </label>
-              <div className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5 flex items-center'>
-                <input
-                  id='password'
-                  type='text'
-                  placeholder='OTP  '
-                  className='py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                />
-              </div> */}
+              <div className="flex justify-between">
+                <div className="  shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5 flex justify-between items-center">
+                  <input
+                    type="text"
+                    placeholder="OTP"
+                    className="py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    onChange={(e) => setOTP(e.target.value)}
+                  />
+                  <Button onClick={verifyOTP} className="text-[#0A033C]">
+                    Xác nhận
+                  </Button>
+                </div>
+              </div>
 
               <button
                 onClick={handleRegister}

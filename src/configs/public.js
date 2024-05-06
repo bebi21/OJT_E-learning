@@ -15,7 +15,6 @@ export const getALlCourseApi = async () => {
     const response = await publicAxios.get(API_GET_ALL_COURSE);
     return response;
   } catch (error) {
-    console.log(error);
     return error;
   }
 };

@@ -19,6 +19,8 @@ function Learn() {
   const [chapter, setChapter] = useState();
   const takeDataInDb = async () => {
     const data = await handleFindCourseByIdApi(id);
+    const progressData = await tokenAxios.get(`progress/takeAll/${id}`);
+    console.log(progressData);
     const newData = data.data.chapters;
     setCurrentLesson(newData[0].lessons[0]);
     setBrandData(newData);
@@ -29,7 +31,6 @@ function Learn() {
   }, []);
   const handleTakeValue = (lesson, item) => {
     setCurrentLesson(lesson);
-
     setChapter(item);
   };
   const [api, contextHolder] = notification.useNotification();
@@ -108,7 +109,7 @@ function Learn() {
   };
   const [check, setCheck] = useState(false);
   const handleVideoEnd = async () => {
-    /* const complete = {
+    const complete = {
       course_id: id,
       chapter_id: chapter.id,
       lesson_id: currentLesson.id,
@@ -121,7 +122,7 @@ function Learn() {
       console.log(createProgress);
     } catch (error) {
       console.log(error);
-    } */
+    }
     setCheck(true);
   };
 

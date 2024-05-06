@@ -4,10 +4,10 @@ import { PiBookOpenTextLight } from "react-icons/pi";
 import { RxBackpack } from "react-icons/rx";
 import { TbMessages } from "react-icons/tb";
 import { GoMortarBoard } from "react-icons/go";
-import { Button, Input, Pagination } from "antd";
+import { Button, Input, Pagination, notification } from "antd";
 import "./Courses.css";
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   getALlCourseApi,
   handleSearchCourseApi,
@@ -55,11 +55,20 @@ export default function Course() {
     let firstPage = 1;
     try {
       const response = await handlePaginationRenderOneApi(firstPage, limit);
-      console.log(response.data);
+
       setGetCourse(response.data);
     } catch (error) {
       return error;
     }
+  };
+  const [api, contextHolder] = notification.useNotification();
+  const openNotification = () => {
+    api.info({
+      message: `Thông Báo`,
+      description: "Hãy đăng nhập  để chọn khoá học",
+      placement: "top",
+      duration: 2.5,
+    });
   };
 
   const handlePagination = async (page) => {
@@ -73,8 +82,18 @@ export default function Course() {
       return error;
     }
   };
+  const navigate = useNavigate();
+  const handleChangePage = (page) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate(`/courseDetail/${page}`);
+    } else {
+      openNotification();
+    }
+  };
   return (
     <>
+      {contextHolder}
       <div className="trans-font">
         <div className=" w-[100%] lg:h-[520px] sm:h-[400px] h-[600px] banner "></div>
         <div className=" lg:h-[90px] lg:pt-8 pt-[20px] pl-11 ">
@@ -109,7 +128,7 @@ export default function Course() {
           <div className="  h-[100%] grid grid-cols-1 lg:ml-6 lg:grid-cols-3 sm:grid-cols-2  sm:gap-x-[2px] sm:gap-y-[40px] lg:gap-5 gap-[50px] lg:mt-2 mt-4 ">
             {getCourse.data?.map((item, index) => {
               return (
-                <NavLink key={index} to={`/courseDetail/${item.id}`}>
+                <div key={index} onClick={() => handleChangePage(item.id)}>
                   <div className="  lg:w-[300px] w-[340px] sm:h-[250px] sm:w-[280px]  lg:h-[310px] h-[272px] sm:ml-5  ml-11 shadow-lg rounded-[7px] transform hover:scale-95 transition-all duration-300 cursor-pointer border-2 border-gray-100 border-solid ">
                     <div
                       to="/courseDetail"
@@ -142,7 +161,7 @@ export default function Course() {
                       </div>
                     </div>
                   </div>
-                </NavLink>
+                </div>
               );
             })}
           </div>

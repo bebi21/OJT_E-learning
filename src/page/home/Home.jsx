@@ -10,10 +10,7 @@ import icon_4 from "../../img/home_img/icon6.png";
 import icon_5 from "../../img/home_img/icon7.png";
 import icon_6 from "../../img/home_img/icon8.png";
 import img_test from "../../img/home_img/img_test.png";
-import mentor_1 from "../../img/home_img/mentor1.png";
-import mentor_2 from "../../img/home_img/mentor2.png";
-import mentor_3 from "../../img/home_img/mentor3.png";
-import mentor_4 from "../../img/home_img/mentor4.png";
+import nghi30_4 from "../../img/home_img/nghi.png";
 import banner_1 from "../../img/home_img/banner1.png";
 import banner_2 from "../../img/home_img/aquan_trongsuot.png";
 import banner_3 from "../../img/home_img/home_page2.png";
@@ -21,7 +18,8 @@ import course_1 from "../../img/home_img/course_1.webp";
 import course_2 from "../../img/home_img/course_2.jpeg";
 import course_3 from "../../img/home_img/course_3.jpeg";
 import hv_1 from "../../img/home_img/hv.jpg";
-import hv_2 from "../../img/test1.png";
+import bong_da from "../../img/home_img/bongda.jpeg";
+import khaigiang from "../../img/home_img/khaigiang.jpeg";
 
 import React, { useRef, useState } from "react";
 import { FaPeopleArrows } from "react-icons/fa";
@@ -155,7 +153,7 @@ function Home() {
   ];
   const listMentor = [
     {
-      img:"https://rikkei.edu.vn/wp-content/uploads/2024/01/aquang-1.jpg",
+      img: "https://rikkei.edu.vn/wp-content/uploads/2024/01/aquang-1.jpg",
       name: "Nguyễn Duy Quang",
       position: "Trưởng phòng đào tạo",
       title1: "Kỹ sư Công Nghệ thông tin Đại học Bách Khoa Hà Nội",
@@ -192,10 +190,10 @@ function Home() {
       title4: "",
     },
     {
-      img:"https://rikkei.edu.vn/wp-content/uploads/2024/01/adungpng.png",
+      img: "https://rikkei.edu.vn/wp-content/uploads/2024/01/adungpng.png",
       name: "Phan Thế Dũng",
       position: "Cố vấn",
-      title1:"Phó Chủ tịch cấp cao Rikkeisoft",
+      title1: "Phó Chủ tịch cấp cao Rikkeisoft",
       title2: "",
       title3: "",
       title4: "",
@@ -228,7 +226,6 @@ function Home() {
       title3: "",
       title4: "",
     },
-  
   ];
   // sử dụng  thư  viện swiper
   const swiperCss = useSwiper();
@@ -660,7 +657,8 @@ function Home() {
               Bài Giảng Chất Lượng Cao
             </h2>
             <p className="text-[#5D5A6F] text-[16px] text-center sm:block hidden">
-            Khám phá những bài giảng chất lượng cao, được thiết kế kỹ lưỡng để nâng cao kiến thức và kỹ năng của bạn, mọi lúc, mọi nơi
+              Khám phá những bài giảng chất lượng cao, được thiết kế kỹ lưỡng để
+              nâng cao kiến thức và kỹ năng của bạn, mọi lúc, mọi nơi
             </p>
           </div>
           <div className="flex justify-center mt-[40px]">
@@ -709,7 +707,11 @@ function Home() {
               Cảm Nhận Học Viên
             </h2>
             <p className="text-[#5D5A6F] text-[16px] text-center sm:block hidden">
-            Chúng tôi tin rằng chất lượng của một tổ chức giáo dục có thể được đánh giá qua sự thành công và đóng góp của các cựu học viên tài năng. Với mục tiêu thúc đẩy học viên trọn đời, RA Alumni cam kết mang đến giá trị tốt hơn cho từng thành viên và cho cả cộng đồng, xã hội, đóng góp cho sự phát triển của ngành CNTT và đất nước.
+              Chúng tôi tin rằng chất lượng của một tổ chức giáo dục có thể được
+              đánh giá qua sự thành công và đóng góp của các cựu học viên tài
+              năng. Với mục tiêu thúc đẩy học viên trọn đời, RA Alumni cam kết
+              mang đến giá trị tốt hơn cho từng thành viên và cho cả cộng đồng,
+              xã hội, đóng góp cho sự phát triển của ngành CNTT và đất nước.
             </p>
           </div>
           <div className="flex justify-center mt-[40px]">
@@ -772,13 +774,16 @@ function Home() {
                   <div className="absolute top-0 w-full h-full z-[-1] rounded-lg bg-[rgba(0,0,0,0.6)]"></div>
                   <div className="text-center z-20">
                     <p className="text-white font-bold text-[1.5rem]">
-                     Nguyễn  Văn  Anh
+                      Nguyễn Văn Anh
                     </p>
                     <i className="text-[#4CBBE0] text-[1.4rem]">
-                     Học  Viên Khóa  10
+                      Học Viên Khóa 10
                     </i>
                     <p className="text-[rgb(255,255,255,0.8)] text-[1rem]">
-                    Nếu bạn đặt mục tiêu học để đi làm, xác định cho mình tâm lý nghiêm túc và chuẩn bị một tâm trí vững vàng, CodeGym sẽ là bệ đỡ hoàn hảo cho bạn để bắt đầu theo đuổi nghề lập trình viên.
+                      Nếu bạn đặt mục tiêu học để đi làm, xác định cho mình tâm
+                      lý nghiêm túc và chuẩn bị một tâm trí vững vàng, CodeGym
+                      sẽ là bệ đỡ hoàn hảo cho bạn để bắt đầu theo đuổi nghề lập
+                      trình viên.
                     </p>
                   </div>
                 </div>
@@ -799,7 +804,12 @@ function Home() {
                       Team Leader Java
                     </i>
                     <p className="text-[rgb(255,255,255,0.8)] text-[1rem]">
-                    Trước khi đến Rikkei, mình từng học đại học và bỏ ngang, sau đó cũng trải qua nhiều ngành nghề khác nhau nhưng cuối cùng vẫn quyết định bắt đầu lại với ngành lập trình tại CodeGym. Tập trung rèn luyện sau 6 tháng, mình tốt nghiệp và đi làm. Sau gần 2 năm, mình đang là PO/Team Leader tại BiPlus
+                      Trước khi đến Rikkei, mình từng học đại học và bỏ ngang,
+                      sau đó cũng trải qua nhiều ngành nghề khác nhau nhưng cuối
+                      cùng vẫn quyết định bắt đầu lại với ngành lập trình tại
+                      CodeGym. Tập trung rèn luyện sau 6 tháng, mình tốt nghiệp
+                      và đi làm. Sau gần 2 năm, mình đang là PO/Team Leader tại
+                      BiPlus
                     </p>
                   </div>
                 </div>
@@ -817,7 +827,7 @@ function Home() {
                       Trần Nguyễn Phúc
                     </p>
                     <i className="text-[#4CBBE0] text-[1.4rem]">
-                    Học Viên Khóa Python
+                      Học Viên Khóa Python
                     </i>
                     <p className="text-[rgb(255,255,255,0.8)] text-[1rem]">
                       Tính kỷ luật là thứ mà mình đã được trui rèn trong suốt 6
@@ -869,7 +879,11 @@ function Home() {
                       key={index}
                       className=" min-[1024px]:w-[290px] w-[235px] min-[1024px]:h-[490px] h-[auto] text-center text-[#221651] p-[16px] border-[1px] border-solid border-[rgba(0,0,0,0.1)] shadow-[0px_0px_3px_0px_rgba(0,0,0,0.3)]"
                     >
-                      <img src={item.img} alt="mentor" className="w-full h-[254px]"  />
+                      <img
+                        src={item.img}
+                        alt="mentor"
+                        className="w-full h-[254px]"
+                      />
                       <div className="py-[8px]">
                         <h5 className="text-[20px] font-semibold py-[8px]">
                           {item.name}
@@ -931,19 +945,17 @@ function Home() {
           </div>
         </div>
         {/*  */}
-        <Divider plain style={{ marginTop: "50px",  }}>
+        <Divider plain style={{ marginTop: "50px" }}>
           <div className="sm:text-[45px] text-[24px] font-bold text-[#BC2228] ">
             {" "}
             Blog
           </div>{" "}
-        </Divider >
+        </Divider>
         <div className="w-[100%] h-auto bg-[#ffff] pt-[40px] pb-[80px] sm:px-auto px-[30px]">
-         
-
           <div className="flex justify-center gap-[40px] px-[40px]  mt-[40px] text-[#221651]">
             <div>
               <h3 className="text-[2rem] mb-[30px]">Mẹo Hữu</h3>
-             
+
               <div className="flex justify-center gap-[10px] py-[20px] cursor-pointer">
                 <div>
                   <img
@@ -958,9 +970,9 @@ function Home() {
                     Hướng dẫn sử dụng NVM để cài đặt nhiều phiên bản Node.js
                   </span>
                   <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
-                       Xem  Chi Tiết
-                        </div>                </div>
-               
+                    Xem Chi Tiết
+                  </div>{" "}
+                </div>
               </div>
               <div className="grid grid-cols-3 gap-[10px] py-[20px] cursor-pointer">
                 <div>
@@ -970,14 +982,14 @@ function Home() {
                     className="w-[225px] rounded-md "
                   />
                 </div>
-                <div  className="relative col-span-2 ">
+                <div className="relative col-span-2 ">
                   <span className="text-[1.5rem]">
                     {" "}
-                   Kĩ Thuật Số Hóa là gì ?
+                    Kĩ Thuật Số Hóa là gì ?
                   </span>
                   <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
-                       Xem  Chi Tiết
-                        </div>  
+                    Xem Chi Tiết
+                  </div>
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-[10px] py-[20px] cursor-pointer">
@@ -988,24 +1000,24 @@ function Home() {
                     className="w-[225px] rounded-md "
                   />
                 </div>
-                <div  className="relative col-span-2">
+                <div className="relative col-span-2">
                   <span className="text-[1.5rem]">
                     {" "}
-                   Hướng dẫn sử dụng  Docker ?
+                    Hướng dẫn sử dụng Docker ?
                   </span>
                   <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
-                       Xem  Chi Tiết
-                        </div>  
+                    Xem Chi Tiết
+                  </div>
                 </div>
               </div>
             </div>
             <div>
               <h3 className="text-[2rem] mb-[30px]">Tin Tức Hoạt Động</h3>
-             
+
               <div className="flex justify-center gap-[10px] py-[20px] cursor-pointer">
                 <div>
                   <img
-                    src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/437938841_456414413577280_4975156615058686742_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGOdlMSRHmmElDXnOOWdgj2swx59ScdRo2zDHn1Jx1Gjd8lpI5TkGVOm6pkF-D1F23zK16GQyKDF889miowYmzZ&_nc_ohc=-rwP8r5P4L4Ab5hOxt7&_nc_ht=scontent.fhan15-1.fna&oh=00_AfCrMgrum9DUHKHk09Pj1qpxC6uO1wAieZFzRdr_XnAIPA&oe=662C7242"
+                    src={bong_da}
                     alt="course"
                     className="w-[270px] rounded-md "
                   />
@@ -1013,51 +1025,50 @@ function Home() {
                 <div className="relative">
                   <span className="text-[1.5rem]">
                     {" "}
-                  Trận trung kết,  Giải  Bóng Đá Rikkei  ?? Ai Là Thắng Cuộc
+                    Trận trung kết, Giải Bóng Đá Rikkei ?? Ai Là Thắng Cuộc
                   </span>
                   <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
-                       Xem  Chi Tiết
-                        </div>                </div>
-               
+                    Xem Chi Tiết
+                  </div>{" "}
+                </div>
               </div>
               <div className="grid grid-cols-3 gap-[10px] py-[20px] cursor-pointer">
                 <div>
                   <img
-                    src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/438198313_457330603485661_5538373835705511828_n.jpg?stp=dst-jpg_s552x414&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHo20Gp68jIKTTSVjNbzRHTVRoYyZxn-aNVGhjJnGf5ozENdIXtAe7zcEzOtvImm0jLcxTRUG3wNzjzm7sdalAO&_nc_ohc=DKkNHd9y6owAb5EkJ-I&_nc_ht=scontent.fhan15-1.fna&oh=00_AfCijqTXtrhEUY2dxZ_4V7WtAlXutTMsYnRyG_lRGEoX-A&oe=662C7917"
+                    src={nghi30_4}
                     alt="course"
                     className="w-[270px] h-[145px] rounded-md "
                   />
                 </div>
-                <div  className="relative col-span-2 ">
+                <div className="relative col-span-2 ">
                   <span className="text-[1.5rem]">
                     {" "}
-                 Thông Báo Lịch Nghỉ 30/4-1/5
+                    Thông Báo Lịch Nghỉ 30/4-1/5
                   </span>
                   <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
-                       Xem  Chi Tiết
-                        </div>  
+                    Xem Chi Tiết
+                  </div>
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-[10px] py-[20px] cursor-pointer">
                 <div>
                   <img
-                    src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/438221499_457324266819628_4556945443981845627_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHbPAmAFCWGGYdgs9bxyFiaiNXAtnP22pmI1cC2c_bamaV0WGkBHDyKT1aQGP_bBxjrz6RbWcEdAJVQ679JDHnY&_nc_ohc=vQYq7GGTf4kAb4--bvg&_nc_ht=scontent.fhan15-1.fna&oh=00_AfDJV5qxTEykNMaVq8mHA7WG2tjOPKUC1e1odI_gIoGjBQ&oe=662C8708"
+                    src={khaigiang}
                     alt="course"
                     className="w-[225px] h-[140px] rounded-md "
                   />
                 </div>
-                <div  className="relative col-span-2">
+                <div className="relative col-span-2">
                   <span className="text-[1.5rem]">
                     {" "}
                     Khai Giảng Lớp Passtime JV240116
                   </span>
                   <div className=" absolute bottom-0 right-0 text-center max-w-[150px] h-[30px]  border-[1px] text-[14px] text-[#BC2228]  border-solid border-[#BC2228] rounded-[3px] px-[8px] py-[4px] mr-[20px]">
-                       Xem  Chi Tiết
-                        </div>  
+                    Xem Chi Tiết
+                  </div>
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </div>

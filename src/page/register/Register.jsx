@@ -53,6 +53,7 @@ function Register() {
       }
     } catch (error) {
       if (error) {
+        
         failed("OTP không đúng");
         setOtpVerified(false);
       }
@@ -75,8 +76,7 @@ function Register() {
       failed("Vui lòng xác thực OTP");
       return;
     }
-    try {
-      const dataRegister = {
+    const dataRegister = {
         full_name: register.full_name,
         phone: phone,
         password: register.password,
@@ -85,9 +85,6 @@ function Register() {
       setRegister({ full_name: "", phone: "", password: "" });
       success(response.data.message);
       navigate("/login");
-    } catch (error) {
-      failed(error.response.data.message);
-    }
   };
 
   return (

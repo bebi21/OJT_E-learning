@@ -8,7 +8,7 @@ const tokenAxios = axios.create({
 
 tokenAxios.interceptors.request.use((config) => {
   const jwtTokent = localStorage.getItem("token");
-  console.log(jwtTokent);
+
   return {
     ...config,
     headers: {

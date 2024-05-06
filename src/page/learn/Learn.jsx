@@ -3,11 +3,14 @@ import ReactPlayer from "react-player";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { IoMenuSharp } from "react-icons/io5";
 import "./learn.css";
-import { Avatar, Divider, Input } from "antd";
+import { Avatar, Divider, Input, notification } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import Tour from "reactour";
 import { MdOutlineHelp } from "react-icons/md";
 import { handleFindCourseByIdApi } from "../../api/course/index";
+import { NavLink, useParams } from "react-router-dom";
+import publicAxios from "../../configs/public";
+import tokenAxios from "../../configs/private";
 function Learn() {
   const [collapsed, setCollapsed] = useState(false);
   const [currentLesson, setCurrentLesson] = useState("");
@@ -29,6 +32,16 @@ function Learn() {
 
     setChapter(item);
   };
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = () => {
+    api.info({
+      message: `Thông Báo`,
+      description: "Hãy xem hết video",
+      placement: "top",
+      duration: 2.5,
+    });
+  };
   const handleBack = () => {
     const index = brandData.findIndex((item) => item.id === chapter.id);
     const index2 = brandData[index].lessons.findIndex(
@@ -48,28 +61,24 @@ function Learn() {
       }
     }
   };
-
   const handleNext = async () => {
-    const index = brandData.findIndex((item) => item.id === chapter.id);
-    const index2 = brandData[index].lessons.findIndex(
+    if (!check) {
+      return openNotification();
+    }
+    const chapterIndex = brandData.findIndex((item) => item.id === chapter.id);
+    if (chapterIndex === -1) return;
+    const lessons = brandData[chapterIndex].lessons;
+    const lessonIndex = lessons.findIndex(
       (item) => item.id === currentLesson.id
     );
-
-    if (index2 < brandData[index].lessons.length - 1) {
-      setCurrentLesson(brandData[index].lessons[index2 + 1]);
+    if (lessonIndex < lessons.length - 1) {
+      setCurrentLesson(lessons[lessonIndex + 1]);
+    } else if (chapterIndex < brandData.length - 1) {
+      setCurrentLesson(brandData[chapterIndex + 1].lessons[0]);
+      setChapter(brandData[chapterIndex + 1]);
     }
-    if (index2 >= brandData[index].lessons.length - 1) {
-      const index = brandData.findIndex((item) => item.id === chapter.id);
-      const index2 = brandData[index].lessons.findIndex(
-        (item) => item.id === currentLesson.id
-      );
-      if (index < brandData.length - 1) {
-        setCurrentLesson(brandData[index + 1].lessons[0]);
-        setChapter(brandData[index + 1]);
-      }
-    }
+    setCheck(false);
   };
-
   const [isTourOpen, setIsTourOpen] = useState(false);
   const steps = [
     {
@@ -97,9 +106,28 @@ function Learn() {
   const closeTour = () => {
     setIsTourOpen(false);
   };
+  const [check, setCheck] = useState(false);
+  const handleVideoEnd = async () => {
+    /* const complete = {
+      course_id: id,
+      chapter_id: chapter.id,
+      lesson_id: currentLesson.id,
+    };
+    try {
+      const createProgress = await tokenAxios.post(
+        "/progress/create",
+        complete
+      );
+      console.log(createProgress);
+    } catch (error) {
+      console.log(error);
+    } */
+    setCheck(true);
+  };
 
   return (
     <>
+      {contextHolder}
       <Tour
         startAt={0}
         onAfterOpen={() => setIsTourOpen(true)}
@@ -152,6 +180,7 @@ function Learn() {
                           url={currentLesson.video}
                           controls
                           className="first-step"
+                          onEnded={handleVideoEnd}
                         />
                       )}
                     </div>
@@ -175,7 +204,9 @@ function Learn() {
                 </button>
                 <button
                   onClick={handleNext}
-                  className="text-black border border-black rounded-[5px] px-[20px] py-[10px] "
+                  className={`${
+                    check ? "" : "opacity-[0.5]"
+                  } text-black border border-black rounded-[5px] px-[20px] py-[10px] `}
                 >
                   Bài tiếp theo
                 </button>

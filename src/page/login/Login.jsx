@@ -6,9 +6,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 import { Button } from "antd";
-import publicAxios from "../../configs/public";
 import { failed, success } from "../../utils/notify";
 import { FaEyeSlash } from "react-icons/fa6";
+import { regexPassword, regexPhone } from "../../utils/regex";
+import { handleLoginApi } from "../../api/users/users.fun";
 
 function Login() {
   const navigate = useNavigate();
@@ -28,19 +29,32 @@ function Login() {
   };
 
   const handleLogin = async () => {
-    try {
-      const logindata = {
-        phone: phone,
-        password: password,
-      };
-      const response = await publicAxios.post("/auth/login", logindata);
-      localStorage.setItem("token", response.data.data.accessToken);
-      localStorage.setItem("currentUser", response.data.data.full_name);
-      success(response.data.message);
-      navigate("/");
-    } catch (error) {
-      failed(error.response.data.message);
+    if (phone === "" || password === "") {
+      failed("Vui lòng điền đầy đủ thông tin");
+      return;
     }
+    if (!regexPhone.test(phone)) {
+      failed("Sai số điện thoại hoặc mật khẩu !");
+      return;
+    }
+    if (!regexPassword.test(password)) {
+      failed("Sai số điện thoại hoặc mật khẩu !");
+      return;
+    }
+
+    const logiData = {
+      phone: phone,
+      password: password,
+    };
+    const response = await handleLoginApi(logiData);
+    // if (response.data.data.role == 0) {
+    //   window.location.href = "http://localhost:5000/";
+    //   return;
+    // }
+    localStorage.setItem("token", response.data.data.accessToken);
+    localStorage.setItem("currentUser", response.data.data.full_name);
+    success(response.data.message);
+    navigate("/");
   };
   return (
     <>

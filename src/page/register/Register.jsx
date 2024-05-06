@@ -12,6 +12,8 @@ import { IoIosPhonePortrait } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa6";
 import { Button } from "antd";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { regexPassword, regexPhone } from "../../utils/regex";
+import { handleRegiterApi } from "../../api/users/users.fun";
 
 function Register() {
   const navigate = useNavigate();
@@ -21,7 +23,6 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [isOtpVerified, setOtpVerified] = useState(false);
   const [checkPassword, setCheckPassword] = useState(true);
-
   const [register, setRegister] = useState({
     full_name: "",
     password: "",
@@ -40,11 +41,9 @@ function Register() {
       console.log(error);
     }
   };
-
   const handleEyeShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
   const verifyOTP = async () => {
     try {
       const data = await user.confirm(otp);
@@ -59,10 +58,6 @@ function Register() {
       }
     }
   };
-
-  const regexPhone = /(\+84[3|5|7|8|9])+([0-9]{8,9})\b/;
-  const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  
   const handleRegister = async () => {
     if (register.full_name === "" || register.password === "" || phone === "") {
       failed("Vui lòng điền đầy đủ thông tin");
@@ -72,12 +67,10 @@ function Register() {
       setCheckPassword(false);
       return;
     }
-
     if (!regexPhone.test(phone)) {
       failed("Số điện thoại không đúng định dạng");
       return;
     }
-
     if (!isOtpVerified) {
       failed("Vui lòng xác thực OTP");
       return;
@@ -88,7 +81,7 @@ function Register() {
         phone: phone,
         password: register.password,
       };
-      const response = await publicAxios.post("/auth/register", dataRegister);
+      const response = await handleRegiterApi(dataRegister);
       setRegister({ full_name: "", phone: "", password: "" });
       success(response.data.message);
       navigate("/login");
@@ -178,9 +171,10 @@ function Register() {
                   )}
                 </div>
               </div>
+
               {checkPassword === false ? (
                 <div className="mb-2 ml-3 ">
-                  <p className="text-[12px] text-red-600">
+                  <p className="text-[10px] text-red-600">
                     Mật khẩu có tối thiểu 8 ký tự, chữ thường, chữ in Hoa, số và
                     ký tự đặc biệt{" "}
                   </p>

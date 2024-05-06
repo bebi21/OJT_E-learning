@@ -9,6 +9,7 @@ import { Button } from "antd";
 import publicAxios from "../../configs/public";
 import { failed, success } from "../../utils/notify";
 import { FaEyeSlash } from "react-icons/fa6";
+import { regexPassword, regexPhone } from "../../utils/regex";
 
 function Login() {
   const navigate = useNavigate();
@@ -28,6 +29,18 @@ function Login() {
   };
 
   const handleLogin = async () => {
+    if (phone === "" || password === "") {
+      failed("Vui lòng điền đầy đủ thông tin");
+      return;
+    }
+    if (!regexPhone.test(phone)) {
+      failed("Sai số điện thoại hoặc mật khẩu !");
+      return;
+    }
+    if (!regexPassword.test(password)) {
+      failed("Sai số điện thoại hoặc mật khẩu !");
+      return;
+    }
     try {
       const logindata = {
         phone: phone,
@@ -36,9 +49,15 @@ function Login() {
       const response = await publicAxios.post("/auth/login", logindata);
       localStorage.setItem("token", response.data.data.accessToken);
       localStorage.setItem("currentUser", response.data.data.full_name);
+      console.log(response.data.data.role);
+      if (response.data.data.role == 0) {
+        window.location.href= "http://localhost:5000/"
+        return;
+      }
       success(response.data.message);
       navigate("/");
     } catch (error) {
+      console.log(error);
       failed(error.response.data.message);
     }
   };

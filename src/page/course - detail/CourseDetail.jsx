@@ -7,12 +7,11 @@ import { PiCertificateFill } from "react-icons/pi";
 import { IoBookSharp } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";
 import { PlusOutlined, InteractionOutlined } from "@ant-design/icons";
-import { Menu } from "antd";
+import { Menu, notification } from "antd";
 import { handleFindCourseByIdApi } from "../../api/course";
 import teacher from "../../img/home_img/aquan_trongsuot.png";
-
 function getItem(label, key, icon, children, type) {
-  return {  
+  return {
     key,
     icon,
     children,
@@ -23,6 +22,14 @@ function getItem(label, key, icon, children, type) {
 export default function CourseDetail() {
   const [getData, setData] = useState([]);
   const { id } = useParams();
+  const [api, contextHolder] = notification.useNotification();
+  const openNotification = () => {
+    api.info({
+      message: `Thông Báo`,
+      description: "Khoá học  đang được cập  nhập  , vui  lòng quay laị  sau",
+      placement: "top",
+    });
+  };
   const handleGetData = async () => {
     try {
       const response = await handleFindCourseByIdApi(id);
@@ -58,8 +65,10 @@ export default function CourseDetail() {
       .concat({ type: "divider" });
   };
   const items = generateItems(data);
+
   return (
     <>
+      {contextHolder}
       <div className=" lg:h-[90px] lg:pt-8 pt-[20px] ml-[140px]  ">
         <div className=" flex w-[400px] justify-between text-customRed font-extrabold text-lg ">
           <p>Trang chủ</p>
@@ -119,7 +128,29 @@ export default function CourseDetail() {
           </div>
           <div className=" mt-4 text-center  ">
             <div className="flex justify-evenly">
-              <NavLink className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl ml-3 items-center">
+              {getData.chapters?.length <= 0 ? (
+                <>
+                  <div
+                    onClick={() => openNotification()}
+                    className="cursor-pointer mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl ml-3 items-center"
+                  >
+                    Comming Soon
+                  </div>
+                </>
+              ) : (
+                <>
+                  <NavLink className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl ml-3 items-center">
+                    Add WishList
+                  </NavLink>
+                  <NavLink
+                    to={`/learn/${getData.id}`}
+                    className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl  "
+                  >
+                    Học ngay
+                  </NavLink>
+                </>
+              )}
+              {/* <NavLink className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl ml-3 items-center">
                 Add WishList
               </NavLink>
               <NavLink
@@ -127,7 +158,7 @@ export default function CourseDetail() {
                 className=" mt-3 pt-[7px] bg-[#bd2228] text-white w-[40%] h-[40px] rounded-sm text-xl  "
               >
                 Học ngay
-              </NavLink>
+              </NavLink> */}
             </div>
             <div className="flex  px-[19%] mt-6    ">
               <span className="pl-3 pt-[2px]">

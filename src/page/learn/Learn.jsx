@@ -3,42 +3,54 @@ import ReactPlayer from "react-player";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { IoMenuSharp } from "react-icons/io5";
 import "./learn.css";
-import { Avatar, Divider, Input, notification } from "antd";
+import { Avatar, Divider, Input, message, notification } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import Tour from "reactour";
 import { MdOutlineHelp } from "react-icons/md";
 import { handleFindCourseByIdApi } from "../../api/course/index";
 import { NavLink, useParams } from "react-router-dom";
-import publicAxios from "../../configs/public";
 import tokenAxios from "../../configs/private";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 function Learn() {
   const [collapsed, setCollapsed] = useState(false);
   const [currentLesson, setCurrentLesson] = useState("");
   const [brandData, setBrandData] = useState([]);
   const { id } = useParams();
   const [chapter, setChapter] = useState();
+  const [doneList, setDoneList] = useState([]);
+  const navigate = useNavigate();
   const takeDataInDb = async () => {
     const data = await handleFindCourseByIdApi(id);
-    const progressData = await tokenAxios.get(`progress/takeAll/${id}`);
-    console.log(progressData);
+    let progressData = [];
+    progressData = await tokenAxios.get(`progress/takeAll/${id}`);
+
+    progressData = progressData.data.map((item) => {
+      return item.lession_id;
+    });
     const newData = data.data.chapters;
     setCurrentLesson(newData[0].lessons[0]);
     setBrandData(newData);
     setChapter(newData[0]);
+    setDoneList(progressData);
   };
   useEffect(() => {
     takeDataInDb();
   }, []);
   const handleTakeValue = (lesson, item) => {
+    const maxIdDone = Math.max(...doneList);
+    if (+lesson.id > maxIdDone + 1) {
+      openNotification("Không truy  cập  được  vui lòng học  lần lượt");
+      return;
+    }
     setCurrentLesson(lesson);
     setChapter(item);
   };
   const [api, contextHolder] = notification.useNotification();
-
-  const openNotification = () => {
+  const openNotification = (message) => {
     api.info({
       message: `Thông Báo`,
-      description: "Hãy xem hết video",
+      description: message,
       placement: "top",
       duration: 2.5,
     });
@@ -64,7 +76,7 @@ function Learn() {
   };
   const handleNext = async () => {
     if (!check) {
-      return openNotification();
+      return openNotification("Hãy xem  hết video");
     }
     const chapterIndex = brandData.findIndex((item) => item.id === chapter.id);
     if (chapterIndex === -1) return;
@@ -81,6 +93,7 @@ function Learn() {
     setCheck(false);
   };
   const [isTourOpen, setIsTourOpen] = useState(false);
+
   const steps = [
     {
       selector: ".first-step",
@@ -108,6 +121,20 @@ function Learn() {
     setIsTourOpen(false);
   };
   const [check, setCheck] = useState(false);
+  const takeNewData = async () => {
+    const data = await handleFindCourseByIdApi(id);
+    let progressData = [];
+    progressData = await tokenAxios.get(`progress/takeAll/${id}`);
+
+    progressData = progressData.data.map((item) => {
+      return item.lession_id;
+    });
+    const newData = data.data.chapters;
+
+    setBrandData(newData);
+
+    setDoneList(progressData);
+  };
   const handleVideoEnd = async () => {
     const complete = {
       course_id: id,
@@ -119,7 +146,7 @@ function Learn() {
         "/progress/create",
         complete
       );
-      console.log(createProgress);
+      takeNewData();
     } catch (error) {
       console.log(error);
     }
@@ -138,7 +165,6 @@ function Learn() {
         lastStepNextButton={<button>Bắt Đầu Học Nào</button>}
       />
       <div className="h-[100vh]">
-        <div></div>
         <div className="fixed top-0 h-[11vh] w-[100vw] z-[999] ">
           <div className="p-4 flex justify-between items-center bg-red-500">
             <NavLink to="/">
@@ -149,14 +175,14 @@ function Learn() {
                 className="w-[30px]"
               />
             </NavLink>
-            <div className="flex gap-4 cursor-pointer">
+            {/* <div className="flex gap-4 cursor-pointer">
               <div className="p-1 bg-red-700 rounded-full min-w-[50px] flex justify-between items-center gap-9">
                 <div className="flex items-center gap-4">
                   <Avatar size={32} icon={<UserOutlined />} />
                   <span className=" text-white"></span>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className=" flex h-[90vh]   z-[1] ">
@@ -236,8 +262,19 @@ function Learn() {
                       <>
                         <SubMenu key={index} label={`${item.title} `}>
                           {item.lessons.map((lesson, index) => {
+                            const checkDone = doneList.findIndex(
+                              (id) => id == lesson.id
+                            );
+
                             return (
                               <MenuItem
+                                icon={
+                                  checkDone != -1 ? (
+                                    <FaRegCheckCircle color="green" />
+                                  ) : (
+                                    <></>
+                                  )
+                                }
                                 key={index}
                                 onClick={() => {
                                   handleTakeValue(lesson, item);

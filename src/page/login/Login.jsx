@@ -5,17 +5,16 @@ import { IoEyeSharp } from "react-icons/io5";
 import { NavLink, useNavigate } from "react-router-dom";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
-import { Button } from "antd";
 import { failed, success } from "../../utils/notify";
 import { FaEyeSlash } from "react-icons/fa6";
 import { regexPassword, regexPhone } from "../../utils/regex";
 import { handleLoginApi } from "../../api/users/users.fun";
-
 function Login() {
   const navigate = useNavigate();
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -41,20 +40,18 @@ function Login() {
       failed("Sai số điện thoại hoặc mật khẩu !");
       return;
     }
-
+    // setIsLoading(true);
     const logiData = {
       phone: phone,
       password: password,
     };
     const response = await handleLoginApi(logiData);
-    // if (response.data.data.role == 0) {
-    //   window.location.href = "http://localhost:5000/";
-    //   return;
-    // }
     localStorage.setItem("token", response.data.data.accessToken);
     localStorage.setItem("currentUser", response.data.data.full_name);
+    setTimeout(() => {
     success(response.data.message);
-    navigate("/");
+      navigate("/");
+    }, 1500);
   };
   return (
     <>
@@ -139,8 +136,9 @@ function Login() {
               <button
                 onClick={handleLogin}
                 className="w-full hover:bg-[#0A033C] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-5 bg-[#BC2228]"
+                disabled={isLoading}
               >
-                Sign In
+                Sign in
               </button>
             </div>
             <div className="text-center mt-5">
@@ -153,6 +151,7 @@ function Login() {
               >
                 Create an account{" "}
               </small>
+              
             </div>
           </div>
         </div>

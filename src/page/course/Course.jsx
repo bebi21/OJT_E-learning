@@ -20,7 +20,6 @@ export default function Course() {
   const handleGetCourse = async () => {
     try {
       const response = await getALlCourseApi();
-
       setGetCourse(response.data);
     } catch (error) {
       console.log(error);
@@ -42,11 +41,10 @@ export default function Course() {
 
   const handleGetvalue = (e) => {
     const check = e.target.value;
-    if (check) {
-      setValueInput(check);
-    } else {
+    if (!check) {
       handlePaginationRenderOne();
     }
+    setValueInput(check);
   };
 
   const handlePaginationRenderOne = async () => {
@@ -55,8 +53,8 @@ export default function Course() {
     let firstPage = 1;
     try {
       const response = await handlePaginationRenderOneApi(firstPage, limit);
-
       setGetCourse(response.data);
+      console.log(response.data.data);
     } catch (error) {
       return error;
     }
